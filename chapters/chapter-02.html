@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan it - hardware, memory, power, and what one small box can really do - Localhaven</title>
+<meta name="description" content="What to buy (or reuse) for a private home AI, why memory matters more than a big graphics card, and real numbers from a mini PC.">
+<link rel="stylesheet" href="../assets/style.css"><link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+</head><body>
+<header><a class="brand" href="../index.html"><img src="../assets/mark.svg" alt="" width="28" height="28">Localhaven</a>
+<nav><a href="../outline.html">Course</a><a href="../chapters/chapter-01.html">Start free</a><a href="../faq.html">FAQ</a>
+<a class="cta" href="https://antrikos.gumroad.com/l/localhaven-course">Membership</a></nav></header>
+<main><p class="kicker">Chapter 2 · free · 20 min</p><h1>Plan it - hardware, memory, power, and what one small box can really do</h1>
+<p>The good news first: you do <strong>not</strong> need a big graphics card or a server rack. Everything in this course runs on <strong>one quiet mini PC</strong>. This chapter helps you choose it - or check whether something you already own is enough.</p>
+<h3 id="the-one-number">The one number that matters: memory</h3>
+<p>A language model has to fit into memory <strong>together with its "context"</strong> (the conversation it is looking at). Speed comes later; if it does not fit, it does not run well.</p>
+<p>Rough sizes of open models at the common 4-bit quality level ("Q4"):</p>
+<ul><li>a <strong>3-4B</strong> model: about <strong>2.5 GB</strong> - fast, simple answers, fine for commands and short questions</li><li>a <strong>7-8B</strong> model: about <strong>5 GB</strong> - good everyday assistant</li><li>a <strong>14B</strong> model: about <strong>9 GB</strong> - noticeably better at reasoning and writing; our choice</li><li>plus <strong>1-3 GB</strong> for a long context (the conversation), and a few GB for everything else on the server</li></ul>
+<p>So: <strong>32 GB of RAM is the minimum we recommend, 64 GB is comfortable.</strong> RAM is cheap compared to a graphics card.</p>
+<h3 id="integrated-graphics-are">Integrated graphics are enough (if they can use the memory)</h3>
+<p>Modern mini PCs with a recent AMD Ryzen chip have <strong>integrated graphics that share the main memory</strong>. In the BIOS you can give the graphics part a large share (for example 16 GB of 64 GB), and a model runs on it with the free Vulkan backend of llama.cpp - no special drivers.</p>
+<p><strong>Real numbers from our own build</strong> (Ryzen 7 8845HS mini PC, 64 GB RAM, 16 GB assigned to the integrated graphics, a 14B model at Q4 with a 32K context):</p>
+<ul><li>about <strong>8 tokens (roughly 6 words) per second</strong> while writing an answer - about reading speed</li><li>when answers are streamed, the <strong>first words appear after 1-2.5 seconds</strong>, a short spoken answer is complete after <strong>6-8 seconds</strong></li><li><strong>one job at a time</strong>: a second question waits until the first is done. Chapter 4 shows how a small queue and streaming make this feel fast anyway.</li></ul>
+<p>A dedicated graphics card is faster, but uses much more power and money. Start without one; you can always add a bigger machine later without changing the design.</p>
+<h3 id="the-shopping-list">The shopping list</h3>
+<p><strong>The server (always on)</strong></p>
+<ul><li>A <strong>mini PC</strong> with a recent Ryzen 7 (or similar), <strong>32-64 GB RAM</strong>, a <strong>1 TB NVMe SSD</strong>.</li><li>Check before buying: the BIOS lets you set the graphics memory (often called "UMA frame buffer size"), two memory slots (so you can go to 64 GB), and a wired network port.</li><li>Or reuse: an old PC or laptop works for learning; plan the upgrade when you know what you use it for.</li></ul>
+<p><strong>Voice at home</strong></p>
+<ul><li>Any <strong>USB microphone</strong> works for a start (even a webcam microphone). A USB <strong>speakerphone</strong> with echo cancellation is better if the assistant should hear you while music plays.</li><li>Any <strong>speaker</strong> (USB or the audio jack).</li></ul>
+<p><strong>Phone control</strong></p>
+<ul><li>Your phone and a chat app with a bot feature (chapter 8 uses a chat bot; nothing has to be installed on the phone).</li></ul>
+<p><strong>Safety and backups</strong></p>
+<ul><li>A <strong>second storage place</strong> for backups: a USB disk, a NAS, or another computer. One copy on the server itself is not a backup (chapter 10).</li><li>Optional: a small <strong>UPS</strong> so a power cut does not interrupt writes.</li></ul>
+<h3 id="power-and-noise">Power and noise</h3>
+<p>A mini PC like this is quiet and draws little power at idle; it uses more while answering. Measure yours with a cheap <strong>plug-in power meter</strong> for a day - that tells you the real yearly cost at your electricity price better than any spec sheet.</p>
+<h3 id="where-it-lives">Where it lives</h3>
+<ul><li><strong>Wired network</strong> (Ethernet), not Wi-Fi, for the server.</li><li>Somewhere with air flow, not in a closed cupboard.</li><li>The microphone and speaker where you talk - they can be in another room, connected over the network later.</li></ul>
+<h3 id="your-checklist-before">Your checklist before chapter 3</h3>
+<ul><li>[ ] Mini PC (or a reused computer) with at least 32 GB RAM and an SSD</li><li>[ ] USB microphone and a speaker</li><li>[ ] A USB stick (8 GB+) for installing Linux</li><li>[ ] A second place for backups</li><li>[ ] An evening for chapter 3: installing Linux and Docker the safe way</li></ul>
+<p><em>Next: Chapter 3 - Linux + Docker, done safely (members).</em></p>
+</main>
+<footer><p>Localhaven · local-first tools for the home · <a href="../about.html">About, privacy and legal</a> · <a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></p>
+<p>Made with AI assistance, tested by us. No cookies, no tracking. Not affiliated with the projects and products named on this site.</p></footer>
+</body></html>

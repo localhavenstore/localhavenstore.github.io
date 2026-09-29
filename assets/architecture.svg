@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13">
+  <rect width="760" height="560" rx="14" fill="#181D24"/>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E0B84F"/></marker></defs>
+  <g fill="none" stroke="#E0B84F" stroke-width="1.6" marker-end="url(#a)">
+    <path d="M150,78 V112"/><path d="M610,78 V112"/>
+    <path d="M150,160 V200 H300"/><path d="M610,160 V200 H460"/>
+    <path d="M330,248 L230,300"/><path d="M430,248 L520,300"/>
+    <path d="M610,338 H650"/><path d="M520,360 V410"/>
+    <path d="M160,360 V410"/>
+  </g>
+  <g font-weight="600">
+    <rect x="60" y="30" width="180" height="48" rx="10" fill="#232A33" stroke="#4A5260"/><text x="150" y="59" fill="#EDE6D6" text-anchor="middle">You at home (voice)</text>
+    <rect x="520" y="30" width="180" height="48" rx="10" fill="#232A33" stroke="#4A5260"/><text x="610" y="59" fill="#EDE6D6" text-anchor="middle">You anywhere (phone)</text>
+    <rect x="40" y="112" width="220" height="48" rx="10" fill="#232A33" stroke="#4A5260"/><text x="150" y="133" fill="#EDE6D6" text-anchor="middle">Wake word, then</text><text x="150" y="150" fill="#EDE6D6" text-anchor="middle">speech-to-text (local)</text>
+    <rect x="500" y="112" width="220" height="48" rx="10" fill="#232A33" stroke="#4A5260"/><text x="610" y="133" fill="#EDE6D6" text-anchor="middle">Chat bot</text><text x="610" y="150" fill="#A9A08E" text-anchor="middle" font-weight="400">outgoing link, no open ports</text>
+    <rect x="300" y="182" width="160" height="66" rx="12" fill="#2E2614" stroke="#E0B84F" stroke-width="2"/><text x="380" y="212" fill="#FFD27A" text-anchor="middle" font-size="15">Assistant core</text><text x="380" y="232" fill="#D9CDB0" text-anchor="middle" font-weight="400">answer or use a tool</text>
+    <rect x="60" y="300" width="200" height="60" rx="10" fill="#232A33" stroke="#4A5260"/><text x="160" y="325" fill="#EDE6D6" text-anchor="middle">Local language model</text><text x="160" y="344" fill="#A9A08E" text-anchor="middle" font-weight="400">one job at a time, streamed</text>
+    <rect x="430" y="300" width="180" height="60" rx="10" fill="#2E2614" stroke="#E0B84F" stroke-width="2"/><text x="520" y="325" fill="#FFD27A" text-anchor="middle">Tool gateway</text><text x="520" y="344" fill="#D9CDB0" text-anchor="middle" font-weight="400">allowlist + policy + log</text>
+    <rect x="650" y="300" width="96" height="60" rx="10" fill="#232A33" stroke="#4A5260"/><text x="698" y="325" fill="#EDE6D6" text-anchor="middle">Your OK</text><text x="698" y="344" fill="#A9A08E" text-anchor="middle" font-weight="400">exact, once</text>
+    <rect x="410" y="410" width="220" height="48" rx="10" fill="#232A33" stroke="#4A5260"/><text x="520" y="431" fill="#EDE6D6" text-anchor="middle">Allowed tools</text><text x="520" y="448" fill="#A9A08E" text-anchor="middle" font-weight="400">home, notes, reminders, files</text>
+    <rect x="60" y="410" width="200" height="48" rx="10" fill="#232A33" stroke="#4A5260"/><text x="160" y="431" fill="#EDE6D6" text-anchor="middle">Text-to-speech</text><text x="160" y="448" fill="#A9A08E" text-anchor="middle" font-weight="400">answer spoken at home</text>
+    <rect x="40" y="494" width="680" height="42" rx="10" fill="#1F2A22" stroke="#5E8A63"/><text x="380" y="520" fill="#CFE6CF" text-anchor="middle">Underneath: backups + restore drills · safe updates · reboot test · encrypted secrets</text>
+  </g>
+</svg>
