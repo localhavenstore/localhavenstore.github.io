@@ -17,5 +17,8 @@ pre { background: var(--code); border: 1px solid var(--line); border-radius: 8px
 pre code { background: none; padding: 0; font-size: 13.5px; }
 blockquote { margin: 16px 0; padding: 4px 16px; border-left: 3px solid var(--gold); color: var(--soft); }
 li { margin: 4px 0; }
-figure { margin: 18px 0; } figure img { width: 100%; height: auto; display: block; border-radius: 14px; }
+figure { margin: 18px 0; } figure img, figure video { width: 100%; height: auto; display: block; border-radius: 14px; }
+figcaption { color: var(--soft); font-size: 14px; margin-top: 6px; } .soon { color: var(--soft); font-size: .9em; }
+nav .soon-cta { color: var(--soft); border: 1px solid var(--line); padding: 5px 13px; border-radius: 18px; font-size: 14px; }
+.price { font-size: 20px; } table { border-collapse: collapse; width: 100%; font-size: 15px; } td, th { border-bottom: 1px solid var(--line); padding: 7px 6px; text-align: left; vertical-align: top; }
 footer { border-top: 1px solid var(--line); color: var(--soft); font-size: 14px; max-width: 860px; margin: 0 auto; padding: 18px 20px 40px; }

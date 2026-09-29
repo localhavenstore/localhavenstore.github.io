@@ -6,17 +6,31 @@
 </head><body>
 <header><a class="brand" href="index.html"><img src="assets/mark.svg" alt="" width="28" height="28">Localhaven</a>
 <nav><a href="outline.html">Course</a><a href="chapters/chapter-01.html">Start free</a><a href="faq.html">FAQ</a>
-<a class="cta" href="https://antrikos.gumroad.com/l/localhaven-course">Membership</a></nav></header>
+<span class="cta soon-cta">Membership: coming soon</span></nav></header>
 <main><h1>Build your own private home AI</h1>
 <h3 id="your-own-assistant">Your own assistant. On your own hardware. Under your control.</h3>
 <p>A voice assistant that answers from a language model <strong>running in your home</strong>, that you can message <strong>from your phone</strong>, and that can <strong>do useful things</strong> - but only the things you allowed, and the risky ones only after you tap OK.</p>
 <p>This course shows you how to build it, step by step, on <strong>one small, quiet mini PC</strong> - based on a real system that runs every day, rewritten as general, tested steps and templates.</p>
+<p><strong>Membership: EUR 8 a month or EUR 64 a year</strong> (EU VAT is added at checkout where it applies). Cancel any time. <a href="chapters/chapter-01.html">Chapters 1 and 2 are free.</a></p>
+<figure><img src="assets/architecture.svg" alt="The private home AI in one picture: voice and phone go into the assistant core; it answers with the local language model or asks the tool gateway, which only runs allowed tools and asks you before risky ones."></figure>
+<h3 id="see-it-working">See it working</h3>
+<p>A real question to the local language model from chapter 4 - on our test machine without a graphics card:</p>
+<figure><video controls preload="none" playsinline muted poster="assets/replay-poster.png" src="assets/replay.mp4"></video><figcaption>Real run on our test machine (Ubuntu 24.04, 4 CPU cores, no graphics card, Qwen3-4B): first words after 0.8 s, full answer after 3.8 s. Replayed with the recorded timings; no sound.</figcaption></figure>
+<p>Every chapter ends with a check script. This is the real output after chapters 3 and 4 on a fresh machine:</p>
+<figure><img src="assets/checks.png" alt="Check scripts after chapters 3 and 4: 11 of 11 and 5 of 5 OK."></figure>
+<p><em>The voice chapters (5 and 6) are next; a voice demo follows when they are tested.</em></p>
 <h3 id="what-makes-this">What makes this course different</h3>
 <ul><li><strong>Security first.</strong> Most tutorials stop when the assistant can talk, and give the AI a shell. Here the assistant can only use allowlisted tools, and risky actions need an exact, single-use OK on your phone.</li><li><strong>Everything local.</strong> Language model, speech-to-text, wake word and voice run on your hardware. No cloud account.</li><li><strong>Operations included.</strong> Backups that really restore, safe updates, a reboot test - so it still works next year.</li><li><strong>Small hardware, real numbers.</strong> A mini PC with plenty of memory, not an expensive graphics card.</li><li><strong>Tested templates</strong> for every chapter, and a <strong>new chapter every month</strong>.</li></ul>
-<h3 id="start-free">Start free</h3>
-<ul><li><a href="chapters/chapter-01.html">Chapter 1 - What you will build, and the 10 safety rules</a> (free, 15 minutes)</li><li><a href="chapters/chapter-02.html">Chapter 2 - Plan it: hardware, memory, power</a> (free, 20 minutes)</li><li><a href="outline.html">The full course outline</a></li></ul>
-<h3 id="the-full-course">The full course</h3>
-<p>The complete step-by-step course, all templates and every new monthly chapter are part of the <strong><a href="https://antrikos.gumroad.com/l/localhaven-course">Localhaven membership</a></strong> - cancel any time. See the <a href="faq.html">FAQ</a>.</p>
+<h3 id="who-is-this">Who is this for</h3>
+<ul><li><strong>For you if</strong> you can copy a command into a terminal, read what comes back, and follow steps carefully - and you want a private assistant you understand. <strong>No programming needed.</strong></li><li><strong>Not for you if</strong> you want a one-click app, or you are not willing to keep a small server updated (the course makes that mostly automatic).</li></ul>
+<h3 id="what-you-need">What you need</h3>
+<ul><li><strong>A mini PC with 32-64 GB of memory</strong> (we use a Ryzen 7 mini PC with 64 GB) - roughly <strong>EUR 500-800</strong> new, depending on the model and offers. An older PC works for learning.</li><li><strong>A USB microphone</strong> (about EUR 15-40) and <strong>any speaker</strong> you already have.</li><li><strong>Optional:</strong> a small UPS (about EUR 60-120) and a second place for backups (a USB disk or a NAS).</li><li><strong>Time:</strong> about <strong>one evening per chapter</strong>. You ask your own local AI its first question after chapter 4.</li></ul>
+<p><em>Prices are rough 2026 examples, not advice to buy a particular product.</em></p>
+<h3 id="what-is-inside">What is inside</h3>
+<ol><li>What you will build, and the 10 safety rules - <a href="chapters/chapter-01.html">free</a></li><li>Plan it: hardware, memory, power - <a href="chapters/chapter-02.html">free</a></li><li>🔒 Linux + Docker, done safely</li><li>🔒 The local brain: a language model on your mini PC</li><li>🔒 Hearing: a wake word and speech-to-text</li><li>🔒 Speaking: natural local text-to-speech</li><li>🔒 The tool gateway: only allowlisted tools</li><li>🔒 Approvals on your phone</li><li>🔒 Secrets: encrypted, never in git, logs or chats</li><li>🔒 Backups that restore, safe updates, the reboot test</li><li>🔒 Remote access without open ports</li><li>🔒 The smart-home link (optional)</li></ol>
+<p>Plus <strong>a new chapter every month</strong>. 🔒 = part of the membership. Chapters 1-4 are written and tested; the others follow one by one. See the <a href="outline.html">full outline</a> and the <a href="faq.html">FAQ</a>.</p>
+<h3 id="join">Join</h3>
+<p>The complete step-by-step course, all templates and every new monthly chapter are part of the <strong><strong>Localhaven membership</strong> <span class="soon">(coming soon)</span></strong> - EUR 8 a month or EUR 64 a year, cancel any time.</p>
 </main>
 <footer><p>Localhaven · local-first tools for the home · <a href="about.html">About, privacy and legal</a> · <a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></p>
 <p>Made with AI assistance, tested by us. No cookies, no tracking. Not affiliated with the projects and products named on this site.</p></footer>
