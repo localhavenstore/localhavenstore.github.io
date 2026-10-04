@@ -32,6 +32,8 @@ those have to move to Docker <em>before</em> upgrading. Answer three questions a
 </form>
 <div id="result" aria-live="polite"><p class="soon">Pick an answer above - the result appears here.</p></div>
 
+<p><strong>Free PDF:</strong> the <a href="https://antrikos.gumroad.com/l/n8n-3-move-checklist">n8n 3.0 move checklist</a>
+(2 pages: find out what you have, back up, move, verify, roll back).</p>
 <h2>How to find out how you run n8n</h2>
 <pre><code>which n8n; systemctl list-units --all | grep -i n8n; pm2 ls 2>/dev/null | grep -i n8n; docker ps 2>/dev/null | grep -i n8n</code></pre>
 <p>If <code>docker ps</code> shows n8n, you are on Docker. If <code>which n8n</code> prints a path and Docker shows nothing,
