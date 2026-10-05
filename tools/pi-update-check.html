@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is your Raspberry Pi still getting security updates? - Localhaven</title>
+<meta name="description" content="Free 10-second read-only check: bullseye lost security updates on 31 August 2026. Which release your Pi runs, until when it is supported, and what to do.">
+<link rel="stylesheet" href="../assets/style.css"><link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+</head><body>
+<header><a class="brand" href="../index.html"><img src="../assets/mark.svg" alt="" width="28" height="28">Localhaven</a>
+<nav><a href="../outline.html">Course</a><a href="../chapters/chapter-01.html">Start free</a><a href="../faq.html">FAQ</a>
+<a class="cta" href="https://localhavenstore.gumroad.com/l/localhaven-course">Membership</a></nav></header>
+<main><h1>Is your Raspberry Pi still getting security updates?</h1>
+<p class="kicker">Free check · 10 seconds · read-only · no root · nothing is sent anywhere</p>
+<p><strong>Short version:</strong> Raspberry Pi OS "bullseye" (Debian 11) stopped getting free security updates on
+<strong>31 August 2026</strong> (<a href="https://www.debian.org/News/2026/20260831">Debian's announcement</a>). Many Pis
+that run Home Assistant, Pi-hole, a NAS or a media server were set up on bullseye - or even older "buster" - and still
+work fine. They just do not get fixes for new security holes any more. This check tells you in 10 seconds which
+release your Pi runs, until when it is supported, and whether its updates are actually being installed.</p>
+
+<h2>Step 1 - run the check</h2>
+<ol><li>Open a terminal on your Pi (or log in with SSH).</li>
+<li>Click <strong>Copy</strong> below, paste it into the terminal, press <strong>Enter</strong>.</li>
+<li>Read the last line: <code>VERDICT</code>.</li></ol>
+<p><button id="copy" type="button">Copy</button> <span id="copied" class="soon"></span></p>
+<pre><code id="script">bash &lt;&lt;'PI_CHECK'
+#!/usr/bin/env bash
+# pi-update-check.sh - is this Raspberry Pi (or any Debian-based machine) still getting security updates?
+# READ-ONLY: changes nothing, needs no root, uses no network (it reads what apt already has). About 10 seconds.
+# Support dates from wiki.debian.org/LTS (checked 2026-10-05). MIT licence. Made with AI assistance.
+# Not affiliated with Raspberry Pi Ltd or the Debian project.
+set -u
+CHECK_VERSION=1.0.0
+TODAY=$(date +%F)
+eval "$(. /etc/os-release 2&gt;/dev/null &amp;&amp; declare -p PRETTY_NAME VERSION_CODENAME 2&gt;/dev/null)" ; [[ -r /etc/os-release ]] || { echo "No /etc/os-release - cannot tell which system this is."; exit 2; }
+CODE=${VERSION_CODENAME:-}
+[[ -z $CODE &amp;&amp; -r /etc/debian_version ]] &amp;&amp; CODE=$(cut -d/ -f1 /etc/debian_version)
+MODEL=$(tr -d '\0' 2&gt;/dev/null &lt; /proc/device-tree/model || echo "not a Raspberry Pi (or model unknown)")
+ARCH=$(dpkg --print-architecture 2&gt;/dev/null || uname -m)
+
+# codename | regular security support until | LTS until | next step
+case $CODE in
+  stretch)  REG=2020-07-06; LTS=2022-06-30 ;;
+  buster)   REG=2022-08-01; LTS=2024-06-30 ;;
+  bullseye) REG=2024-08-14; LTS=2026-08-31 ;;
+  bookworm) REG=2026-06-10; LTS=2028-06-30 ;;
+  trixie)   REG=2028-08-09; LTS=2030-06-30 ;;
+  *)        REG=""; LTS="" ;;
+esac
+days_to() { echo $(( ( $(date -d "$1" +%s) - $(date -d "$TODAY" +%s) ) / 86400 )); }
+
+echo "== Raspberry Pi update check $CHECK_VERSION ($TODAY)"
+echo "Device:  $MODEL"
+echo "System:  ${PRETTY_NAME:-unknown} ($ARCH)"
+if grep -rqs "raspbian.raspberrypi" /etc/apt/sources.list /etc/apt/sources.list.d/ 2&gt;/dev/null; then
+  echo "Repos:   Raspbian (32-bit) - it rebuilds Debian's security fixes; when Debian stops, so does it"
+fi
+
+VERDICT=OK
+if [[ -z $LTS ]]; then
+  echo "Support: unknown release '${CODE:-?}' - not in this script's table (Debian 9-13)."; VERDICT=UNKNOWN
+elif (( $(days_to "$LTS") &lt; 0 )); then
+  echo "Support: ENDED on $LTS - no more free security updates for ${CODE}."; VERDICT=UNSUPPORTED
+elif (( $(days_to "$REG") &lt; 0 )); then
+  echo "Support: long-term support (LTS) until $LTS ($(days_to "$LTS") days left); regular support ended $REG."
+  (( $(days_to "$LTS") &lt; 365 )) &amp;&amp; VERDICT=PLAN
+else
+  echo "Support: fully supported (regular until $REG, LTS until $LTS)."
+fi
+
+# when did apt last fetch package lists? (newest list file; 'apt update' refreshes them)
+NEWEST=$(find /var/lib/apt/lists -maxdepth 1 -name '*Release' -printf '%T@\n' 2&gt;/dev/null | sort -n | tail -1)
+if [[ -n $NEWEST ]]; then
+  AGE=$(( ( $(date +%s) - ${NEWEST%.*} ) / 86400 ))
+  echo "Last apt update: $AGE day(s) ago"
+  (( AGE &gt; 30 )) &amp;&amp; { [[ $VERDICT == OK ]] &amp;&amp; VERDICT=STALE; }
+else
+  echo "Last apt update: never (no package lists found)"; [[ $VERDICT == OK ]] &amp;&amp; VERDICT=STALE
+fi
+
+# pending upgrades according to those lists (simulation only - installs nothing)
+SIM=$(LC_ALL=C apt-get -s -o Debug::NoLocking=1 upgrade 2&gt;/dev/null | grep '^Inst ')
+N=$(grep -c . &lt;&lt;&lt; "$SIM"); NSEC=$(grep -ci 'security' &lt;&lt;&lt; "$SIM")
+echo "Waiting upgrades: $N (from a security repo: $NSEC)"
+(( NSEC &gt; 0 )) &amp;&amp; [[ $VERDICT == OK ]] &amp;&amp; VERDICT=STALE
+[[ -f /var/run/reboot-required ]] &amp;&amp; echo "Reboot required: yes (an installed update needs it)"
+echo "Kernel: $(uname -r), up $(( $(cut -d. -f1 /proc/uptime) / 86400 )) day(s)"
+
+echo
+case $VERDICT in
+  OK)          echo "VERDICT: OK - supported and up to date." ;;
+  STALE)       echo "VERDICT: SUPPORTED, BUT NOT UPDATED - run: sudo apt update &amp;&amp; sudo apt full-upgrade" ;;
+  PLAN)        echo "VERDICT: SUPPORTED FOR LESS THAN A YEAR - plan the move to a newer release before $LTS." ;;
+  UNSUPPORTED) echo "VERDICT: NO LONGER SUPPORTED - security holes found from now on stay open."
+               echo "Next step: a fresh card with the current Raspberry Pi OS, then move your setup over (back up first)."
+               echo "(Raspberry Pi recommends a fresh install over upgrading in place across releases.)" ;;
+  *)           echo "VERDICT: UNKNOWN - check your release's end-of-life date by hand." ;;
+esac
+PI_CHECK</code></pre>
+<p>Prefer a file? Download <a href="pi-update-check.sh">pi-update-check.sh</a>, read it, then run
+<code>bash pi-update-check.sh</code>. It works on any Debian-based system (Debian 9-13, Raspberry Pi OS 32 and 64-bit).</p>
+
+<h2>Step 2 - what the verdict means</h2>
+<table>
+<tr><th>Verdict</th><th>What to do</th></tr>
+<tr><td>OK</td><td>Nothing. Supported and up to date.</td></tr>
+<tr><td>SUPPORTED, BUT NOT UPDATED</td><td>Updates exist but are not installed: <code>sudo apt update &amp;&amp; sudo apt full-upgrade</code>, then reboot if it says so.</td></tr>
+<tr><td>SUPPORTED FOR LESS THAN A YEAR</td><td>Fine for now; plan the move to a newer release before the date shown.</td></tr>
+<tr><td>NO LONGER SUPPORTED</td><td>Back up, then set up a fresh card with the current Raspberry Pi OS and move your setup over (see below).</td></tr>
+</table>
+
+<h2>Release dates (from Debian)</h2>
+<table>
+<tr><th>Release</th><th>Free security updates until</th></tr>
+<tr><td>buster (Debian 10)</td><td>ended 30 June 2024</td></tr>
+<tr><td>bullseye (Debian 11)</td><td>ended 31 August 2026</td></tr>
+<tr><td>bookworm (Debian 12)</td><td>30 June 2028 (long-term support since June 2026)</td></tr>
+<tr><td>trixie (Debian 13)</td><td>30 June 2030</td></tr>
+</table>
+<p class="soon">Source: <a href="https://wiki.debian.org/LTS">wiki.debian.org/LTS</a>, checked 5 October 2026. Paid extended
+support for some packages exists (Freexian ELTS) - mostly relevant for companies.</p>
+
+<h2>Not supported any more - now what?</h2>
+<ul>
+<li><strong>Don't panic:</strong> the Pi keeps running. The risk grows over time, mostly for Pis reachable from the internet.</li>
+<li><strong>Back up first</strong> (a copy of the SD card or at least your config folders).</li>
+<li>Raspberry Pi recommends a <strong>fresh install</strong> of the current Raspberry Pi OS rather than upgrading in place
+across releases. The work is moving your setup: installed packages, config files, Docker containers, cron jobs.</li>
+<li>Home Assistant OS users: you are not affected by this - HA OS updates itself (check Settings -&gt; System -&gt; Updates).</li>
+</ul>
+<p class="soon">Written with AI assistance. Tested in Debian 11, 12 and 13 systems (containers) - not yet on every Pi model.
+Not affiliated with Raspberry Pi Ltd or the Debian project. MIT licence.</p>
+
+<script>
+(function () {
+  var b = document.getElementById("copy"), s = document.getElementById("script"), c = document.getElementById("copied");
+  b.addEventListener("click", function () {
+    navigator.clipboard.writeText(s.textContent).then(function () { c.textContent = "Copied - now paste it into the Pi's terminal."; },
+      function () { c.textContent = "Copy did not work - select the text below and copy it by hand."; });
+  });
+})();
+</script>
+
+</main>
+<footer><p>Localhaven · local-first tools for the home · <a href="../about.html">About, privacy and legal</a> · <a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></p>
+<p>Made with AI assistance, tested by us. No cookies, no tracking. Not affiliated with the projects and products named on this site.</p>
+<p>The free tools stay free. If one saved you time, you can leave a tip on <a href="https://ko-fi.com/localhaven">Ko-fi</a> - optional, nothing is unlocked by it.</p></footer>
+</body></html>

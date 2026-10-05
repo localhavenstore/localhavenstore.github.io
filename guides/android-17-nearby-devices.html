@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android 17: self-hosted app can&#x27;t reach your home server? The Nearby devices fix - Localhaven</title>
+<meta name="description" content="Immich, Jellyfin, Nextcloud or Home Assistant app times out at home on Android 17? Apps built for Android 17 need the local network permission (Nearby devices). 1-minute check + 30-second fix.">
+<link rel="stylesheet" href="../assets/style.css"><link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+</head><body>
+<header><a class="brand" href="../index.html"><img src="../assets/mark.svg" alt="" width="28" height="28">Localhaven</a>
+<nav><a href="../outline.html">Course</a><a href="../chapters/chapter-01.html">Start free</a><a href="../faq.html">FAQ</a>
+<a class="cta" href="https://localhavenstore.gumroad.com/l/localhaven-course">Membership</a></nav></header>
+<main><h1>Android 17: self-hosted app can&#x27;t reach your home server? The Nearby devices fix</h1>
+<p>Your Immich, Jellyfin, Nextcloud or Home Assistant app worked yesterday. Today it cannot reach your server at home:
+it spins, then "server unreachable" - but the same server opens fine in the browser, and the app works on mobile data.
+On Android 17 the usual cause is a new permission called <strong>local network access</strong>, which Android files under
+<strong>Nearby devices</strong>. The fix takes 30 seconds once you know where to look.</p>
+<p class="soon">Written with AI assistance from Google's Android 17 documentation and public user reports (linked below).
+Not tested on our own Android 17 phone. Not affiliated with Google or with any of the apps named here.</p>
+
+<h2>What changed</h2>
+<p>Since Android 17, an app that is built for Android 17 (API level 37) may only talk to devices on your local network
+- private addresses like <code>192.168.x.x</code> and <code>.local</code> names - if it holds the runtime permission
+<code>ACCESS_LOCAL_NETWORK</code>. It belongs to the <strong>Nearby devices</strong> permission group
+(<a href="https://developer.android.com/about/versions/17/behavior-changes-17">Android 17 behavior changes</a>,
+<a href="https://developer.android.com/privacy-and-security/local-network-permission">local network permission</a>).</p>
+<ul>
+<li><strong>It often breaks after an app update</strong>, not the Android update: the rule applies once the app itself
+targets Android 17. Older app versions keep working.</li>
+<li><strong>There is no error message.</strong> Google's docs: a blocked TCP connection simply times out (UDP gets
+<code>EPERM</code>). To you it looks exactly like "my server is down".</li>
+<li>If you already allowed another Nearby devices permission for that app (for example Bluetooth), Android does not ask
+again - it is already allowed. If the app never requests it, you never see a prompt at all.</li>
+<li>Your local DNS server (port 53) is not blocked, so the name still resolves; only the connection fails.</li>
+</ul>
+
+<h2>Is it this? A 1-minute check</h2>
+<ol>
+<li>On the same Wi-Fi, open the server address in your phone's browser. Loads? Your server is fine.</li>
+<li>Turn Wi-Fi off and use the app on mobile data with your remote address (if you have one). Works there, fails at home
+with the local address? That is the pattern.</li>
+<li>Look at the app's permissions (next step). <em>Nearby devices: Not allowed</em> = found it.</li>
+</ol>
+
+<h2>The fix (30 seconds)</h2>
+<pre><code>Settings
+ -> Apps -> [your app]
+ -> Permissions
+ -> Nearby devices
+ -> Allow</code></pre>
+<p>Then close the app fully and open it again. Menu names can differ slightly between phone brands; on most phones you
+can also long-press the app icon -> App info -> Permissions.</p>
+<p><strong>What you allow:</strong> the Nearby devices group also covers Bluetooth and Wi-Fi device scanning. For your own
+home-server apps that is usually fine. For an app you do not trust, don't.</p>
+
+<h2>If you would rather not grant it</h2>
+<ul>
+<li><strong>VPN to your home network</strong> (for example Tailscale or WireGuard): users report that connections through
+Tailscale did not trigger the block. Google does not document VPN behaviour, so treat this as observed, not promised.</li>
+<li><strong>Public address that points back home</strong>: some people let their domain resolve to their public IP even at
+home. Works only if your router supports it (hairpin NAT) and you already expose the service - not worth opening a
+service to the internet just for this.</li>
+</ul>
+<p>Not the fix: reinstalling the app, changing server settings or resetting your router.</p>
+
+<h2>For app developers (short)</h2>
+<p>Declare the permission <code>ACCESS_LOCAL_NETWORK</code> in the manifest and request it at
+runtime before connecting to a LAN address, or use the system device pickers (<code>NsdManager</code> with
+<code>FLAG_SHOW_PICKER</code>), which skip the prompt. WebView traffic inherits the host app's permission. Explain the
+prompt in the app: users do not connect "Nearby devices" with "my server at home".</p>
+
+<h2>Reports</h2>
+<ul>
+<li><a href="https://lemmy.imagisphe.re/post/2936135">"How is everyone dealing with Android 17's Nearby Devices change?"</a> (Immich, Jellyfin, XMPP, SMB, CUPS; silent drops)</li>
+<li><a href="https://github.com/home-assistant/android/issues/7304">Home Assistant Android #7304</a> (local network access notification)</li>
+<li><a href="https://github.com/hegocre/NextcloudPasswords/issues/177">Nextcloud Passwords #177</a> (missing ACCESS_LOCAL_NETWORK)</li>
+</ul>
+
+<h2>FAQ</h2>
+<h3>Why does a "Nearby devices" permission control my server?</h3>
+<p>Android 17 put local-network access into that existing group. Your server is a device on your local network.</p>
+<h3>Does this affect access over the internet or a VPN?</h3>
+<p>Public addresses are not affected. VPN behaviour is not documented by Google; users report Tailscale working without it.</p>
+<h3>The app never asked me for this permission. Why?</h3>
+<p>The app has to request it itself. Some apps started targeting Android 17 before they added that request (see the
+reports below) - then nothing asks you, and the connection just fails. Allow it by hand as shown above.</p>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Why can't my self-hosted app reach my home server on Android 17?","acceptedAnswer":{"@type":"Answer","text":"Apps built for Android 17 need the local network access permission, part of the Nearby devices group, to connect to private addresses. Without it the connection silently times out. Allow it under Settings, Apps, the app, Permissions, Nearby devices."}},
+{"@type":"Question","name":"Why does a Nearby devices permission control my server?","acceptedAnswer":{"@type":"Answer","text":"Android 17 put local-network access into the existing Nearby devices permission group; your server is a device on your local network."}},
+{"@type":"Question","name":"Does this affect access over the internet or a VPN?","acceptedAnswer":{"@type":"Answer","text":"Public addresses are not affected. Google does not document VPN behaviour; users report Tailscale connections working without the permission."}}]}</script>
+
+</main>
+<footer><p>Localhaven · local-first tools for the home · <a href="../about.html">About, privacy and legal</a> · <a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></p>
+<p>Made with AI assistance, tested by us. No cookies, no tracking. Not affiliated with the projects and products named on this site.</p>
+<p>The free tools stay free. If one saved you time, you can leave a tip on <a href="https://ko-fi.com/localhaven">Ko-fi</a> - optional, nothing is unlocked by it.</p></footer>
+</body></html>
