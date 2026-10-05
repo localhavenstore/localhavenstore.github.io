@@ -6,7 +6,7 @@
 </head><body>
 <header><a class="brand" href="../index.html"><img src="../assets/mark.svg" alt="" width="28" height="28">Localhaven</a>
 <nav><a href="../outline.html">Course</a><a href="../chapters/chapter-01.html">Start free</a><a href="../faq.html">FAQ</a>
-<a class="cta" href="https://antrikos.gumroad.com/l/localhaven-course">Membership</a></nav></header>
+<a class="cta" href="https://localhavenstore.gumroad.com/l/localhaven-course">Membership</a></nav></header>
 <main><h1>Is your n8n ready for 3.0? (npm, npx or Docker)</h1>
 <p class="kicker">Free tool · 30 seconds · nothing is sent anywhere</p>
 <p>n8n 3.0 is due in October 2026. Its <a href="https://docs.n8n.io/changelog/v30-breaking-changes">breaking-changes page</a>
@@ -32,7 +32,7 @@ those have to move to Docker <em>before</em> upgrading. Answer three questions a
 </form>
 <div id="result" aria-live="polite"><p class="soon">Pick an answer above - the result appears here.</p></div>
 
-<p><strong>Free PDF:</strong> the <a href="https://antrikos.gumroad.com/l/n8n-3-move-checklist">n8n 3.0 move checklist</a>
+<p><strong>Free PDF:</strong> the <a href="https://localhavenstore.gumroad.com/l/n8n-3-move-checklist">n8n 3.0 move checklist</a>
 (2 pages: find out what you have, back up, move, verify, roll back).</p>
 <h2>How to find out how you run n8n</h2>
 <pre><code>which n8n; systemctl list-units --all | grep -i n8n; pm2 ls 2>/dev/null | grep -i n8n; docker ps 2>/dev/null | grep -i n8n</code></pre>
@@ -65,7 +65,7 @@ facts from n8n's own docs (linked). Not affiliated with n8n GmbH; n8n is their t
       h = "<h2>You need to move to Docker before 3.0</h2><p>n8n 3.0 will not run from " + (run === "npx" ? "<code>npx</code>" : "an npm install") +
           ". Stay on your current version until the move is done and checked.</p>" + KEY + CHECK;
       if (start === "systemd" || start === "pm2") {
-        h += '<p><strong>Want it done for you?</strong> <a href="https://antrikos.gumroad.com/l/n8n-move-kit">n8n Move Kit Pro</a> ' +
+        h += '<p><strong>Want it done for you?</strong> <a href="https://localhavenstore.gumroad.com/l/n8n-move-kit">n8n Move Kit Pro</a> ' +
              "(EUR 15) moves an install started by " + start + " to Docker with an automatic check and a one-command rollback: " +
              "same n8n version, data copied (never moved), every credential test-decrypted in the container, your old install only stopped" +
              (db === "postgres" ? "; tested with Postgres too." : ".") + "</p>";
