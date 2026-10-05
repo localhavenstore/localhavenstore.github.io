@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Release signing keys - Localhaven</title>
+<meta name="description" content="Public minisign keys for Localhaven&#x27;s free tools (Aurum Workstation) - check that the README shows the same key.">
+<link rel="stylesheet" href="assets/style.css"><link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+</head><body>
+<header><a class="brand" href="index.html"><img src="assets/mark.svg" alt="" width="28" height="28">Localhaven</a>
+<nav><a href="outline.html">Course</a><a href="chapters/chapter-01.html">Start free</a><a href="faq.html">FAQ</a>
+<span class="cta soon-cta">Membership: coming soon</span></nav></header>
+<main><h1>Release signing keys</h1>
+<h1>Release signing keys</h1>
+<p>Localhaven signs the release files of its free tools with <a href="https://jedisct1.github.io/minisign/">minisign</a>.
+Each public key is printed in two places - in the project's README on GitHub and on this page - so one hacked page is not
+enough to trick you. Before you run anything, check that both places show <strong>exactly the same key</strong>.</p>
+
+<h2>Aurum Workstation</h2>
+<p>Project: <a href="https://github.com/localhavenstore/aurum-workstation">github.com/localhavenstore/aurum-workstation</a>
+(releases from v1.0.0-preview on).</p>
+<p>Key ID: <code>2451014D625DF366</code></p>
+<pre><code>RWRm811iTQFRJDr+KMkiTDBv0FiIz9owb6TzcHOD1qZrohmHulCk8m6I</code></pre>
+<p>Check a download (Ubuntu: <code>sudo apt install minisign</code>):</p>
+<pre><code>minisign -Vm SHA256SUMS -P RWRm811iTQFRJDr+KMkiTDBv0FiIz9owb6TzcHOD1qZrohmHulCk8m6I
+sha256sum -c SHA256SUMS</code></pre>
+<p>The project README has the full, safer install steps (verify as root in a root-only folder first).</p>
+
+<p>If a key here ever changes, the old one is listed below with the date it was retired. No key has been retired.</p>
+
+</main>
+<footer><p>Localhaven · local-first tools for the home · <a href="about.html">About, privacy and legal</a> · <a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></p>
+<p>Made with AI assistance, tested by us. No cookies, no tracking. Not affiliated with the projects and products named on this site.</p></footer>
+</body></html>
