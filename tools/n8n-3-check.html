@@ -34,6 +34,7 @@ those have to move to Docker <em>before</em> upgrading. Answer three questions a
 
 <p><strong>Free PDF:</strong> the <a href="https://localhavenstore.gumroad.com/l/n8n-3-move-checklist">n8n 3.0 move checklist</a>
 (2 pages: find out what you have, back up, move, verify, roll back).</p>
+<p><strong>Step by step:</strong> <a href="../guides/n8n-npm-to-docker.html">how to move n8n from npm to Docker before 3.0 (keep your credentials)</a>.</p>
 <h2>How to find out how you run n8n</h2>
 <pre><code>which n8n; systemctl list-units --all | grep -i n8n; pm2 ls 2>/dev/null | grep -i n8n; docker ps 2>/dev/null | grep -i n8n</code></pre>
 <p>If <code>docker ps</code> shows n8n, you are on Docker. If <code>which n8n</code> prints a path and Docker shows nothing,

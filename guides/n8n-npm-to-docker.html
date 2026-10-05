@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to move n8n from npm to Docker before 3.0 (keep your credentials) - Localhaven</title>
+<meta name="description" content="Step by step: move a self-hosted npm/npx n8n to Docker before n8n 3.0 without losing credentials - encryption key, permissions, same version first, checks. Free read-only check included.">
+<link rel="stylesheet" href="../assets/style.css"><link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+</head><body>
+<header><a class="brand" href="../index.html"><img src="../assets/mark.svg" alt="" width="28" height="28">Localhaven</a>
+<nav><a href="../outline.html">Course</a><a href="../chapters/chapter-01.html">Start free</a><a href="../faq.html">FAQ</a>
+<span class="cta soon-cta">Membership: coming soon</span></nav></header>
+<main><h1>How to move n8n from npm to Docker before 3.0 (keep your credentials)</h1>
+<p>n8n 3.0 no longer supports installs that run with <code>npm</code> or <code>npx</code> - n8n says to move to Docker
+<strong>before</strong> you upgrade (<a href="https://docs.n8n.io/changelog/v30-breaking-changes">n8n's v3.0 breaking changes</a>).
+The move itself is short. What goes wrong is almost always the same few things: the <strong>encryption key</strong>,
+file permissions, and two n8n running at once. This page is the order that avoids them.</p>
+<p class="soon">Written with AI assistance from our own test runs (real npm installs of n8n 2.41.5 on throwaway Ubuntu 24.04
+machines, SQLite and Postgres). Not affiliated with n8n GmbH. If n8n's own migration guide is out, read it too.</p>
+
+<h2>1. See what your move involves (read-only)</h2>
+<p>Our free <a href="https://github.com/localhavenstore/n8n-move-check">n8n Move Check</a> changes nothing and prints no secret.
+It tells you how n8n runs (systemd, pm2, by hand, npx), where the encryption key is, your database, folders outside
+<code>~/.n8n</code>, workflows that need host programs or files, community nodes, and n8n 3.0 blockers by workflow name.</p>
+<pre><code>sudo node move-check.js</code></pre>
+<p>No script? At least note three things: <code>n8n --version</code>, how n8n is started, and where the key is (next step).</p>
+
+<h2>2. Find and save the encryption key</h2>
+<p>Every credential in n8n is encrypted with one key. It is either in the environment variable
+<code>N8N_ENCRYPTION_KEY</code> or in the file <code>~/.n8n/config</code> (the <code>encryptionKey</code> line) of the user that
+runs n8n. The Docker n8n needs <strong>exactly this key</strong>. With a different key n8n starts, but every credential
+fails with "Credentials could not be decrypted" - and you re-enter all of them by hand.</p>
+<p>Copy the key into your password manager now. Do not paste it into chats or tickets.</p>
+
+<h2>3. Copy the data - do not move it</h2>
+<pre><code>sudo systemctl stop n8n        # or: pm2 stop n8n  - stop, do NOT uninstall yet
+cp -a ~/.n8n ~/n8n-copy        # hidden files included; the original stays as your way back</code></pre>
+<p>Also copy what lives outside <code>~/.n8n</code>: <code>~/.n8n-files</code> (n8n 2.x default folder of the Read/Write Files
+node) and a binary-data folder if you set <code>N8N_BINARY_DATA_STORAGE_PATH</code>. On Postgres the data is in the database:
+take a <code>pg_dump</code> first, then point the Docker n8n at the same database with the same <code>DB_*</code> settings.</p>
+
+<h2>4. Start the SAME version in Docker</h2>
+<p>Move first, upgrade later. The official image runs as user id 1000, so the copied folder must belong to 1000:</p>
+<pre><code>docker volume create n8n_data
+docker run --rm -v n8n_data:/data -v ~/n8n-copy:/src:ro alpine \
+  sh -c 'cp -a /src/. /data/ &amp;&amp; chown -R 1000:1000 /data'
+docker run -d --name n8n --restart unless-stopped -p 127.0.0.1:5678:5678 \
+  -v n8n_data:/home/node/.n8n docker.n8n.io/n8nio/n8n:2.41.5   # your version from 'n8n --version'</code></pre>
+<p>If your key was in the environment (not in <code>~/.n8n/config</code>), add <code>-e N8N_ENCRYPTION_KEY=...</code> with the
+same value. Do not set a <em>different</em> one: if the file and the variable disagree, n8n refuses to start. Carry over
+your other settings too (time zone, <code>WEBHOOK_URL</code>, <code>NODES_EXCLUDE</code>, your own variables used with
+<code>$env</code>).</p>
+
+<h2>5. Check before you trust it</h2>
+<ul>
+<li>Open a few credentials and use <strong>Test</strong> - "could not be decrypted" means the key is wrong (stop, fix, retry).</li>
+<li>The same workflows are <strong>active</strong>, and your webhooks answer again (production URLs).</li>
+<li>Workflows with <strong>Execute Command</strong>: the program must exist inside the container. Files read or written on
+the host: that folder must be mounted.</li>
+<li>Community nodes with native code are built for your old system - reinstall them in n8n.</li>
+</ul>
+<p>Only when all of that works: disable the old service so a reboot does not start <strong>two n8n</strong> (both would run
+your schedules). Keep the old folder for a while - it is your rollback. Upgrade to 3.0 as a separate step.</p>
+
+<h2>FAQ</h2>
+<h3>I already moved and all credentials say "could not be decrypted". Are they lost?</h3>
+<p>Not if you still have the old <code>~/.n8n/config</code> or the old <code>N8N_ENCRYPTION_KEY</code>: stop the container, put
+that key in (file or variable, not both different), start again. Without the old key they cannot be recovered.</p>
+<h3>Can I just export workflows and credentials and import them?</h3>
+<p>Yes (<code>n8n export:workflow --all</code> / <code>export:credentials --all</code>), but credentials are exported encrypted
+with the old key (or decrypted in plain text with <code>--decrypted</code> - handle that file like a password). Copying the
+folder keeps everything else too: executions, users, settings.</p>
+<h3>Does this work on Windows?</h3>
+<p>Docker on Windows means WSL2. The steps are the same inside WSL; keep the data on the WSL file system. We have not tested
+WSL2 ourselves.</p>
+<h3>Do I have to move before 3.0 comes out?</h3>
+<p>Your npm install keeps working until you upgrade. But new versions and fixes come only as Docker images, so moving
+calmly now is easier than in a hurry later.</p>
+
+<h2>Want the move done and checked for you?</h2>
+<p><a href="https://localhavenstore.gumroad.com/l/n8n-move-kit?utm_source=site&amp;utm_campaign=npm-to-docker-guide">n8n 3.0 Move Kit</a>
+(EUR 15) does these steps with automatic checks: same version in Docker, data copied and verified, every credential decrypted
+inside the container as a test, active workflows and webhooks compared, automatic rollback if a check fails, and one command
+to go back later. For n8n run by systemd or pm2 on Linux; tested with SQLite and Postgres on Ubuntu 24.04 (not tested:
+WSL2, other distributions, remote Postgres).</p>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"I already moved n8n to Docker and all credentials say could not be decrypted. Are they lost?","acceptedAnswer":{"@type":"Answer","text":"Not if you still have the old ~/.n8n/config or the old N8N_ENCRYPTION_KEY: stop the container, put that key in, start again. Without the old key they cannot be recovered."}},
+{"@type":"Question","name":"Can I export n8n workflows and credentials and import them in Docker?","acceptedAnswer":{"@type":"Answer","text":"Yes, but credentials are exported encrypted with the old key (or in plain text with --decrypted). Copying the whole .n8n folder keeps executions, users and settings too."}},
+{"@type":"Question","name":"Do I have to move n8n from npm to Docker before 3.0?","acceptedAnswer":{"@type":"Answer","text":"Your npm install keeps working until you upgrade, but n8n 3.0 and later only support Docker, so move first and upgrade as a separate step."}}]}</script>
+
+</main>
+<footer><p>Localhaven · local-first tools for the home · <a href="../about.html">About, privacy and legal</a> · <a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></p>
+<p>Made with AI assistance, tested by us. No cookies, no tracking. Not affiliated with the projects and products named on this site.</p></footer>
+</body></html>
