@@ -160,3 +160,4 @@ details summary { cursor: pointer; font-weight: 650; } details[open] summary { m
 
 @media print { .site-header, .site-footer, .theme-btn { display: none; } body { background: #fff; color: #000; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+pre.pw { white-space: pre-wrap; overflow-wrap: anywhere; }
