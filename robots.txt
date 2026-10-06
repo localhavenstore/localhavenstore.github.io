@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://localhavenstore.github.io/sitemap.txt
