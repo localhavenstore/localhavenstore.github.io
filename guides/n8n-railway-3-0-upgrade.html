@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upgrading n8n on Railway to 3.0 without breaking it</title><meta name="description" content="n8n 3.0 is coming in October 2026. Pin your Railway n8n version, back up the database and encryption key, fix the 3.0 breaking changes, test on a copy, upgrade main and workers together."><link rel="canonical" href="https://localhavenstore.github.io/guides/n8n-railway-3-0-upgrade.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Localhaven"><meta property="og:title" content="Upgrading n8n on Railway to 3.0 without breaking it">
+<meta property="og:description" content="n8n 3.0 is coming in October 2026. Pin your Railway n8n version, back up the database and encryption key, fix the 3.0 breaking changes, test on a copy, upgrade main and workers together."><meta property="og:url" content="https://localhavenstore.github.io/guides/n8n-railway-3-0-upgrade.html"><meta property="og:image" content="https://localhavenstore.github.io/assets/og/tools.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0D1116">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/icon-180.png"><link rel="manifest" href="/manifest.json">
+<script>try{var t=localStorage.getItem('lh-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><link rel="stylesheet" href="/assets/site.css"></head>
+<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap"><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="28" height="28">Localhaven</a><nav class="nav" aria-label="Main"><a href="/products/">Products</a><a href="/update-watch/">Update Watch</a><a href="/tools/" aria-current=page>Free tools</a><a href="/course/">Course</a><a href="/about.html">About</a></nav><button class="theme-btn" type="button" aria-label="Dark theme" aria-pressed="false" title="Light / dark">&#9680;</button></div></header><main id="main"><div class="wrap"><div class="prose" style="padding-top:40px"><p class="kicker">guide n8n railway</p>
+<h1>Upgrading n8n on Railway to 3.0 without breaking it</h1>
+<p class="lede">n8n 3.0 is scheduled for October 2026. Many n8n deployments on Railway run the <code>n8nio/n8n</code> image without a
+fixed version - so a redeploy can start 3.0 before you have checked your workflows. Here is the safe order.</p>
+<h2>1. Pin your current version now</h2>
+<p>In your Railway project, set the image of the n8n service <em>and every worker</em> to a fixed version instead of <code>latest</code>,
+for example <code>n8nio/n8n:2.42.3</code> (the stable release on 6 Oct 2026). Main and workers must always run the same version.</p>
+<h2>2. Back up two things</h2>
+<ul><li>The database: a Railway PostgreSQL backup (or <code>pg_dump</code>).</li>
+<li>The <code>N8N_ENCRYPTION_KEY</code> variable - copy it to your password manager. Without it no credential can be decrypted
+(<a href="/guides/n8n-credentials-could-not-be-decrypted.html">what that error looks like</a>).</li></ul>
+<h2>3. Fix what 3.0 changes (official breaking-changes page)</h2><ol class="steps">
+<li><strong>Function / Function Item nodes are removed</strong> - replace them with Code nodes ("Run Once for All Items" / "Run Once for Each Item").</li>
+<li><strong>Code steps get 60 s instead of 300 s</strong> (<code>N8N_RUNNERS_TASK_TIMEOUT</code>) - set it if a Code step runs longer.</li>
+<li><strong>Unverified community packages are off by default</strong> (<code>N8N_UNVERIFIED_PACKAGES_ENABLED</code> true -&gt; false) - set it to
+<code>true</code> only if you need one.</li>
+<li><strong>Removed settings:</strong> delete <code>N8N_PRE_EXECUTE_ERROR_CREATES_EXECUTION</code>, <code>N8N_MIGRATE_FS_STORAGE_PATH</code>,
+<code>OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS</code> and <code>N8N_DB_PING_TIMEOUT</code> (use <code>DB_PING_TIMEOUT_MS</code>);
+<code>N8N_DEFAULT_BINARY_DATA_MODE=default</code> is gone - in queue mode use a store every instance can read, e.g. <code>database</code>.</li></ol>
+<p>Source: <a href="https://docs.n8n.io/changelog/v30-breaking-changes/">n8n v3.0 breaking changes</a> (checked 6 Oct 2026).</p>
+<h2>4. Try 3.0 on a copy first</h2>
+<p>Restore the backup into a separate Railway project or environment, give it the same <code>N8N_ENCRYPTION_KEY</code>, set the 3.0 version
+there and open your important workflows. Only then upgrade the real one - main and workers together.</p>
+<h2>5. If it goes wrong</h2>
+<p>A new n8n version can migrate the database on its first start. Going back means the <strong>backup and the old version together</strong> -
+not just the old image tag.</p>
+<h2>Starting fresh on Railway?</h2>
+<p>Our free Railway template runs n8n in queue mode, <strong>pinned to a tested version</strong>, with the 3.0 defaults already set, the owner
+account created from your variables (no open setup page) and a generated encryption key. It is listed on our
+<a href="/tools/">free tools page</a> once it is live on Railway. New to Railway? Our <strong>referral link</strong>:
+<a href="https://railway.com?referralCode=j8As-k" rel="sponsored">railway.com?referralCode=j8As-k</a> - you get USD 20 of credit, we get a
+share of your usage.</p>
+<div class="grid g2" style="margin-top:20px">
+<a class="card link" href="/tools/n8n-3-check.html"><div class="meta"><span class="badge free">FREE</span></div><h3 style="margin-top:12px">n8n 3.0 check</h3>
+<p style="color:var(--ink2);font-size:15.5px">Answer three questions and see what 3.0 means for your setup.</p></a>
+<a class="card link" href="/update-watch/n8n.html"><div class="meta"><span class="badge free">FREE</span></div><h3 style="margin-top:12px">n8n update verdicts</h3>
+<p style="color:var(--ink2);font-size:15.5px">n8n releases tested on a throw-away machine, including the 3.0 release candidate.</p></a></div>
+<p class="note" style="margin-top:24px">Still running n8n with npm or npx somewhere else? 3.0 drops that - the
+<a href="https://localhavenstore.gumroad.com/l/n8n-move-kit">n8n 3.0 Move Kit</a> (EUR 15) moves it to Docker on the same version, checked. Not affiliated with n8n GmbH or Railway.
+Made with AI assistance.</p></div></div></main><footer class="site-footer"><div class="wrap"><div class="cols">
+<div><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="24" height="24">Localhaven</a>
+<p style="margin-top:12px;max-width:340px">Tested tools for your home server. Built with AI assistance, tested on real (throw-away) machines,
+and every public action is approved by a human.</p></div>
+<div><p class="fh">Explore</p><ul><li><a href="/products/">Products</a></li><li><a href="/update-watch/">Update Watch</a></li><li><a href="/tools/">Free tools</a></li><li><a href="/course/">Course</a></li></ul></div>
+<div><p class="fh">Follow</p><ul><li><a href="https://www.youtube.com/@localhaven-x5o" rel="me">YouTube</a></li><li><a href="https://www.tiktok.com/@localhaven0" rel="me">TikTok</a></li><li><a href="https://github.com/localhavenstore" rel="me">GitHub</a></li><li><a href="https://ko-fi.com/localhaven" rel="me">Ko-fi</a></li></ul></div>
+<div><p class="fh">Company</p><ul><li><a href="/about.html">About</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li>
+<li><a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></li></ul></div></div>
+<div class="fine"><span>&copy; 2026 Localhaven. Not affiliated with the projects and products named on this site.</span><span>No trackers, no cookies.</span></div></div></footer><script>(function(){var b=document.querySelector('.theme-btn'),r=document.documentElement;b.setAttribute('aria-pressed',(r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')})();document.querySelector('.theme-btn').addEventListener('click',function(){var r=document.documentElement,d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=d==='dark'?'light':'dark';r.setAttribute('data-theme',n);this.setAttribute('aria-pressed',n==='dark');try{localStorage.setItem('lh-theme',n)}catch(e){}});</script></body></html>
