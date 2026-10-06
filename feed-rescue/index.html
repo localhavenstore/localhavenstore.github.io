@@ -1,21 +1,14 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Feed Rescue - keep your feeds after 13 November</title>
-<meta name="description" content="Paste your OPML: every subreddit feed (reddit.com/r/...) gets open-web alternatives (Lemmy communities, official project forums, Hacker News, news search). Runs in your browser - nothing is uploaded.">
-<style>
-:root{--bg:#0F141B;--panel:#161D26;--line:#2A3340;--fg:#FFF3DC;--mu:#9A927F;--gold:#F2C25B;--ok:#7FD38A}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
-main{max-width:900px;margin:0 auto;padding:24px 16px 60px}a{color:var(--gold)}h1{margin:.2em 0 .1em;font-size:2em}
-.mu{color:var(--mu);font-size:14px}textarea{width:100%;min-height:150px;background:#06090D;color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:10px;font:13px/1.4 ui-monospace,monospace}
-button,.file{background:var(--gold);color:#12161B;border:0;border-radius:10px;padding:10px 16px;font-weight:700;font-size:15px;cursor:pointer}
-button[disabled]{opacity:.4;cursor:default}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}
-.card h3{margin:0 0 6px;font-size:17px;overflow-wrap:anywhere}.card label{display:flex;gap:8px;align-items:flex-start;margin:4px 0;overflow-wrap:anywhere}
-.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:0 6px;color:var(--mu);margin-left:4px}
-.none{color:var(--mu)}#sum{font-weight:700}input[type=file]{display:none}
-</style></head><body><main>
-<p class="mu"><a href="https://localhavenstore.github.io/">Localhaven</a> · free tool</p>
-<h1>Feed Rescue</h1>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feed Rescue - keep your feeds after 13 November</title><meta name="description" content="Paste your OPML: every subreddit feed (reddit.com/r/...) gets open-web alternatives (Lemmy communities, official project forums, Hacker News, news search). Runs in your browser - nothing is uploaded."><link rel="canonical" href="https://localhavenstore.github.io/feed-rescue/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Localhaven"><meta property="og:title" content="Feed Rescue - keep your feeds after 13 November">
+<meta property="og:description" content="Paste your OPML: every subreddit feed (reddit.com/r/...) gets open-web alternatives (Lemmy communities, official project forums, Hacker News, news search). Runs in your browser - nothing is uploaded."><meta property="og:url" content="https://localhavenstore.github.io/feed-rescue/"><meta property="og:image" content="https://localhavenstore.github.io/assets/og/feed-rescue.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0D1116">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/icon-180.png"><link rel="manifest" href="/manifest.json">
+<script>try{var t=localStorage.getItem('lh-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><link rel="stylesheet" href="/assets/site.css"><style>.fr textarea{width:100%;min-height:160px;background:var(--surface);color:var(--ink);border:1px solid var(--line2);border-radius:var(--r2);padding:12px;font:13px/1.45 var(--mono)}.fr button,.fr .file{font:650 15px var(--font);background:#D9A13E;color:var(--on-gold);border:0;border-radius:999px;padding:11px 18px;cursor:pointer}.fr button[disabled]{opacity:.4}.fr .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:12px 0}.fr input[type=file]{display:none}.fr #res .card{padding:16px 18px;margin:12px 0;box-shadow:none}.fr .card h3{margin:0 0 6px;font-size:17px;overflow-wrap:anywhere}.fr .card label{display:flex;gap:8px;align-items:flex-start;margin:6px 0;overflow-wrap:anywhere}.fr .tag{display:inline-block;font:600 11.5px var(--mono);border:1px solid var(--line2);border-radius:6px;padding:1px 6px;color:var(--muted);margin-left:6px}.fr .none{color:var(--muted)}.fr #sum{font-weight:700}.fr .mu{color:var(--muted);font-size:14px}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Feed Rescue", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "url": "https://localhavenstore.github.io/feed-rescue/"}</script></head>
+<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap"><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="28" height="28">Localhaven</a><nav class="nav" aria-label="Main"><a href="/products/">Products</a><a href="/update-watch/">Update Watch</a><a href="/tools/" aria-current=page>Free tools</a><a href="/course/">Course</a><a href="/about.html">About</a></nav><button class="theme-btn" type="button" aria-label="Dark theme" aria-pressed="false" title="Light / dark">&#9680;</button></div></header><main id="main"><div class="wrap"><div class="fr prose" style="max-width:900px;padding-top:40px">
+<p class="kicker">feed-rescue</p><h1>Feed Rescue</h1>
 <p><b>Reddit's RSS feeds stop on 13 November 2026.</b> Paste or open your feed reader's OPML export. For every subreddit feed in it
 (reddit.com/r/...), Feed Rescue suggests open feeds on the same topic - the most active <b>Lemmy</b> community, the project's <b>official forum</b>,
 <b>Hacker News</b> or a <b>news search</b> - and gives you a new OPML to import.</p>
@@ -41,8 +34,16 @@ Data: the public <a href="https://data.lemmyverse.net/">lemmyverse</a> dataset (
 <li>Always offered: a Hacker News keyword feed (hnrss.org) and a news search feed (Google News).</li></ul>
 <p class="mu">Not affiliated with Reddit, Lemmy or any project named. Made with AI assistance, checked by hand. Source: open, MIT.
 More free tools: <a href="https://localhavenstore.github.io/update-watch/">Update Watch</a> (tested "is it safe to update?" verdicts).</p>
-</main>
-<script src="data.js"></script>
+</div></div></main><footer class="site-footer"><div class="wrap"><div class="cols">
+<div><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="24" height="24">Localhaven</a>
+<p style="margin-top:12px;max-width:340px">Tested tools for your home server. Built with AI assistance, tested on real (throw-away) machines,
+and every public action is approved by a human.</p></div>
+<div><p class="fh">Explore</p><ul><li><a href="/products/">Products</a></li><li><a href="/update-watch/">Update Watch</a></li><li><a href="/tools/">Free tools</a></li><li><a href="/course/">Course</a></li></ul></div>
+<div><p class="fh">Follow</p><ul><li><a href="https://www.youtube.com/@localhaven-x5o" rel="me">YouTube</a></li><li><a href="https://www.tiktok.com/@localhaven0" rel="me">TikTok</a></li><li><a href="https://github.com/localhavenstore" rel="me">GitHub</a></li><li><a href="https://ko-fi.com/localhaven" rel="me">Ko-fi</a></li></ul></div>
+<div><p class="fh">Company</p><ul><li><a href="/about.html">About</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li>
+<li><a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></li></ul></div></div>
+<div class="fine"><span>&copy; 2026 Localhaven. Not affiliated with the projects and products named on this site.</span><span>No trackers, no cookies.</span></div></div></footer><script>(function(){var b=document.querySelector('.theme-btn'),r=document.documentElement;b.setAttribute('aria-pressed',(r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')})();document.querySelector('.theme-btn').addEventListener('click',function(){var r=document.documentElement,d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=d==='dark'?'light':'dark';r.setAttribute('data-theme',n);this.setAttribute('aria-pressed',n==='dark');try{localStorage.setItem('lh-theme',n)}catch(e){}});</script>
+<script src="/feed-rescue/data.js"></script>
 <script>
 "use strict";
 const D = window.FR_DATA, $ = (id) => document.getElementById(id);
