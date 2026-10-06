@@ -8,6 +8,7 @@ https://localhavenstore.github.io/guides/android-17-nearby-devices.html
 https://localhavenstore.github.io/guides/jellyfin-downgrade-no-such-column.html
 https://localhavenstore.github.io/guides/n8n-credentials-could-not-be-decrypted.html
 https://localhavenstore.github.io/guides/n8n-npm-to-docker.html
+https://localhavenstore.github.io/guides/watchtower-alternatives-2026.html
 https://localhavenstore.github.io/
 https://localhavenstore.github.io/keys.html
 https://localhavenstore.github.io/outline.html
