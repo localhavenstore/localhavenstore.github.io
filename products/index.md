@@ -23,6 +23,14 @@ EUR 15Gumroad →](https://localhavenstore.gumroad.com/l/n8n-move-kit?utm_source
 
 n8n
 
+### Hardened n8n Host Kit
+
+Queue mode, secrets as files, signed + encrypted backups, a monthly restore proof and a rollback that undoes itself - 58 checks on a fresh machine.
+
+EUR 49Gumroad →](https://localhavenstore.gumroad.com/l/n8n-host-kit?utm_source=site&utm_medium=card)[
+
+n8n
+
 ### n8n Reliability Pack
 
 Four tested workflows that stop quiet failures: sorted error alerts, a heartbeat for runs that did nothing, retry-safe webhooks, approvals without Wait nodes.
