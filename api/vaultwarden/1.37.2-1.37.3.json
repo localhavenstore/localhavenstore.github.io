@@ -1,0 +1,11 @@
+{
+ "app": "vaultwarden",
+ "from": "1.37.2",
+ "to": "1.37.3",
+ "verdict": "GREEN",
+ "why": "updated, app check passed, and the snapshot restored in a drill",
+ "scenario": "fresh compose stack (Vaultwarden, SQLite), 1 invited user, snapshot -> update -> /alive/version/user -> drill",
+ "tested_utc": "2026-10-06T05:29:10Z",
+ "page": "https://localhavenstore.github.io/update-watch/vaultwarden.html",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+}

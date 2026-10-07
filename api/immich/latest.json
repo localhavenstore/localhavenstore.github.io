@@ -1,0 +1,11 @@
+{
+ "app": "immich",
+ "from": "3.2.2",
+ "to": "3.2.4",
+ "verdict": "GREEN",
+ "why": "updated, app check passed, and the snapshot restored in a drill",
+ "scenario": "fresh compose stack (Immich, machine learning off, postgres/valkey as pinned), admin + 1 photo, snapshot -> update -> version/assets -> drill",
+ "tested_utc": "2026-10-05T22:58:39Z",
+ "page": "https://localhavenstore.github.io/update-watch/immich.html",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+}

@@ -1,0 +1,11 @@
+{
+ "app": "nextcloud",
+ "from": "34.0.4",
+ "to": "35.0.0",
+ "verdict": "GREEN",
+ "why": "updated, app check passed, and the snapshot restored in a drill",
+ "scenario": "fresh compose stack (Nextcloud + PostgreSQL 17), 2 users + 1 file, snapshot -> update -> occ status/users/file -> drill",
+ "tested_utc": "2026-10-05T23:00:44Z",
+ "page": "https://localhavenstore.github.io/update-watch/nextcloud.html",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+}

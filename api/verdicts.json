@@ -1,0 +1,147 @@
+{
+ "generated_utc": "2026-10-07T05:04:38Z",
+ "source": "https://localhavenstore.github.io/update-watch/",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups.",
+ "apps": [
+  "homeassistant",
+  "immich",
+  "jellyfin",
+  "n8n",
+  "nextcloud",
+  "vaultwarden"
+ ],
+ "verdicts": [
+  {
+   "app": "n8n",
+   "from": "2.41.7",
+   "to": "2.42.3",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
+   "tested_utc": "2026-10-06T16:39:14Z",
+   "page": "https://localhavenstore.github.io/update-watch/n8n.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  },
+  {
+   "app": "homeassistant",
+   "from": "2026.9.3",
+   "to": "2026.9.4",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
+   "tested_utc": "2026-10-06T07:47:40Z",
+   "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  },
+  {
+   "app": "vaultwarden",
+   "from": "1.37.3",
+   "to": "1.37.4",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (Vaultwarden, SQLite), 1 invited user, snapshot -> update -> /alive/version/user -> drill",
+   "tested_utc": "2026-10-06T06:25:00Z",
+   "page": "https://localhavenstore.github.io/update-watch/vaultwarden.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  },
+  {
+   "app": "jellyfin",
+   "from": "12.1",
+   "to": "12.2",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack, 1 user, snapshot -> update -> health/version/user -> drill",
+   "tested_utc": "2026-10-06T06:23:54Z",
+   "page": "https://localhavenstore.github.io/update-watch/jellyfin.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  },
+  {
+   "app": "n8n",
+   "from": "2.41.6",
+   "to": "2.41.7",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
+   "tested_utc": "2026-10-06T05:31:04Z",
+   "page": "https://localhavenstore.github.io/update-watch/n8n.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  },
+  {
+   "app": "vaultwarden",
+   "from": "1.37.2",
+   "to": "1.37.3",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (Vaultwarden, SQLite), 1 invited user, snapshot -> update -> /alive/version/user -> drill",
+   "tested_utc": "2026-10-06T05:29:10Z",
+   "page": "https://localhavenstore.github.io/update-watch/vaultwarden.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  },
+  {
+   "app": "n8n",
+   "from": "2.41.7",
+   "to": "v3-rc-20261005",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
+   "tested_utc": "2026-10-06T04:51:48Z",
+   "page": "https://localhavenstore.github.io/update-watch/n8n.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  },
+  {
+   "app": "jellyfin",
+   "from": "12.0",
+   "to": "12.1",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack, 1 user, snapshot -> update -> health/version/user -> drill",
+   "tested_utc": "2026-10-05T23:04:01Z",
+   "page": "https://localhavenstore.github.io/update-watch/jellyfin.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  },
+  {
+   "app": "jellyfin",
+   "from": "10.11.11",
+   "to": "12.0",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack, 1 user, snapshot -> update -> app check -> drill",
+   "tested_utc": "2026-10-05T23:02:13Z",
+   "page": "https://localhavenstore.github.io/update-watch/jellyfin.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  },
+  {
+   "app": "nextcloud",
+   "from": "34.0.4",
+   "to": "35.0.0",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (Nextcloud + PostgreSQL 17), 2 users + 1 file, snapshot -> update -> occ status/users/file -> drill",
+   "tested_utc": "2026-10-05T23:00:44Z",
+   "page": "https://localhavenstore.github.io/update-watch/nextcloud.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  },
+  {
+   "app": "immich",
+   "from": "3.2.2",
+   "to": "3.2.4",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (Immich, machine learning off, postgres/valkey as pinned), admin + 1 photo, snapshot -> update -> version/assets -> drill",
+   "tested_utc": "2026-10-05T22:58:39Z",
+   "page": "https://localhavenstore.github.io/update-watch/immich.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  },
+  {
+   "app": "nextcloud",
+   "from": "35.0.0",
+   "to": "35.0.1",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (Nextcloud + PostgreSQL 17), 2 users + 1 file, snapshot -> update -> occ status/users/file -> drill",
+   "tested_utc": "2026-10-05T22:56:11Z",
+   "page": "https://localhavenstore.github.io/update-watch/nextcloud.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+  }
+ ]
+}

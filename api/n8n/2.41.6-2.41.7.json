@@ -1,0 +1,11 @@
+{
+ "app": "n8n",
+ "from": "2.41.6",
+ "to": "2.41.7",
+ "verdict": "GREEN",
+ "why": "updated, app check passed, and the snapshot restored in a drill",
+ "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
+ "tested_utc": "2026-10-06T05:31:04Z",
+ "page": "https://localhavenstore.github.io/update-watch/n8n.html",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+}

@@ -1,0 +1,11 @@
+{
+ "app": "jellyfin",
+ "from": "12.1",
+ "to": "12.2",
+ "verdict": "GREEN",
+ "why": "updated, app check passed, and the snapshot restored in a drill",
+ "scenario": "fresh compose stack, 1 user, snapshot -> update -> health/version/user -> drill",
+ "tested_utc": "2026-10-06T06:23:54Z",
+ "page": "https://localhavenstore.github.io/update-watch/jellyfin.html",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+}

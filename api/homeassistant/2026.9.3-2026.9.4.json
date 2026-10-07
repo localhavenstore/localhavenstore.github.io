@@ -1,0 +1,11 @@
+{
+ "app": "homeassistant",
+ "from": "2026.9.3",
+ "to": "2026.9.4",
+ "verdict": "GREEN",
+ "why": "updated, app check passed, and the snapshot restored in a drill",
+ "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
+ "tested_utc": "2026-10-06T07:47:40Z",
+ "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+}
