@@ -23,6 +23,14 @@ EUR 15Gumroad →](https://localhavenstore.gumroad.com/l/n8n-move-kit?utm_source
 
 n8n
 
+### n8n Reliability Pack
+
+Four tested workflows that stop quiet failures: sorted error alerts, a heartbeat for runs that did nothing, retry-safe webhooks, approvals without Wait nodes.
+
+EUR 29Gumroad →](https://localhavenstore.gumroad.com/l/n8n-reliability-pack?utm_source=site&utm_medium=card)[
+
+n8n
+
 ### Small Seller Pack for n8n
 
 Gumroad + Etsy sales, reviews and a weekly summary to your Telegram - four tested workflows.
