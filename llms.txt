@@ -1,0 +1,38 @@
+# Localhaven
+
+> Tested tools and guides for home servers: Update Watch verdicts (self-hosted app updates tested on throw-away machines),
+> n8n 3.0 move tools, safe Docker Compose updates, Home Assistant energy-bill tools. Made with AI assistance, tested by us.
+
+Every page below also exists as Markdown (same path, .md). Update verdicts as JSON: https://localhavenstore.github.io/api/verdicts.json (one tested scenario per verdict, not a guarantee).
+
+## Guides
+
+- [Android 17: self-hosted app can't reach your home server? The Nearby devices fix - Localhaven](https://localhavenstore.github.io/guides/android-17-nearby-devices.md): Immich, Jellyfin, Nextcloud or Home Assistant app times out at home on Android 17? Apps built for Android 17 need the local network permission (Nearby devices). 1-minute check + 30-second fix.
+- [Jellyfin downgrade: 'no such column: p.Permission_Permissions_Guid' - nobody can log in](https://localhavenstore.github.io/guides/jellyfin-downgrade-no-such-column.md): Rolled Jellyfin back from 12 to 10.11 and logins fail with 'SQLite Error 1: no such column: p.Permission_Permissions_Guid'? Why it happens and how to get logins back.
+- [1 in 4 n8n template views lands on a template that breaks on 3.0 (our scan)](https://localhavenstore.github.io/guides/n8n-3-template-scan.md): We scanned 11,754 n8n templates: 7.8 % use a node n8n 3.0 removes, and they hold 25.5 % of all template views. What breaks and what to do.
+- [n8n "Credentials could not be decrypted" after moving to Docker - fix](https://localhavenstore.github.io/guides/n8n-credentials-could-not-be-decrypted.md): n8n says 'Credentials could not be decrypted' or 'Mismatching encryption keys' after a move to Docker or a new server? Your credentials are not lost - give n8n its old encryption key.
+- [How to move n8n from npm to Docker before 3.0 (keep your credentials) - Localhaven](https://localhavenstore.github.io/guides/n8n-npm-to-docker.md): Step by step: move a self-hosted npm/npx n8n to Docker before n8n 3.0 without losing credentials - encryption key, permissions, same version first, checks. Free read-only check included.
+- [Upgrading n8n on Railway to 3.0 without breaking it](https://localhavenstore.github.io/guides/n8n-railway-3-0-upgrade.md): n8n 3.0 is coming in October 2026. Pin your Railway n8n version, back up the database and encryption key, fix the 3.0 breaking changes, test on a copy, upgrade main and workers together.
+- [n8n and Reddit after 31 October 2026: what stops and what to do](https://localhavenstore.github.io/guides/n8n-reddit-after-31-october.md): Reddit stops new API access requests on 31 Oct and switches off RSS on 13 Nov 2026. Which n8n workflows break, how to find them, and open feeds to switch to.
+- [Watchtower alternatives in 2026 (archived) - which ones test updates first?](https://localhavenstore.github.io/guides/watchtower-alternatives-2026.md): Watchtower is archived. WUD, Diun, Tugtainer, Komodo, Dockge and Portainer compared on what they do about updates - and how to test an update before you install it.
+
+## Free tools
+
+- [Free tools - Localhaven](https://localhavenstore.github.io/tools/index.md): Free read-only checks and in-browser tools for self-hosters: n8n 3.0 readiness, Raspberry Pi update check, Feed Rescue, Update Watch.
+- [Why Home Assistant's energy cost doesn't match your electricity bill - Localhaven](https://localhavenstore.github.io/tools/ha-bill-gap.md): Free calculator: standing charge, fees, levies and VAT - see the gap between the Home Assistant Energy dashboard and your real bill.
+- [Is your n8n ready for 3.0? (npm, npx or Docker) - Localhaven](https://localhavenstore.github.io/tools/n8n-3-check.md): Free 30-second check: does n8n 3.0 affect your self-hosted install, and how to move from npm/npx to Docker safely.
+- [Is your Raspberry Pi still getting security updates? - Localhaven](https://localhavenstore.github.io/tools/pi-update-check.md): Free 10-second read-only check: bullseye lost security updates on 31 August 2026. Which release your Pi runs, until when it is supported, and what to do.
+
+## Update Watch (tested update verdicts)
+
+- [Update Watch - is it safe to update? Tested verdicts for self-hosted apps](https://localhavenstore.github.io/update-watch/index.md): Tested 'is it safe to update?' verdicts for Nextcloud, Immich, Jellyfin, n8n, Vaultwarden and Home Assistant: real images, test data, snapshot, update, restore drill.
+
+## Products and offers
+
+- [Self-Host Safety - tested tools to update your home server safely](https://localhavenstore.github.io/self-host-safety/index.md): Tested update verdicts, snapshot + restore before container updates, n8n 3.0 move tools and agent skills - most of it free.
+- [Products - Localhaven](https://localhavenstore.github.io/products/index.md): Tested kits for n8n and homelabs, Home Assistant themes and dashboards, desktop wallpapers, sheets and a private home AI course.
+- [Numbers - Localhaven, an honest experiment](https://localhavenstore.github.io/numbers/index.md): Paid orders, verdicts, stars, views, Railway deploys and costs of a small AI-assisted shop - shown as they are.
+
+## Data
+
+- [Update Watch verdicts (JSON)](https://localhavenstore.github.io/api/verdicts.json): all public verdicts; per app: /api/<app>/latest.json

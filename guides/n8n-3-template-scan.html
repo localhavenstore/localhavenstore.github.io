@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1 in 4 n8n template views lands on a template that breaks on 3.0 (our scan)</title><meta name="description" content="We scanned 11,754 n8n templates: 7.8 % use a node n8n 3.0 removes, and they hold 25.5 % of all template views. What breaks and what to do."><link rel="canonical" href="https://localhavenstore.github.io/guides/n8n-3-template-scan.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Localhaven"><meta property="og:title" content="1 in 4 n8n template views lands on a template that breaks on 3.0 (our scan)">
+<meta property="og:description" content="We scanned 11,754 n8n templates: 7.8 % use a node n8n 3.0 removes, and they hold 25.5 % of all template views. What breaks and what to do."><meta property="og:url" content="https://localhavenstore.github.io/guides/n8n-3-template-scan.html"><meta property="og:image" content="https://localhavenstore.github.io/assets/og/tools.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0D1116">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/icon-180.png"><link rel="manifest" href="/manifest.json">
+<script>try{var t=localStorage.getItem('lh-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><link rel="stylesheet" href="/assets/site.css"></head>
+<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap"><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="28" height="28">Localhaven</a><nav class="nav" aria-label="Main"><a href="/products/">Products</a><a href="/update-watch/">Update Watch</a><a href="/tools/" aria-current=page>Free tools</a><a href="/course/">Course</a><a href="/about.html">About</a></nav><button class="theme-btn" type="button" aria-label="Dark theme" aria-pressed="false" title="Light / dark">&#9680;</button></div></header><main id="main"><div class="wrap"><div class="prose" style="padding-top:40px"><p class="kicker">n8n 3.0 · our scan</p>
+<h1>1 in 4 n8n template views lands on a template that breaks on 3.0</h1>
+<p class="lede">We scanned 11,754 public n8n workflow templates (2026-10-07: the templates with views that n8n's public template API returned; a few could not be fetched).
+<strong>915 of them (7.8 %)</strong> use a node that n8n 3.0 removes - and because they are the older, popular ones, they hold
+<strong>25.5 % of all template views</strong>. If you built a workflow from a popular template a while ago, check it before 3.0.</p>
+<h2>What we counted as "breaks"</h2>
+<p>A template counts when it uses a node on the removed list of n8n's official
+<a href="https://docs.n8n.io/changelog/v30-breaking-changes/">v3.0 breaking-changes page</a>, or version 1 of the AI Agent node in one of
+its old agent modes (also removed). Not counted as breaks: behaviour changes - Gmail Trigger older than 1.4 runs as 1.4 with different
+defaults (396 templates), and If/Switch with "Always Output Data" (34).</p>
+<h2>The most common reasons</h2>
+<table><tr><th>Removed in 3.0</th><th>Templates</th><th>Replace with</th></tr><tr><td>Function (legacy)</td><td>287</td><td>Code node</td></tr><tr><td>Cron</td><td>210</td><td>Schedule Trigger</td></tr><tr><td>OpenAI (legacy version)</td><td>95</td><td>the current OpenAI node</td></tr><tr><td>AI Agent v1 in an old agent mode</td><td>87</td><td>AI Agent (current version)</td></tr><tr><td>HTTP Request Tool (legacy)</td><td>87</td><td>see n8n&#x27;s page</td></tr><tr><td>Item Lists (legacy)</td><td>80</td><td>see n8n&#x27;s page</td></tr><tr><td>SerpApi tool</td><td>66</td><td>see n8n&#x27;s page</td></tr><tr><td>Convert to/from binary data</td><td>46</td><td>see n8n&#x27;s page</td></tr></table>
+<h2>What to do</h2>
+<ol><li>Self-hosted? Run the free read-only <a href="/tools/n8n-3-check.html">n8n 3.0 check</a> - it lists your workflows that use removed nodes, by name.</li>
+<li>Pin your n8n version until those workflows are fixed (a redeploy of <code>latest</code> may start 3.0).</li>
+<li>Replace the nodes in a copy, test, then upgrade - <a href="/guides/n8n-npm-to-docker.html">still on npm/npx? move to Docker first</a>.</li></ol>
+<p class="note" style="margin-top:24px">Method: each template's workflow JSON from n8n's public template API, node types and versions compared with the
+official removed list. One snapshot (2026-10-07); templates change. Our own data and code; not affiliated with n8n GmbH. Made with AI assistance.</p>
+<p style="margin:10px 0 0;font-size:14px"><span class="badge gold">LAUNCH40</span> 40 % off at checkout until 13 Oct 23:59 (Athens)</p></div></div></main><footer class="site-footer"><div class="wrap"><div class="cols">
+<div><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="24" height="24">Localhaven</a>
+<p style="margin-top:12px;max-width:340px">Tested tools for your home server. Built with AI assistance, tested on real (throw-away) machines,
+and every public action is approved by a human.</p></div>
+<div><p class="fh">Explore</p><ul><li><a href="/products/">Products</a></li><li><a href="/update-watch/">Update Watch</a></li><li><a href="/tools/">Free tools</a></li><li><a href="/course/">Course</a></li></ul></div>
+<div><p class="fh">Follow</p><ul><li><a href="https://www.youtube.com/@localhaven-x5o" rel="me">YouTube</a></li><li><a href="https://www.tiktok.com/@localhaven0" rel="me">TikTok</a></li><li><a href="https://github.com/localhavenstore" rel="me">GitHub</a></li><li><a href="https://ko-fi.com/localhaven" rel="me">Ko-fi</a></li></ul></div>
+<div><p class="fh">Company</p><ul><li><a href="/about.html">About</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li>
+<li><a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></li></ul></div></div>
+<div class="fine"><span>&copy; 2026 Localhaven. Not affiliated with the projects and products named on this site.</span><span>No trackers, no cookies.</span></div></div></footer><script>(function(){var b=document.querySelector('.theme-btn'),r=document.documentElement;b.setAttribute('aria-pressed',(r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')})();document.querySelector('.theme-btn').addEventListener('click',function(){var r=document.documentElement,d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=d==='dark'?'light':'dark';r.setAttribute('data-theme',n);this.setAttribute('aria-pressed',n==='dark');try{localStorage.setItem('lh-theme',n)}catch(e){}});</script></body></html>
