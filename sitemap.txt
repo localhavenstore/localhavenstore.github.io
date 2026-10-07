@@ -2,6 +2,7 @@ https://localhavenstore.github.io/about.html
 https://localhavenstore.github.io/chapters/chapter-01.html
 https://localhavenstore.github.io/chapters/chapter-02.html
 https://localhavenstore.github.io/course/
+https://localhavenstore.github.io/data/n8n-3-template-study.html
 https://localhavenstore.github.io/faq.html
 https://localhavenstore.github.io/feed-rescue/
 https://localhavenstore.github.io/guides/android-17-nearby-devices.html

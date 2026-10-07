@@ -65,11 +65,11 @@ Open →](https://localhavenstore.github.io/guides/watchtower-alternatives-2026.
 
 FREE our data
 
-### n8n 3.0: 1 in 4 template views breaks
+### n8n 3.0 template study
 
-Our scan of 11,754 n8n templates: which removed nodes break popular templates on 3.0, and what to do.
+We checked all public n8n templates against 3.0: about 1 in 4 template views breaks. Numbers, top nodes, CSV download.
 
-Open →](https://localhavenstore.github.io/guides/n8n-3-template-scan.html)[
+Open →](https://localhavenstore.github.io/data/n8n-3-template-study.html)[
 
 FREE guide
 
