@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ampere &amp; Pipe Co. - demo website (fictional electrician and plumber)</title>
+<meta name="description" content="Demo website for a fictional electrician and plumber: emergency call-outs, services with prices, service area and a 3-step quote request.">
+<link rel="canonical" href="https://localhavenstore.github.io/demos/trades/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ampere &amp; Pipe Co. - demo website for a fictional electrician and plumber">
+<meta property="og:image:alt" content="Demo website for a fictional trades business: headline, call and quote buttons">
+<meta property="og:description" content="A concept site for a fictional electrician and plumber: call now, prices, service area, quote request.">
+<meta property="og:image" content="https://localhavenstore.github.io/demos/trades/og.png">
+<meta property="og:url" content="https://localhavenstore.github.io/demos/trades/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#13294B">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Electrician","name":"Ampere & Pipe Co. (demo)","description":"Fictional electrician and plumber - portfolio demo website","areaServed":"Larkford and 12 km around","telephone":"+44 1632 960 456"}</script>
+</head>
+<body>
+<p class="demo">Demo website for a fictional trades business - made by Localhaven. The phone number is a fictional test number.</p>
+<header class="top">
+  <a class="brand" href="#top">
+    <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#13294B"/><path d="M18 4L8 18h7l-2 10 11-15h-7z" fill="#FFD23F"/></svg>
+    <span>Ampere &amp; Pipe Co.</span>
+  </a>
+  <nav aria-label="Main"><a href="#services">Services</a><a href="#area">Area</a><a href="#quote">Get a quote</a></nav>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="stripe" aria-hidden="true"></div>
+    <div class="hero-in">
+      <h1 id="hero-title">Power off? Pipe burst? We pick up.</h1>
+      <p class="lede">Electrician and plumber for homes and small shops in Larkford and 12 km around. Fixed call-out price, written quote before any bigger job.</p>
+      <div class="status" data-status-card>
+        <span class="dot" aria-hidden="true"></span>
+        <p data-status aria-live="polite">Office: weekdays 08:00 - 18:00. Emergencies: every night and weekend.</p>
+      </div>
+      <div class="ctas">
+        <a class="btn call" href="tel:+441632960456">Call 01632 960 456</a>
+        <a class="btn ghost" href="#quote">Request a quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" aria-labelledby="services-title">
+    <h2 id="services-title">What we fix</h2>
+    <div class="svc">
+      <div>
+        <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>Electrical</h3>
+        <table>
+          <caption class="sr">Electrical services and starting prices</caption>
+          <tbody>
+            <tr><th scope="row">Fault finding (tripping fuse box, dead sockets)</th><td>from &pound;75</td></tr>
+            <tr><th scope="row">New socket or light point</th><td>from &pound;95</td></tr>
+            <tr><th scope="row">Consumer unit (fuse box) replacement</th><td>from &pound;520</td></tr>
+            <tr><th scope="row">EV charger fitting</th><td>from &pound;690</td></tr>
+            <tr><th scope="row">Electrical safety report for landlords</th><td>from &pound;140</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h10a4 4 0 014 4v2h2v6h-6v-6h2v-2a2 2 0 00-2-2H3z"/></svg>Plumbing</h3>
+        <table>
+          <caption class="sr">Plumbing services and starting prices</caption>
+          <tbody>
+            <tr><th scope="row">Leak or burst pipe</th><td>from &pound;85</td></tr>
+            <tr><th scope="row">Blocked sink, toilet or drain</th><td>from &pound;70</td></tr>
+            <tr><th scope="row">Tap, toilet or shower replacement</th><td>from &pound;110</td></tr>
+            <tr><th scope="row">Radiator move or replacement</th><td>from &pound;180</td></tr>
+            <tr><th scope="row">Water heater (cylinder) service</th><td>from &pound;120</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="fine">Prices include the first hour and VAT; parts at cost. Night and weekend call-outs add &pound;60. You get the price before we start.</p>
+  </section>
+
+  <section id="area" class="area" aria-labelledby="area-title">
+    <div>
+      <h2 id="area-title">Where we work</h2>
+      <p>Larkford and every village within 12 km - usually with you within an hour for emergencies.</p>
+      <ul class="towns">
+        <li>Larkford</li><li>Ashby Moor</li><li>Kelsey Bridge</li><li>Tannerley</li><li>Upper Wend</li><li>Fallow Green</li>
+      </ul>
+      <p class="fine">Further out? Call us - for planned work we travel up to 30 km.</p>
+    </div>
+    <svg class="map" viewBox="0 0 360 300" role="img" aria-labelledby="map-title">
+      <title id="map-title">Service area map: Larkford in the middle, six villages inside a 12 km circle</title>
+      <rect width="360" height="300" rx="18" class="map-bg"/>
+      <circle cx="180" cy="150" r="128" class="ring"/>
+      <circle cx="180" cy="150" r="64" class="ring inner"/>
+      <g class="town"><circle cx="180" cy="150" r="9"/><text x="180" y="136" text-anchor="middle">Larkford</text></g>
+      <g class="town small"><circle cx="98" cy="96" r="6"/><text x="98" y="84" text-anchor="middle">Ashby Moor</text></g>
+      <g class="town small"><circle cx="262" cy="104" r="6"/><text x="262" y="92" text-anchor="middle">Kelsey Bridge</text></g>
+      <g class="town small"><circle cx="86" cy="196" r="6"/><text x="86" y="216" text-anchor="middle">Tannerley</text></g>
+      <g class="town small"><circle cx="270" cy="206" r="6"/><text x="270" y="226" text-anchor="middle">Upper Wend</text></g>
+      <g class="town small"><circle cx="186" cy="256" r="6"/><text x="186" y="276" text-anchor="middle">Fallow Green</text></g>
+      <text x="300" y="34" class="scale">12 km</text>
+    </svg>
+  </section>
+
+  <section id="quote" aria-labelledby="quote-title">
+    <h2 id="quote-title">Request a quote</h2>
+    <p>Three short steps. We reply the same working day with a price or a time to look at the job.</p>
+    <form class="quote" data-quote>
+      <fieldset data-step="1">
+        <legend><span class="n">1</span> What kind of job?</legend>
+        <div class="choices">
+          <label><input type="radio" name="trade" value="Electrical" required> Electrical</label>
+          <label><input type="radio" name="trade" value="Plumbing"> Plumbing</label>
+          <label><input type="radio" name="trade" value="Both"> Both</label>
+        </div>
+        <label>Is it urgent?
+          <select name="urgency"><option>Within a week</option><option>This month</option><option>Today - please call me</option></select>
+        </label>
+      </fieldset>
+      <fieldset data-step="2">
+        <legend><span class="n">2</span> Tell us about it</legend>
+        <label>What needs doing? <textarea name="details" rows="4" required placeholder="For example: the kitchen sockets stopped working after a storm."></textarea></label>
+        <label>Village or postcode <input name="where" autocomplete="postal-code" required></label>
+      </fieldset>
+      <fieldset data-step="3">
+        <legend><span class="n">3</span> How do we reach you?</legend>
+        <label>Name <input name="name" autocomplete="name" required></label>
+        <label>Phone <input name="phone" type="tel" autocomplete="tel" required></label>
+        <label>E-mail (optional) <input name="email" type="email" autocomplete="email"></label>
+      </fieldset>
+      <div class="nav-steps">
+        <button type="button" class="btn ghost" data-back hidden>Back</button>
+        <button type="button" class="btn" data-next hidden>Next</button>
+        <button type="submit" class="btn call" data-send disabled data-enable>Send my request</button>
+      </div>
+      <p class="form-status" role="status" data-form-status></p>
+      <noscript><p class="form-status">This demo form needs JavaScript to show its demo notice. It never sends your data anywhere.</p></noscript>
+    </form>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Ampere &amp; Pipe Co. is a fictional business. Demo website by <a href="https://localhavenstore.github.io/">Localhaven</a> - original artwork, no stock photos.</p>
+</footer>
+<a class="sticky-call" href="tel:+441632960456">Call now</a>
+<script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oriel Street Bakehouse - demo website (fictional bakery)</title>
+<meta name="description" content="Demo website for a fictional neighbourhood bakery: live bake times, today's bread and pastries, opening hours and celebration-cake orders.">
+<link rel="canonical" href="https://localhavenstore.github.io/demos/bakery/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Oriel Street Bakehouse - demo website for a fictional bakery">
+<meta property="og:image:alt" content="Demo website for a fictional bakery: headline and a bake-time board">
+<meta property="og:description" content="A concept site for a fictional bakery: what is warm right now, today's board, hours and cake orders.">
+<meta property="og:image" content="https://localhavenstore.github.io/demos/bakery/og.png">
+<meta property="og:url" content="https://localhavenstore.github.io/demos/bakery/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFF1C9">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Bakery","name":"Oriel Street Bakehouse (demo)","description":"Fictional bakery - portfolio demo website","address":{"@type":"PostalAddress","streetAddress":"12 Oriel Street","addressLocality":"Larkford"},"openingHours":["Tu-Su 07:00-15:00"]}</script>
+</head>
+<body>
+<p class="demo">Demo website for a fictional bakery - made by Localhaven to show what a small-business site can look like. Nothing here can be ordered.</p>
+<header class="top">
+  <a class="brand" href="#top" aria-label="Oriel Street Bakehouse, home">
+    <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M4 22c0-8 6-14 13-14s13 6 13 14v4H4z" fill="#C7782E"/><path d="M11 13l3 6M17 11v7M23 13l-3 6" stroke="#FFF1C9" stroke-width="2.4" stroke-linecap="round"/></svg>
+    <span>Oriel Street Bakehouse</span>
+  </a>
+  <nav aria-label="Main">
+    <a href="#board">Today</a><a href="#visit">Hours &amp; visit</a><a href="#cakes">Cake orders</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-text">
+      <h1 id="hero-title">Bread comes out of our oven six times a day.</h1>
+      <p class="lede">Come at the right time and it is still warm. The board shows what is coming out next.</p>
+      <p class="addr">12 Oriel Street, Larkford. Open Tuesday to Sunday.</p>
+    </div>
+    <div class="oven" role="region" aria-labelledby="oven-title">
+      <svg class="oven-art" viewBox="0 0 420 300" aria-hidden="true" focusable="false">
+        <rect x="10" y="10" width="400" height="280" rx="34" fill="#3D1A2E"/>
+        <rect x="40" y="40" width="340" height="190" rx="22" fill="#1d0d17"/>
+        <path d="M60 210c0-60 60-110 150-110s150 50 150 110z" fill="#E8913F" opacity=".35"/>
+        <ellipse cx="150" cy="190" rx="70" ry="26" fill="#C7782E"/>
+        <path d="M110 184l22-8M140 188l24-9M172 190l20-7" stroke="#F6D29A" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="290" cy="196" rx="52" ry="20" fill="#B5652A"/>
+        <path d="M262 192l18-6M292 196l18-6" stroke="#F6D29A" stroke-width="4" stroke-linecap="round"/>
+        <rect x="150" y="250" width="120" height="16" rx="8" fill="#2E5AAC"/>
+      </svg>
+      <div class="board">
+        <h2 id="oven-title">Out of the oven</h2>
+        <p class="now" aria-live="polite" data-now>Today's bakes:</p>
+        <ol class="bakes" data-bakes>
+          <li><time>07:00</time> Country sourdough, seeded rye</li>
+          <li><time>08:30</time> Butter croissants, pain au chocolat</li>
+          <li><time>10:00</time> Cardamom knots</li>
+          <li><time>11:30</time> Focaccia with rosemary</li>
+          <li><time>13:00</time> Second sourdough bake</li>
+          <li><time>14:00</time> Cookies for the school run</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="board" class="today" aria-labelledby="board-title">
+    <h2 id="board-title">Today's board</h2>
+    <div class="cols">
+      <div>
+        <h3>Bread</h3>
+        <dl class="menu">
+          <div><dt>Country sourdough</dt><dd>&pound;4.80</dd></div>
+          <div><dt>Seeded rye, 100% rye</dt><dd>&pound;5.20</dd></div>
+          <div><dt>Rosemary focaccia (slab)</dt><dd>&pound;3.60</dd></div>
+          <div><dt>Milk loaf</dt><dd>&pound;3.90</dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3>Pastries</h3>
+        <dl class="menu">
+          <div><dt>Butter croissant</dt><dd>&pound;2.40</dd></div>
+          <div><dt>Pain au chocolat</dt><dd>&pound;2.70</dd></div>
+          <div><dt>Cardamom knot</dt><dd>&pound;3.10</dd></div>
+          <div><dt>Brown-butter cookie</dt><dd>&pound;2.20</dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3>Coffee</h3>
+        <dl class="menu">
+          <div><dt>Filter, refills free</dt><dd>&pound;2.50</dd></div>
+          <div><dt>Flat white</dt><dd>&pound;3.20</dd></div>
+          <div><dt>Hot chocolate</dt><dd>&pound;3.40</dd></div>
+          <div><dt>Oat milk</dt><dd>no charge</dd></div>
+        </dl>
+      </div>
+    </div>
+    <p class="note">Sold out is sold out - the last bake is at 14:00. Ask us about allergens; everything is made in one kitchen with nuts, gluten, dairy and eggs.</p>
+  </section>
+
+  <section id="visit" class="visit" aria-labelledby="visit-title">
+    <div>
+      <h2 id="visit-title">Hours &amp; visit</h2>
+      <table class="hours">
+        <caption class="sr">Opening hours</caption>
+        <tbody>
+          <tr><th scope="row">Monday</th><td>closed (we bake for the week)</td></tr>
+          <tr><th scope="row">Tuesday - Sunday</th><td>07:00 - 15:00</td></tr>
+        </tbody>
+      </table>
+      <p>12 Oriel Street, Larkford. Two minutes from the market square; bike racks outside, step-free entrance.</p>
+      <p>Call <a href="tel:+441632960123">01632 960 123</a> or write to <a href="mailto:hello@example.com">hello@example.com</a>.</p>
+    </div>
+    <svg class="map" viewBox="0 0 360 260" role="img" aria-labelledby="map-t">
+      <title id="map-t">Sketch map: the bakery on Oriel Street, next to the market square</title>
+      <rect width="360" height="260" rx="20" fill="#FFFDF6"/>
+      <path d="M0 150H360M120 0V260M250 0V260" stroke="#E7D7A8" stroke-width="16"/>
+      <rect x="150" y="70" width="70" height="56" rx="8" fill="#E7D7A8"/>
+      <text x="185" y="104" text-anchor="middle" font-size="13" fill="#3D1A2E">market</text>
+      <circle cx="192" cy="175" r="14" fill="#2E5AAC"/>
+      <text x="192" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#3D1A2E">Oriel St 12</text>
+    </svg>
+  </section>
+
+  <section id="cakes" class="cakes" aria-labelledby="cakes-title">
+    <h2 id="cakes-title">Order a celebration cake</h2>
+    <p>Three days' notice, collected from the shop. Tell us the date and how many people - we reply within a day with the options.</p>
+    <form class="form" data-demo-form>
+      <label>Your name <input name="name" autocomplete="name" required></label>
+      <label>E-mail <input name="email" type="email" autocomplete="email" required></label>
+      <label>Collection date <input name="date" type="date" required></label>
+      <label>People <input name="people" type="number" min="4" max="60" value="10" required></label>
+      <label class="wide">Flavours or ideas <textarea name="message" rows="3"></textarea></label>
+      <button type="submit" disabled data-enable>Ask for cake options</button>
+      <noscript><p class="form-status">This demo form needs JavaScript to show its demo notice. It never sends your data anywhere.</p></noscript>
+      <p class="form-status" role="status" data-status></p>
+    </form>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Oriel Street Bakehouse is a fictional business. Demo website by <a href="https://localhavenstore.github.io/">Localhaven</a> - original artwork, no stock photos.</p>
+</footer>
+<script src="app.js" defer></script>
+</body>
+</html>

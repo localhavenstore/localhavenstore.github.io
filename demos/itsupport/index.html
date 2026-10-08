@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quayside Desk - demo website (fictional IT support company)</title>
+<meta name="description" content="Demo website for a fictional IT support company: how a support ticket is handled, plans per user and month, FAQ and contact.">
+<link rel="canonical" href="https://localhavenstore.github.io/demos/itsupport/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Quayside Desk - demo website for a fictional IT support company">
+<meta property="og:image:alt" content="Demo website for a fictional IT support company: headline and a solved support ticket">
+<meta property="og:description" content="A concept site for a fictional IT support company: tickets, response times, plans and FAQ.">
+<meta property="og:image" content="https://localhavenstore.github.io/demos/itsupport/og.png">
+<meta property="og:url" content="https://localhavenstore.github.io/demos/itsupport/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0F2340">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Quayside Desk (demo)","description":"Fictional IT support company - portfolio demo website"}</script>
+</head>
+<body>
+<p class="demo">Demo website for a fictional IT support company - made by Localhaven. No real tickets, prices or customers.</p>
+<header class="top">
+  <a class="brand" href="#top" aria-label="Quayside Desk, home">
+    <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0F2340"/><path d="M8 17l5 5 11-12" stroke="#0E9F8E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Quayside Desk</span>
+  </a>
+  <nav aria-label="Main"><a href="#how">How it works</a><a href="#plans">Plans</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <h1 id="hero-title">IT support for offices of 5 to 50 people.</h1>
+      <p class="lede">You send a ticket, a named engineer answers within the hour, and you can see what is happening the whole time. Laptops, e-mail, Wi-Fi, backups and the printer that never works.</p>
+      <p class="ctas"><a class="btn" href="#contact">Book a free 20-minute call</a> <a class="link" href="#plans">See the plans</a></p>
+    </div>
+    <article class="ticket" aria-label="Example support ticket">
+      <header class="t-head">
+        <span class="t-id">Ticket 4182</span>
+        <span class="t-state"><span class="sr">Status: solved</span><span class="s-open" aria-hidden="true">Open</span><span class="s-prog" aria-hidden="true">In progress</span><span class="s-done" aria-hidden="true">Solved</span></span>
+      </header>
+      <h2 class="t-title">Reception printer says "offline" again</h2>
+      <ol class="t-log">
+        <li><time>09:12</time> Maria (reception) opened the ticket from the support portal.</li>
+        <li class="l2"><time>09:19</time> Daniel picked it up and connected remotely.</li>
+        <li class="l3"><time>09:31</time> Printer had a new IP address after a router restart. Fixed address set, test page printed.</li>
+      </ol>
+      <p class="t-foot">Solved in 19 minutes. Maria rated it 5/5.</p>
+    </article>
+  </section>
+
+  <section id="how" aria-labelledby="how-title">
+    <h2 id="how-title">How a ticket is handled</h2>
+    <ol class="steps">
+      <li><h3>You report it</h3><p>By e-mail, the portal or phone. You get a ticket number straight away.</p></li>
+      <li><h3>A named engineer answers</h3><p>Within the response time of your plan - a person who knows your office, not a call centre.</p></li>
+      <li><h3>We fix it, remotely if we can</h3><p>Most problems are solved without a visit. You see every step in the ticket.</p></li>
+      <li><h3>You confirm it works</h3><p>The ticket closes only when you say so. Once a month you get a short report.</p></li>
+    </ol>
+  </section>
+
+  <section id="plans" aria-labelledby="plans-title">
+    <h2 id="plans-title">Plans</h2>
+    <p>Price per user and month, billed monthly, cancel with 30 days' notice. Every plan includes remote help for laptops, phones, e-mail and your office apps.</p>
+    <p class="swipe">Scroll the table sideways to compare all three plans.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Plan comparison, scrolls sideways on small screens">
+      <table class="plans">
+        <thead><tr><th scope="col">What you get</th><th scope="col">Essential</th><th scope="col" class="pick">Office</th><th scope="col">Office Plus</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Price per user / month</th><td>&pound;18</td><td class="pick">&pound;29</td><td>&pound;42</td></tr>
+          <tr><th scope="row">First answer, working hours</th><td>4 hours</td><td class="pick">1 hour</td><td>30 minutes</td></tr>
+          <tr><th scope="row">Remote help</th><td>Yes</td><td class="pick">Yes</td><td>Yes</td></tr>
+          <tr><th scope="row">On-site visits</th><td>Paid per hour</td><td class="pick">2 per month</td><td>Unlimited</td></tr>
+          <tr><th scope="row">Backup checks with a test restore</th><td>Quarterly</td><td class="pick">Monthly</td><td>Monthly</td></tr>
+          <tr><th scope="row">Security updates on all devices</th><td>Reported</td><td class="pick">Applied by us</td><td>Applied by us</td></tr>
+          <tr><th scope="row">New starter / leaver setup</th><td>Paid per hour</td><td class="pick">Included</td><td>Included</td></tr>
+          <tr><th scope="row">Evening and weekend emergencies</th><td>No</td><td class="pick">No</td><td>Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fine">Most offices choose Office. Prices are examples for this demo site.</p>
+  </section>
+
+  <section id="faq" aria-labelledby="faq-title">
+    <h2 id="faq-title">Questions we hear first</h2>
+    <details><summary>Do we need to replace our computers?</summary><p>No. We start with what you have and tell you which devices are too old for security updates - with a date, not a sales pitch.</p></details>
+    <details><summary>What happens to our data if we leave?</summary><p>It is yours. We hand over every password, the backup and a written description of your setup within five working days.</p></details>
+    <details><summary>Can you take over from our current IT person?</summary><p>Yes. We do a one-week handover: we list every account, device and subscription, then change the admin passwords together with you.</p></details>
+    <details><summary>Do you support all kinds of computers?</summary><p>Yes - laptops and desktops of any make, phones and tablets, and the common office e-mail and document suites.</p></details>
+    <details><summary>How fast can we start?</summary><p>Usually within two weeks: one visit to see your office, then we set up monitoring and backups.</p></details>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">Book a free 20-minute call</h2>
+    <p>Tell us about your office. We reply within one working day with a time.</p>
+    <form class="form" data-demo-form>
+      <label>Name <input name="name" autocomplete="name" required></label>
+      <label>Work e-mail <input name="email" type="email" autocomplete="email" required></label>
+      <label>Company <input name="company" autocomplete="organization"></label>
+      <label>People in the office <select name="size"><option>1 - 9</option><option>10 - 24</option><option>25 - 50</option><option>More than 50</option></select></label>
+      <label class="wide">What would you like help with? <textarea name="message" rows="4"></textarea></label>
+      <button type="submit" class="btn" disabled data-enable>Ask for a call</button>
+      <noscript><p class="form-status">This demo form needs JavaScript to show its demo notice. It never sends your data anywhere.</p></noscript>
+      <p class="form-status" role="status" data-status></p>
+    </form>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Quayside Desk is a fictional business. Demo website by <a href="https://localhavenstore.github.io/">Localhaven</a> - original artwork, no stock photos.</p>
+</footer>
+<script src="app.js" defer></script>
+</body>
+</html>
