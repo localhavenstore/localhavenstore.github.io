@@ -73,6 +73,14 @@ Open →](https://localhavenstore.github.io/data/n8n-3-template-study.html)[
 
 FREE guide
 
+### n8n 2.42.6 blocks Function nodes
+
+Imports, saves and backup restores fail for Function / Function Item nodes since 2.42.6 - what still runs and a tested Function-to-Code cheat sheet.
+
+Open →](https://localhavenstore.github.io/guides/n8n-2-42-6-function-nodes-blocked.html)[
+
+FREE guide
+
 ### n8n + Reddit after 31 Oct
 
 Reddit stops new API access on 31 Oct and RSS on 13 Nov: which n8n workflows break and what to switch to.
