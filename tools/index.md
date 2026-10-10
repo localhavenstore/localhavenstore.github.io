@@ -81,6 +81,14 @@ Open →](https://localhavenstore.github.io/guides/n8n-2-42-6-function-nodes-blo
 
 FREE guide
 
+### n8n queue mode: run crashed after a worker restart
+
+A restart or update ends a running workflow as "crashed" and n8n does not run it again. What we measured, and two settings that let it finish.
+
+Open →](https://localhavenstore.github.io/guides/n8n-queue-mode-execution-crashed-worker-restart.html)[
+
+FREE guide
+
 ### n8n + Reddit after 31 Oct
 
 Reddit stops new API access on 31 Oct and RSS on 13 Nov: which n8n workflows break and what to switch to.

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>n8n queue mode: a running workflow ends as &quot;crashed&quot; when the worker restarts - why, and the fix</title><meta name="description" content="In n8n queue mode a workflow that is running when its worker is restarted or killed ends as &quot;crashed&quot; and is not run again. Our test on 2.42.6, the log lines, and two settings (stop_grace_period, N8N_GRACEFUL_SHUTDOWN_TIMEOUT) that let it finish."><link rel="canonical" href="https://localhavenstore.github.io/guides/n8n-queue-mode-execution-crashed-worker-restart.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Localhaven"><meta property="og:title" content="n8n queue mode: a running workflow ends as &quot;crashed&quot; when the worker restarts - why, and the fix">
+<meta property="og:description" content="In n8n queue mode a workflow that is running when its worker is restarted or killed ends as &quot;crashed&quot; and is not run again. Our test on 2.42.6, the log lines, and two settings (stop_grace_period, N8N_GRACEFUL_SHUTDOWN_TIMEOUT) that let it finish."><meta property="og:url" content="https://localhavenstore.github.io/guides/n8n-queue-mode-execution-crashed-worker-restart.html"><meta property="og:image" content="https://localhavenstore.github.io/assets/og/tools.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0D1116">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/icon-180.png"><link rel="manifest" href="/manifest.json">
+<script>try{var t=localStorage.getItem('lh-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Keep running n8n workflows from crashing when a queue-mode worker restarts", "step": [{"@type": "HowToStep", "text": "Set stop_grace_period: 2m for the n8n and worker services in your compose file."}, {"@type": "HowToStep", "text": "Set N8N_GRACEFUL_SHUTDOWN_TIMEOUT to 110 for both services, then run docker compose up -d."}, {"@type": "HowToStep", "text": "Make important steps safe to run twice and alert on runs that never finished."}]}</script></head>
+<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap"><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="28" height="28">Localhaven</a><nav class="nav" aria-label="Main"><a href="/products/">Products</a><a href="/update-watch/">Update Watch</a><a href="/tools/" aria-current=page>Free tools</a><a href="/course/">Course</a><a href="/about.html">About</a></nav><button class="theme-btn" type="button" aria-label="Dark theme" aria-pressed="false" title="Light / dark">&#9680;</button></div></header><main id="main"><div class="wrap"><div class="prose" style="padding-top:40px"><p class="kicker">guide n8n</p>
+<h1>n8n queue mode: a running workflow ends as "crashed" when the worker restarts</h1>
+<p class="lede">You restarted or updated n8n, and a workflow that was running at that moment now shows <strong>crashed</strong> -
+and it never ran again. In queue mode that is how n8n behaves: a run that loses its worker is <strong>not started again</strong>.
+We tested it on n8n 2.42.6 (10 Oct 2026) and found two settings that let running workflows finish first.</p>
+<h2>What you see in the worker log</h2>
+<pre class="pw"><code>Received SIGTERM. Shutting down...
+Waiting for 1 active executions to finish... (execution IDs: 3)
+...
+Last session crashed
+Found unfinished executions: 2, 3
+This could be due to a crash of an active workflow or a restart of n8n</code></pre>
+<h2>What we measured</h2>
+<p>Setup: n8n 2.42.6 in queue mode (main + one worker + PostgreSQL + Redis, Docker Compose) on a throw-away server, and a
+workflow that waits 40 seconds between a webhook and its last step.</p>
+<div style="overflow-x:auto"><table class="t"><tr><th>what we did to the worker</th><th>the run ended as</th><th>note</th></tr><tr><td>Nothing (control run)</td><td>success</td><td></td></tr><tr><td><code>docker kill</code> of the worker, 10 s into the run</td><td><strong>crashed</strong>, not run again</td><td>The worker stayed down: <code>restart: unless-stopped</code> did not start it again. We started it by hand.</td></tr><tr><td>Normal <code>docker compose restart worker</code>, 5 s into the run (default settings)</td><td><strong>crashed</strong>, not run again</td><td>The worker waited for the run, Docker stopped it after 10 seconds. The restart took 11 s.</td></tr><tr><td>The same restart with the two settings below</td><td>success</td><td>The restart waited for the run: it took 36 to 41 seconds in three tests.</td></tr><tr><td><code>docker compose up -d --force-recreate worker</code> (what an update does) with longer waits</td><td>success</td><td>37 s (tested with 90 s for Docker and 80 s for n8n).</td></tr></table></div>
+<p>Why it is not run again: n8n sets the queue's <code>maxStalledCount</code> to <code>0</code>
+(<code>packages/cli/src/scaling/scaling.service.ts</code> at tag n8n@2.42.6), so a job whose worker disappeared is not handed out a
+second time. "Retry on Fail" does not help here either - it retries a failed node inside a run that is still alive.</p>
+<h2>Fix 1: give running workflows time to finish</h2>
+<p>Two timers cut the wait short: Docker stops a container after <strong>10 seconds</strong> by default, and an n8n worker waits
+<strong>30 seconds</strong> for running executions by default (n8n's documentation). Raise both, and keep n8n's value a little
+below Docker's:</p>
+<pre class="pw"><code>services:
+  n8n:
+    stop_grace_period: 2m
+    environment:
+      N8N_GRACEFUL_SHUTDOWN_TIMEOUT: &quot;110&quot;
+  worker:
+    stop_grace_period: 2m
+    environment:
+      N8N_GRACEFUL_SHUTDOWN_TIMEOUT: &quot;110&quot;</code></pre>
+<p>Then <code>docker compose up -d</code>. From now on a restart or update waits up to about 2 minutes for running workflows.</p>
+<h2>Fix 2: plan for the runs that still get lost</h2>
+<ul><li><strong>Runs longer than the wait</strong> and <strong>killed workers</strong> (power loss, out of memory, <code>docker kill</code>)
+still lose their run. Restart or update when no long run is active.</li>
+<li><strong>Make steps safe to run twice</strong>: before a step creates something (an invoice, an e-mail, a record), let it check
+whether it already exists. Then you can simply start the workflow again.</li>
+<li><strong>Get told about crashed runs.</strong> Do not rely on your error workflow for this (we did not test whether a
+crashed run triggers it) - also check for runs that never reported back (a heartbeat).</li>
+<li>After <code>docker kill</code>, start the worker again yourself: <code>docker compose up -d</code>.</li></ul>
+<h2>Ready-made</h2>
+<p>Our <a href="https://localhavenstore.gumroad.com/l/n8n-host-kit?utm_source=site&amp;utm_medium=guide">Hardened n8n Host Kit</a>
+(since 1.1.1) ships with both settings, and its test on a fresh server includes exactly this case: a 40-second run that is in
+progress during a worker restart must finish with success. The
+<a href="https://localhavenstore.gumroad.com/l/n8n-reliability-pack?utm_source=site&amp;utm_medium=guide">n8n Reliability Pack</a>
+has the heartbeat that reports runs which never finished, and a retry-safe intake pattern.</p>
+<p class="note" style="margin-top:24px">Tested by us on 10 Oct 2026 on throw-away servers, one worker, fictional data: all cases on n8n
+2.42.6 (waits of 90 s / 80 s), the fix with 2 min / 110 s also on 2.42.3. Other versions and setups can behave differently - test yours. Not an official n8n page; not affiliated with n8n. Made with
+AI assistance.</p>
+</div></div></main><footer class="site-footer"><div class="wrap"><div class="cols">
+<div><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="24" height="24">Localhaven</a>
+<p style="margin-top:12px;max-width:340px">Tested tools for your home server. Built with AI assistance, tested on real (throw-away) machines,
+and every public action is approved by a human.</p></div>
+<div><p class="fh">Explore</p><ul><li><a href="/products/">Products</a></li><li><a href="/update-watch/">Update Watch</a></li><li><a href="/tools/">Free tools</a></li><li><a href="/course/">Course</a></li></ul></div>
+<div><p class="fh">Follow</p><ul><li><a href="https://www.youtube.com/@localhaven-x5o" rel="me">YouTube</a></li><li><a href="https://www.tiktok.com/@localhaven0" rel="me">TikTok</a></li><li><a href="https://github.com/localhavenstore" rel="me">GitHub</a></li><li><a href="https://ko-fi.com/localhaven" rel="me">Ko-fi</a></li></ul></div>
+<div><p class="fh">Company</p><ul><li><a href="/about.html">About</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li>
+<li><a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></li></ul></div></div>
+<div class="fine"><span>&copy; 2026 Localhaven. Not affiliated with the projects and products named on this site.</span><span>No trackers, no cookies.</span></div></div></footer><script>(function(){var b=document.querySelector('.theme-btn'),r=document.documentElement;b.setAttribute('aria-pressed',(r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')})();document.querySelector('.theme-btn').addEventListener('click',function(){var r=document.documentElement,d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=d==='dark'?'light':'dark';r.setAttribute('data-theme',n);this.setAttribute('aria-pressed',n==='dark');try{localStorage.setItem('lh-theme',n)}catch(e){}});</script></body></html>
