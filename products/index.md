@@ -25,7 +25,7 @@ n8n
 
 ### Hardened n8n Host Kit
 
-Queue mode, secrets as files, signed + encrypted backups, a monthly restore proof and a rollback that undoes itself - 58 checks on a fresh machine.
+Queue mode, secrets as files, signed + encrypted backups, a monthly restore proof, a one-command update that rolls itself back, and restarts that wait for running workflows - 68 checks on a fresh machine.
 
 EUR 49Gumroad →](https://localhavenstore.gumroad.com/l/n8n-host-kit?utm_source=site&utm_medium=card)[
 
