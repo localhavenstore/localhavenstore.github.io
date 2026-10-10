@@ -47,7 +47,6 @@ Declare the permission `ACCESS_LOCAL_NETWORK` in the manifest and request it at 
 
 ## Reports
 
-- ["How is everyone dealing with Android 17's Nearby Devices change?"](https://lemmy.imagisphe.re/post/2936135) (Immich, Jellyfin, XMPP, SMB, CUPS; silent drops)
 - [Home Assistant Android #7304](https://github.com/home-assistant/android/issues/7304) (local network access notification)
 - [Nextcloud Passwords #177](https://github.com/hegocre/NextcloudPasswords/issues/177) (missing ACCESS_LOCAL_NETWORK)
 
