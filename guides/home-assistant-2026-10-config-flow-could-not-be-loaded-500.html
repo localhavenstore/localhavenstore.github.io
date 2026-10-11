@@ -24,6 +24,9 @@ Assistant in Docker: <code>docker compose logs homeassistant | grep -m1 -A1 "Una
 copied into <code>custom_components</code>. Each time we opened the integration's set-up dialog (Settings &gt; Devices &amp; services
 &gt; Add integration).</p>
 <div style="overflow-x:auto"><table class="t"><tr><th>Home Assistant</th><th>integration</th><th>result</th></tr><tr><td>Home Assistant 2026.9.4</td><td>EcoFlow Cloud 1.7.1</td><td>the set-up dialog opens</td></tr><tr><td>Home Assistant 2026.10.1</td><td>EcoFlow Cloud 1.7.1</td><td><strong>error 500</strong> (the message above)</td></tr><tr><td>Home Assistant 2026.10.1</td><td>EcoFlow Cloud 1.7.2</td><td>the set-up dialog opens again</td></tr></table></div>
+<p>Also seen: the Ecovacs Mower custom integration 0.10.0 asked for <code>deebot-client==18.5.1</code> and showed this error on 2026.10
+(reported by a user). Its version 0.11.0 of 11 Oct 2026 asks for <code>deebot-client&gt;=18.6.0</code> - update it in HACS. We read
+both requirement lines in the project's files; we did not run 0.11.0 and we have no mower.</p>
 <h2>Why it breaks</h2>
 <p>Home Assistant 2026.10 ships <code>protobuf 7.36.0</code> (2026.9.4 shipped <code>6.32.0</code>). EcoFlow Cloud 1.7.1 asks for
 <code>protobuf==6.32.0</code> - exactly that version. Both cannot be installed together, so Home Assistant refuses to load the
@@ -32,7 +35,30 @@ In our test nothing else was touched: it is a version pin.</p>
 <h2>The same message can have other causes - the log line tells you which</h2>
 <p>The dialog text is the same for every failure while an integration's form is being built. Search the log for the integration's
 name and compare the last line of the error:</p>
-<div style="overflow-x:auto"><table class="t"><tr><th>last line in the log</th><th>what it means</th><th>what helps</th></tr><tr><td><code>Unable to install package &lt;name&gt;==&lt;version&gt; ... your requirements are unsatisfiable</code></td><td>The integration demands one exact version of a library that 2026.10 no longer ships (this page).</td><td>Update the integration; tested by us with EcoFlow Cloud.</td></tr><tr><td><code>AttributeError: module &#x27;homeassistant.helpers.config_validation&#x27; has no attribute &#x27;vol&#x27;</code></td><td>The integration reaches for the <code>voluptuous</code> library through a Home Assistant helper (<code>cv.vol</code>) that 2026.10 no longer offers.</td><td>Needs a small change by the integration's author - there is no setting on your side. Tested by us on 11 Oct 2026 with Rental Control 3.7.0: the form opens on 2026.9.4, fails on 2026.10.1, and opened again after we imported the library directly in its schema file.</td></tr><tr><td><code>AttributeError: property &#x27;config_entry&#x27; of &#x27;...OptionsFlowHandler&#x27; object has no setter</code></td><td>An older way of writing an integration's options dialog.</td><td>Reported by a user for another integration on 2026.10.0 (read by us on 11 Oct 2026 in that project's issue list). <strong>Not tested by us.</strong></td></tr></table></div>
+<div style="overflow-x:auto"><table class="t"><tr><th>last line in the log</th><th>what it means</th><th>what helps</th></tr><tr><td><code>Unable to install package &lt;name&gt;==&lt;version&gt; ... your requirements are unsatisfiable</code></td><td>The integration demands one exact version of a library that 2026.10 no longer ships (this page).</td><td>Update the integration; tested by us with EcoFlow Cloud.</td></tr><tr><td><code>AttributeError: module &#x27;homeassistant.helpers.config_validation&#x27; has no attribute &#x27;vol&#x27;</code></td><td>The integration reaches for the <code>voluptuous</code> library through a Home Assistant helper (<code>cv.vol</code>) that 2026.10 no longer offers.</td><td>Needs a small change by the integration's author - there is no setting on your side. Tested by us on 11 Oct 2026 with Rental Control 3.7.0: the form opens on 2026.9.4, fails on 2026.10.1, and opened again after we imported the library directly in its schema file.</td></tr><tr><td><code>AttributeError: property &#x27;config_entry&#x27; of &#x27;...OptionsFlowHandler&#x27; object has no setter</code></td><td>An older way of writing an integration's <em>options</em> dialog (Configure). <strong>This one is not caused by 2026.10:</strong> Home Assistant dropped the old form in 2025.12.</td><td>Needs a small change by the integration's author. Tested by us on 11 Oct 2026 with Redback Technologies 2026.9.1 and a stand-in entry (we have no Redback account): the options dialog fails with this line on 2026.9.4 <em>and</em> on 2026.10.1, and opens after that one line is deleted. More on this below.</td></tr></table></div>
+<h2>2026.10 also breaks some actions - and only at the moment they run</h2>
+<p>This one shows no dialog and nothing at start-up. An automation or a button calls an integration's action, and the log says:</p>
+<pre class="pw"><code>AttributeError: &#x27;HomeAssistant&#x27; object has no attribute &#x27;hass&#x27;</code></pre>
+<p>Five helper functions for actions (<code>extract_entity_ids</code>, <code>async_extract_entities</code>, <code>async_extract_entity_ids</code>,
+<code>async_extract_config_entry_ids</code>, <code>verify_domain_control</code>) no longer accept <code>hass</code> as their first
+argument in 2026.10. Home Assistant 2026.9 still took the old form and only wrote a warning:</p>
+<pre class="pw"><code>The deprecated argument hass was passed to async_extract_config_entry_ids from caffeine_tracker. It will be removed in HA Core 2026.10.</code></pre>
+<p>We tested it on 11 Oct 2026 with the Caffeine Tracker integration 0.2.2 on a throw-away machine: on 2026.9.4 its action works
+(with that warning), on 2026.10.1 the same action fails with the line above. After removing <code>hass</code> from that one call the
+action works on 2026.10.1 - and on 2026.9.4 too, so the change is safe for people who have not updated yet.</p>
+<p>How many integrations are affected? We read the code of the 3,240 integrations in the HACS list, each at the version HACS
+installs (11 Oct 2026), and looked for such a call that is not behind a version check. <strong>6 have one</strong>
+(26 could not be read). These were found by reading code - we did not run them:</p>
+<div style="overflow-x:auto"><table class="t"><tr><th>integration (repository)</th><th>version read</th><th>where</th></tr><tr><td><code>astrandb/miele</code></td><td>v2026.2.0</td><td><code>services.py:101 async_extract_config_entry_ids</code></td></tr><tr><td><code>klejejs/ha-thermia-heat-pump-integration</code></td><td>5.4.0</td><td><code>services.py:35 async_extract_entity_ids</code></td></tr><tr><td><code>Nosdave/ha-lg-ac-infrared</code></td><td>v0.2.5</td><td><code>__init__.py:180 async_extract_entity_ids</code></td></tr><tr><td><code>nyffchanium/argoclima-integration</code></td><td>v1.1.4</td><td><code>service.py:84 verify_domain_control</code></td></tr><tr><td><code>swingerman/ha-dual-smart-thermostat</code></td><td>v0.13.2</td><td><code>climate.py:504 extract_entity_ids</code></td></tr><tr><td><code>zhbjsh/homeassistant-ssh</code></td><td>v1.3.1</td><td><code>__init__.py:310 async_extract_config_entry_ids</code></td></tr></table></div>
+<p>If you use one of them: the action that calls this line fails on 2026.10 until the author changes it; everything else in the
+integration can work normally. Look for a newer version first.</p>
+<h2>The options dialog that has been failing since 2025.12</h2>
+<p>If the 500 message appears when you press <strong>Configure</strong> on an integration that is already set up, and the log ends
+with <code>has no setter</code>, the cause is older than this update. The same line in the code breaks the options dialog on every
+Home Assistant since 2025.12 - in our test on 2026.9.4 and on 2026.10.1 alike. The integration itself keeps running; only its
+options cannot be opened. In the same code reading we found that line, without a version check, in
+<strong>185 of the 3,240</strong> HACS integrations. One of them was run by us (above); the
+others are a pattern found in code, so treat the number as "about this many".</p>
 <h2>The fix (for the pinned-library case)</h2>
 <ul><li><strong>Already on 2026.10 and seeing the error:</strong> update the integration (in HACS: EcoFlow Cloud to 1.7.2 or newer),
 then restart Home Assistant.</li>
@@ -48,7 +74,7 @@ integrations to look at when a Home Assistant release changes that library.</p>
 And if your Home Assistant is broken after an update, there is a
 <a href="https://www.upwork.com/services/product/2108995202804377773" rel="nofollow">written fix, tested on a copy, no call</a>.</p>
 <p class="note" style="margin-top:24px">Tested by us on 11 Oct 2026: Home Assistant Container 2026.9.4 and 2026.10.1, EcoFlow Cloud
-1.7.1 and 1.7.2, one throw-away test machine. We have no EcoFlow device and no EcoFlow account: we tested the integration loading
+1.7.1 and 1.7.2, Rental Control 3.7.0, Caffeine Tracker 0.2.2 and the options dialog of Redback Technologies 2026.9.1, on throw-away test machines. We have no EcoFlow device and no EcoFlow account: we tested the integration loading
 and its set-up dialog, not a power station. Other integrations can show the same message for another library - the log line names
 it. Not an official Home Assistant page; not affiliated with Home Assistant, EcoFlow or the integration's author. Made with AI
 assistance.</p>
