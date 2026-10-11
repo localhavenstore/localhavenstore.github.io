@@ -19,4 +19,4 @@ which n8n; systemctl list-units --all | grep -i n8n; pm2 ls 2>/dev/null | grep -
 
 If `docker ps` shows n8n, you are on Docker. If `which n8n` prints a path and Docker shows nothing, you are on npm.
 
-This page runs in your browser only: no cookies, no tracking, no data sent. Made with AI assistance; facts from n8n's own docs (linked). Not affiliated with n8n GmbH; n8n is their trademark.
+The check runs in your browser only: what you paste is not sent anywhere. No cookies; page views are counted without cookies. Made with AI assistance; facts from n8n's own docs (linked). Not affiliated with n8n GmbH; n8n is their trademark.

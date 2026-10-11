@@ -11,7 +11,7 @@ Home Assistant's Energy dashboard multiplies your kWh by a price. Your real bill
 
 **Everything on the bill:** [Aurum Bill Match Pro](https://localhavenstore.gumroad.com/l/aurum-bill-match) (EUR 7) adds standing charge + monthly/yearly fees and credits + up to 3 per-kWh levies + VAT (also on fees if your bill does that) into one cost entity, plus a bill-period forecast. Tested on Home Assistant 2026.9.4.
 
-Estimates from the numbers you type in - this page cannot read your contract; check against your next bill. Runs in your browser only: no cookies, no tracking. Made with AI assistance. Not affiliated with Home Assistant or the Open Home Foundation.
+Estimates from the numbers you type in - this page cannot read your contract; check against your next bill. The calculator runs in your browser only: what you type is not sent anywhere. No cookies; page views are counted without cookies. Made with AI assistance. Not affiliated with Home Assistant or the Open Home Foundation.
 
 ## Questions
 
@@ -21,7 +21,7 @@ The Energy dashboard multiplies your kWh by one price. Your bill also has a stan
 
 Are the numbers I type sent anywhere?
 
-No. The calculator runs in your browser only - no cookies, no tracking.
+No. The calculator runs in your browser only - what you type is not sent anywhere. The site itself uses no cookies; it only counts page views.
 
 Can I fix it inside Home Assistant?
 
