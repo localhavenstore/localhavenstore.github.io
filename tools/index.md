@@ -89,6 +89,14 @@ Open →](https://localhavenstore.github.io/guides/n8n-queue-mode-execution-cras
 
 FREE guide
 
+### Home Assistant 2026.10: config flow error 500
+
+A custom integration says "Config flow could not be loaded: 500" after the update? Our test with EcoFlow Cloud: the log line, the cause, the fix.
+
+Open →](https://localhavenstore.github.io/guides/home-assistant-2026-10-config-flow-could-not-be-loaded-500.html)[
+
+FREE guide
+
 ### n8n + Reddit after 31 Oct
 
 Reddit stops new API access on 31 Oct and RSS on 13 Nov: which n8n workflows break and what to switch to.

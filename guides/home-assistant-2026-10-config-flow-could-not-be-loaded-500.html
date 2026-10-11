@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Assistant 2026.10: &quot;Config flow could not be loaded: 500 Internal Server Error&quot; - cause and fix</title><meta name="description" content="After Home Assistant 2026.10 a custom integration fails with &quot;Config flow could not be loaded: 500 Internal Server Error&quot;. Our test with EcoFlow Cloud: the log line (protobuf==6.32.0 vs 7.36.0), why it breaks, the fix, and how to check your other integrations."><link rel="canonical" href="https://localhavenstore.github.io/guides/home-assistant-2026-10-config-flow-could-not-be-loaded-500.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Localhaven"><meta property="og:title" content="Home Assistant 2026.10: &quot;Config flow could not be loaded: 500 Internal Server Error&quot; - cause and fix">
+<meta property="og:description" content="After Home Assistant 2026.10 a custom integration fails with &quot;Config flow could not be loaded: 500 Internal Server Error&quot;. Our test with EcoFlow Cloud: the log line (protobuf==6.32.0 vs 7.36.0), why it breaks, the fix, and how to check your other integrations."><meta property="og:url" content="https://localhavenstore.github.io/guides/home-assistant-2026-10-config-flow-could-not-be-loaded-500.html"><meta property="og:image" content="https://localhavenstore.github.io/assets/og/tools.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0D1116">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/icon-180.png"><link rel="manifest" href="/manifest.json">
+<script>try{var t=localStorage.getItem('lh-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Fix 'Config flow could not be loaded: 500 Internal Server Error' for a custom integration after Home Assistant 2026.10", "step": [{"@type": "HowToStep", "text": "Search the Home Assistant log for 'Unable to install package' to see which library version the integration demands."}, {"@type": "HowToStep", "text": "Update the custom integration to a version that accepts the library Home Assistant ships (EcoFlow Cloud: 1.7.2 or newer)."}, {"@type": "HowToStep", "text": "Restart Home Assistant and open the integration again."}]}</script></head>
+<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap"><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="28" height="28">Localhaven</a><nav class="nav" aria-label="Main"><a href="/products/">Products</a><a href="/update-watch/">Update Watch</a><a href="/tools/" aria-current=page>Free tools</a><a href="/course/">Course</a><a href="/about.html">About</a></nav><button class="theme-btn" type="button" aria-label="Dark theme" aria-pressed="false" title="Light / dark">&#9680;</button></div></header><main id="main"><div class="wrap"><div class="prose" style="padding-top:40px"><p class="kicker">guide Home Assistant</p>
+<h1>Home Assistant 2026.10: "Config flow could not be loaded: 500 Internal Server Error" - the cause and the fix</h1>
+<p class="lede">After the update to Home Assistant 2026.10 a custom integration will not set up or load, and the dialog only says:</p>
+<pre class="pw"><code>Config flow could not be loaded: 500 Internal Server Error Server got itself in trouble</code></pre>
+<p>That message does not tell you why. In our test the reason was one line in the log: the integration demanded <strong>one exact
+version of a Python library</strong> that the new Home Assistant no longer ships. We reproduced it with the EcoFlow Cloud
+integration on a fresh test machine (11 Oct 2026) - what we saw, and the fix.</p>
+<h2>What you see in the log</h2>
+<pre class="pw"><code>Unable to install package protobuf==6.32.0: error: No solution found when resolving dependencies
+  cause: Because you require protobuf==6.32.0 and protobuf==7.36.0, we can conclude that your requirements are unsatisfiable.</code></pre>
+<p>Where to look: <strong>Settings &gt; System &gt; Logs</strong> and search for <code>Unable to install package</code>. With Home
+Assistant in Docker: <code>docker compose logs homeassistant | grep -m1 -A1 "Unable to install"</code>.</p>
+<h2>What we measured</h2>
+<p>Setup: Home Assistant Container in Docker on a throw-away test machine, one test user, the EcoFlow Cloud custom integration
+copied into <code>custom_components</code>. Each time we opened the integration's set-up dialog (Settings &gt; Devices &amp; services
+&gt; Add integration).</p>
+<div style="overflow-x:auto"><table class="t"><tr><th>Home Assistant</th><th>integration</th><th>result</th></tr><tr><td>Home Assistant 2026.9.4</td><td>EcoFlow Cloud 1.7.1</td><td>the set-up dialog opens</td></tr><tr><td>Home Assistant 2026.10.1</td><td>EcoFlow Cloud 1.7.1</td><td><strong>error 500</strong> (the message above)</td></tr><tr><td>Home Assistant 2026.10.1</td><td>EcoFlow Cloud 1.7.2</td><td>the set-up dialog opens again</td></tr></table></div>
+<h2>Why it breaks</h2>
+<p>Home Assistant 2026.10 ships <code>protobuf 7.36.0</code> (2026.9.4 shipped <code>6.32.0</code>). EcoFlow Cloud 1.7.1 asks for
+<code>protobuf==6.32.0</code> - exactly that version. Both cannot be installed together, so Home Assistant refuses to load the
+integration. Version 1.7.2 of the integration (8 Oct 2026) asks for <code>protobuf&gt;=6.32.0,&lt;8</code> and loads again.
+In our test nothing else was touched: it is a version pin.</p>
+<h2>The fix</h2>
+<ul><li><strong>Already on 2026.10 and seeing the error:</strong> update the integration (in HACS: EcoFlow Cloud to 1.7.2 or newer),
+then restart Home Assistant.</li>
+<li><strong>Not updated yet:</strong> update the integration first, then Home Assistant.</li></ul>
+<h2>Check your other custom integrations before the next update</h2>
+<p>Every custom integration has a <code>manifest.json</code> with a <code>requirements</code> line. An entry with two equals signs
+demands one exact version - that is the kind that can stop loading after an update. This lists them:</p>
+<pre class="pw"><code>grep -H '==' /config/custom_components/*/manifest.json</code></pre>
+<p>(In Docker the folder is the <code>config</code> folder you mounted.) A hit is not a problem by itself; it tells you which
+integrations to look at when a Home Assistant release changes that library.</p>
+<h2>If you want it done for you</h2>
+<p>We test Home Assistant updates on throw-away machines before you click: the <a href="/update-watch/">free update verdicts</a>.
+And if your Home Assistant is broken after an update, there is a
+<a href="https://www.upwork.com/services/product/2108995202804377773" rel="nofollow">written fix, tested on a copy, no call</a>.</p>
+<p class="note" style="margin-top:24px">Tested by us on 11 Oct 2026: Home Assistant Container 2026.9.4 and 2026.10.1, EcoFlow Cloud
+1.7.1 and 1.7.2, one throw-away test machine. We have no EcoFlow device and no EcoFlow account: we tested the integration loading
+and its set-up dialog, not a power station. Other integrations can show the same message for another library - the log line names
+it. Not an official Home Assistant page; not affiliated with Home Assistant, EcoFlow or the integration's author. Made with AI
+assistance.</p>
+</div></div></main><footer class="site-footer"><div class="wrap"><div class="cols">
+<div><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="24" height="24">Localhaven</a>
+<p style="margin-top:12px;max-width:340px">Tested tools for your home server. Built with AI assistance, tested on real (throw-away) machines,
+and every public action is approved by a human.</p></div>
+<div><p class="fh">Explore</p><ul><li><a href="/products/">Products</a></li><li><a href="/update-watch/">Update Watch</a></li><li><a href="/tools/">Free tools</a></li><li><a href="/course/">Course</a></li></ul></div>
+<div><p class="fh">Follow</p><ul><li><a href="https://www.youtube.com/@localhaven-x5o" rel="me">YouTube</a></li><li><a href="https://www.tiktok.com/@localhaven0" rel="me">TikTok</a></li><li><a href="https://github.com/localhavenstore" rel="me">GitHub</a></li><li><a href="https://ko-fi.com/localhaven" rel="me">Ko-fi</a></li></ul></div>
+<div><p class="fh">Company</p><ul><li><a href="/about.html">About</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li>
+<li><a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></li></ul></div></div>
+<div class="fine"><span>&copy; 2026 Localhaven. Not affiliated with the projects and products named on this site.</span><span>No trackers, no cookies.</span></div></div></footer><script>(function(){var b=document.querySelector('.theme-btn'),r=document.documentElement;b.setAttribute('aria-pressed',(r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')})();document.querySelector('.theme-btn').addEventListener('click',function(){var r=document.documentElement,d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=d==='dark'?'light':'dark';r.setAttribute('data-theme',n);this.setAttribute('aria-pressed',n==='dark');try{localStorage.setItem('lh-theme',n)}catch(e){}});</script></body></html>

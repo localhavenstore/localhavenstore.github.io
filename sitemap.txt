@@ -6,6 +6,7 @@ https://localhavenstore.github.io/data/n8n-3-template-study.html
 https://localhavenstore.github.io/faq.html
 https://localhavenstore.github.io/feed-rescue/
 https://localhavenstore.github.io/guides/android-17-nearby-devices.html
+https://localhavenstore.github.io/guides/home-assistant-2026-10-config-flow-could-not-be-loaded-500.html
 https://localhavenstore.github.io/guides/jellyfin-downgrade-no-such-column.html
 https://localhavenstore.github.io/guides/n8n-2-42-6-function-nodes-blocked.html
 https://localhavenstore.github.io/guides/n8n-3-template-scan.html
