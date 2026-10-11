@@ -29,7 +29,11 @@ copied into <code>custom_components</code>. Each time we opened the integration'
 <code>protobuf==6.32.0</code> - exactly that version. Both cannot be installed together, so Home Assistant refuses to load the
 integration. Version 1.7.2 of the integration (8 Oct 2026) asks for <code>protobuf&gt;=6.32.0,&lt;8</code> and loads again.
 In our test nothing else was touched: it is a version pin.</p>
-<h2>The fix</h2>
+<h2>The same message can have other causes - the log line tells you which</h2>
+<p>The dialog text is the same for every failure while an integration's form is being built. Search the log for the integration's
+name and compare the last line of the error:</p>
+<div style="overflow-x:auto"><table class="t"><tr><th>last line in the log</th><th>what it means</th><th>what helps</th></tr><tr><td><code>Unable to install package &lt;name&gt;==&lt;version&gt; ... your requirements are unsatisfiable</code></td><td>The integration demands one exact version of a library that 2026.10 no longer ships (this page).</td><td>Update the integration; tested by us with EcoFlow Cloud.</td></tr><tr><td><code>AttributeError: module &#x27;homeassistant.helpers.config_validation&#x27; has no attribute &#x27;vol&#x27;</code></td><td>The integration reaches for the <code>voluptuous</code> library through a Home Assistant helper (<code>cv.vol</code>) that 2026.10 no longer offers.</td><td>Needs a small change by the integration's author - there is no setting on your side. Tested by us on 11 Oct 2026 with Rental Control 3.7.0: the form opens on 2026.9.4, fails on 2026.10.1, and opened again after we imported the library directly in its schema file.</td></tr><tr><td><code>AttributeError: property &#x27;config_entry&#x27; of &#x27;...OptionsFlowHandler&#x27; object has no setter</code></td><td>An older way of writing an integration's options dialog.</td><td>Reported by a user for another integration on 2026.10.0 (read by us on 11 Oct 2026 in that project's issue list). <strong>Not tested by us.</strong></td></tr></table></div>
+<h2>The fix (for the pinned-library case)</h2>
 <ul><li><strong>Already on 2026.10 and seeing the error:</strong> update the integration (in HACS: EcoFlow Cloud to 1.7.2 or newer),
 then restart Home Assistant.</li>
 <li><strong>Not updated yet:</strong> update the integration first, then Home Assistant.</li></ul>
