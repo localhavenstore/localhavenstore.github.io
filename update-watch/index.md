@@ -96,7 +96,7 @@ Reported by users for this release (8) - not part of our test
 - A hung DNS lookup can block one hostname until a restart (core #185645, open)
 - UniFi Protect: snapshots fail with HTTP 503 and cameras go unavailable - 1 report (core #185706)
 - Home dashboard: the welcome banner came back and dismissing it wiped favourites - 1 report (frontend #54822)
-- Custom (HACS) integrations that need protobuf below 7 or use cv.vol must be updated by their authors first
+- Custom (HACS) integrations: some stop loading or lose an action until their authors update them (exact library pins, cv.vol, hass as first argument, pkg_resources); the built-in Tank Utility is switched off in 2026.10
 
 Read by us on 2026-10-11 from the projects' issue trackers; not verified by us.
 
@@ -152,7 +152,7 @@ Reported by users for this release (6) - not part of our test
 - LIFX bulbs going unavailable: the fix is merged for 2026.10.2 (core #185640)
 - A false shell template repair for command line sensors, a Hue light crash and the Bosch SHC child lock: fixed in 2026.10.1
 - MQTT select entities can stop Home Assistant from starting (core #185571, open)
-- Custom (HACS) integrations that need protobuf below 7 or use cv.vol must be updated by their authors first
+- Custom (HACS) integrations: some stop loading or lose an action until their authors update them (exact library pins, cv.vol, hass as first argument, pkg_resources); the built-in Tank Utility is switched off in 2026.10
 
 Read by us on 2026-10-11 from the projects' issue trackers; not verified by us.
 

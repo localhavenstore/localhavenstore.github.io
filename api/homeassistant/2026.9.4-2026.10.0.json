@@ -14,7 +14,7 @@
   "LIFX bulbs going unavailable: the fix is merged for 2026.10.2 (core #185640)",
   "A false shell template repair for command line sensors, a Hue light crash and the Bosch SHC child lock: fixed in 2026.10.1",
   "MQTT select entities can stop Home Assistant from starting (core #185571, open)",
-  "Custom (HACS) integrations that need protobuf below 7 or use cv.vol must be updated by their authors first"
+  "Custom (HACS) integrations: some stop loading or lose an action until their authors update them (exact library pins, cv.vol, hass as first argument, pkg_resources); the built-in Tank Utility is switched off in 2026.10"
  ],
  "reported_problems_read": "2026-10-11",
  "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."

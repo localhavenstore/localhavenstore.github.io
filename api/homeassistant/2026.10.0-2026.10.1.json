@@ -16,7 +16,7 @@
   "A hung DNS lookup can block one hostname until a restart (core #185645, open)",
   "UniFi Protect: snapshots fail with HTTP 503 and cameras go unavailable - 1 report (core #185706)",
   "Home dashboard: the welcome banner came back and dismissing it wiped favourites - 1 report (frontend #54822)",
-  "Custom (HACS) integrations that need protobuf below 7 or use cv.vol must be updated by their authors first"
+  "Custom (HACS) integrations: some stop loading or lose an action until their authors update them (exact library pins, cv.vol, hass as first argument, pkg_resources); the built-in Tank Utility is switched off in 2026.10"
  ],
  "reported_problems_read": "2026-10-11",
  "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
