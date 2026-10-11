@@ -41,4 +41,4 @@ not published yet
 
 added when the owner publishes them
 
-Collected 2026-10-07T05:04 UTC; updated when the site is rebuilt. Not measured: website visits (no trackers on this site). Sales are counted from Gumroad (orders and gross only, no buyer data); Etsy and Leanpub are not included yet. Made with AI assistance.
+Collected 2026-10-07T05:04 UTC; updated when the site is rebuilt. Website visits are counted without cookies since 11 Oct 2026 and are not shown here yet. Sales are counted from Gumroad (orders and gross only, no buyer data); Etsy and Leanpub are not included yet. Made with AI assistance.
