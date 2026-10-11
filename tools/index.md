@@ -125,7 +125,7 @@ FREE Railway template
 
 n8n in queue mode on Railway: pinned tested version, owner from variables, 3.0 defaults. Deploy link carries our referral code (you get USD 20 credit).
 
-Open →](https://railway.com/deploy/n8n-queue-mode-pinned-tested-30-ready-2e76907a-a71b-41a9-887a-5d2c11004b03?referralCode=j8As-k)[
+Open →](https://railway.com/deploy/n8n-queue-mode-pinned-tested-30-ready?referralCode=j8As-k)[
 
 FREE open source
 

@@ -33,7 +33,7 @@ A new n8n version can migrate the database on its first start. Going back means 
 
 ## Starting fresh on Railway?
 
-Our free Railway template runs n8n in queue mode, **pinned to a tested version**, with the 3.0 defaults already set, the owner account created from your variables (no open setup page) and a generated encryption key: [deploy n8n (queue mode) on Railway](https://railway.com/deploy/n8n-queue-mode-pinned-tested-30-ready-2e76907a-a71b-41a9-887a-5d2c11004b03?referralCode=j8As-k) (source and test result: [github.com/localhavenstore/railway-n8n](https://github.com/localhavenstore/railway-n8n)). The link carries our **referral code**: new Railway users get USD 20 of credit, we get a share of the usage.
+Our free Railway template runs n8n in queue mode, **pinned to a tested version**, with the 3.0 defaults already set, the owner account created from your variables (no open setup page) and a generated encryption key: [deploy n8n (queue mode) on Railway](https://railway.com/deploy/n8n-queue-mode-pinned-tested-30-ready?referralCode=j8As-k) (source and test result: [github.com/localhavenstore/railway-n8n](https://github.com/localhavenstore/railway-n8n)). The link carries our **referral code**: new Railway users get USD 20 of credit, we get a share of the usage.
 
  [
 
