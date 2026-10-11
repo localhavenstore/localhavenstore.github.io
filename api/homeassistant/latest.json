@@ -1,11 +1,23 @@
 {
  "app": "homeassistant",
- "from": "2026.9.3",
- "to": "2026.9.4",
+ "from": "2026.10.0",
+ "to": "2026.10.1",
  "verdict": "GREEN",
  "why": "updated, app check passed, and the snapshot restored in a drill",
  "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
- "tested_utc": "2026-10-06T07:47:40Z",
+ "tested_utc": "2026-10-11T03:07:35Z",
  "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
- "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups.",
+ "reported_problems": [
+  "LIFX bulbs going unavailable: the fix is merged for 2026.10.2 and is not in 2026.10.1 (core #185640)",
+  "MQTT select entities can stop Home Assistant from starting (core #185571, open)",
+  "Lutron Pico buttons fire a single press twice (core #185449, open)",
+  "Tasmota energy sensors lose their state class (core #185407, open)",
+  "A hung DNS lookup can block one hostname until a restart (core #185645, open)",
+  "UniFi Protect: snapshots fail with HTTP 503 and cameras go unavailable - 1 report (core #185706)",
+  "Home dashboard: the welcome banner came back and dismissing it wiped favourites - 1 report (frontend #54822)",
+  "Custom (HACS) integrations that need protobuf below 7 or use cv.vol must be updated by their authors first"
+ ],
+ "reported_problems_read": "2026-10-11",
+ "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
 }

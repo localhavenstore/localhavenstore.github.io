@@ -3,7 +3,7 @@ self-host safety
 
 # Update your home server without losing a weekend
 
-Tested tools for one job: changing a self-hosted setup and being able to go back. Every verdict and tool here was run on throw-away test machines first - 12 update verdicts for 6 apps so far. Most of it is free.
+Tested tools for one job: changing a self-hosted setup and being able to go back. Every verdict and tool here was run on throw-away test machines first - 19 update verdicts for 6 apps so far. Most of it is free.
 
 1 · before you update
 

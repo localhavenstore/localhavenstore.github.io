@@ -11,41 +11,41 @@ Before you run `docker compose pull`: we already did - on a throw-away machine, 
 
 $ update-watch --latest
 
-n8n 2.41.7 -> 2.42.3 GREEN 06 Oct
+Home Assistant 2026.10.0 -> 2026.10.1 GREEN 11 Oct
 
-Home Assistant 2026.9.3 -> 2026.9.4 GREEN 06 Oct
+n8n 2.42.5 -> 2.42.6 GREEN 09 Oct
 
-Vaultwarden 1.37.3 -> 1.37.4 GREEN 06 Oct
+Immich 3.3.0 -> 3.3.1 GREEN 09 Oct
 
-Jellyfin 12.1 -> 12.2 GREEN 06 Oct
+n8n 2.42.4 -> 2.42.5 GREEN 08 Oct
 
-n8n 2.41.6 -> 2.41.7 GREEN 06 Oct
+Immich 3.2.4 -> 3.3.0 GREEN 07 Oct
 
-Vaultwarden 1.37.2 -> 1.37.3 GREEN 06 Oct
+Home Assistant 2026.9.4 -> 2026.10.0 GREEN 07 Oct
 
 # real runs on throw-away test machines
 
 ## Apps we watch
 
-6 apps · 12 verdicts · last test 06 Oct 2026
+6 apps · 19 verdicts · last test 11 Oct 2026
 
 [
 
-1 verdict
+3 verdicts
 
 ### Home Assistant
 
-2026.9.3 → 2026.9.4
+2026.10.0 → 2026.10.1
 
-GREENtested 06 Oct 2026](https://localhavenstore.github.io/update-watch/homeassistant.html)[
+GREENtested 11 Oct 2026](https://localhavenstore.github.io/update-watch/homeassistant.html)[
 
-1 verdict
+3 verdicts
 
 ### Immich
 
-3.2.2 → 3.2.4
+3.3.0 → 3.3.1
 
-GREENtested 05 Oct 2026](https://localhavenstore.github.io/update-watch/immich.html)[
+GREENtested 09 Oct 2026](https://localhavenstore.github.io/update-watch/immich.html)[
 
 3 verdicts
 
@@ -71,15 +71,102 @@ GREENtested 05 Oct 2026](https://localhavenstore.github.io/update-watch/nextclou
 
 GREENtested 06 Oct 2026](https://localhavenstore.github.io/update-watch/vaultwarden.html)[
 
-3 verdicts
+6 verdicts
 
 ### n8n
 
-2.41.7 → 2.42.3
+2.42.5 → 2.42.6
 
-GREENtested 06 Oct 2026](https://localhavenstore.github.io/update-watch/n8n.html)
+GREENtested 09 Oct 2026](https://localhavenstore.github.io/update-watch/n8n.html)
 
 ## All verdicts
+
+[Home Assistant](https://localhavenstore.github.io/update-watch/homeassistant.html)
+
+2026.10.0 → 2026.10.1
+
+updated, app check passed, and the snapshot restored in a drill
+
+Reported by users for this release (8) - not part of our test
+
+- LIFX bulbs going unavailable: the fix is merged for 2026.10.2 and is not in 2026.10.1 (core #185640)
+- MQTT select entities can stop Home Assistant from starting (core #185571, open)
+- Lutron Pico buttons fire a single press twice (core #185449, open)
+- Tasmota energy sensors lose their state class (core #185407, open)
+- A hung DNS lookup can block one hostname until a restart (core #185645, open)
+- UniFi Protect: snapshots fail with HTTP 503 and cameras go unavailable - 1 report (core #185706)
+- Home dashboard: the welcome banner came back and dismissing it wiped favourites - 1 report (frontend #54822)
+- Custom (HACS) integrations that need protobuf below 7 or use cv.vol must be updated by their authors first
+
+Read by us on 2026-10-11 from the projects' issue trackers; not verified by us.
+
+GREEN
+2026-10-11
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.42.5 → 2.42.6
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-09
+
+[Immich](https://localhavenstore.github.io/update-watch/immich.html)
+
+3.3.0 → 3.3.1
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-09
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.42.4 → 2.42.5
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-08
+
+[Immich](https://localhavenstore.github.io/update-watch/immich.html)
+
+3.2.4 → 3.3.0
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-07
+
+[Home Assistant](https://localhavenstore.github.io/update-watch/homeassistant.html)
+
+2026.9.4 → 2026.10.0
+
+updated, app check passed, and the snapshot restored in a drill
+
+Reported by users for this release (6) - not part of our test
+
+- 2026.10 lists 22 backward-incompatible changes in its release notes (counted 7 Oct) - read them first
+- UniFi Network did not load for several users (core #184838 and #184987, closed since)
+- LIFX bulbs going unavailable: the fix is merged for 2026.10.2 (core #185640)
+- A false shell template repair for command line sensors, a Hue light crash and the Bosch SHC child lock: fixed in 2026.10.1
+- MQTT select entities can stop Home Assistant from starting (core #185571, open)
+- Custom (HACS) integrations that need protobuf below 7 or use cv.vol must be updated by their authors first
+
+Read by us on 2026-10-11 from the projects' issue trackers; not verified by us.
+
+GREEN
+2026-10-07
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.42.3 → 2.42.4
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-07
 
 [n8n](https://localhavenstore.github.io/update-watch/n8n.html)
 

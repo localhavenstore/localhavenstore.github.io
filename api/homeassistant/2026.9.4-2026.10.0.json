@@ -1,0 +1,21 @@
+{
+ "app": "homeassistant",
+ "from": "2026.9.4",
+ "to": "2026.10.0",
+ "verdict": "GREEN",
+ "why": "updated, app check passed, and the snapshot restored in a drill",
+ "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
+ "tested_utc": "2026-10-07T18:05:26Z",
+ "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups.",
+ "reported_problems": [
+  "2026.10 lists 22 backward-incompatible changes in its release notes (counted 7 Oct) - read them first",
+  "UniFi Network did not load for several users (core #184838 and #184987, closed since)",
+  "LIFX bulbs going unavailable: the fix is merged for 2026.10.2 (core #185640)",
+  "A false shell template repair for command line sensors, a Hue light crash and the Bosch SHC child lock: fixed in 2026.10.1",
+  "MQTT select entities can stop Home Assistant from starting (core #185571, open)",
+  "Custom (HACS) integrations that need protobuf below 7 or use cv.vol must be updated by their authors first"
+ ],
+ "reported_problems_read": "2026-10-11",
+ "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
+}
