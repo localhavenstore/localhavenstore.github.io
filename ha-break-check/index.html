@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Will my Home Assistant custom integrations break on 2026.10? - free check</title><meta name="description" content="Paste your custom integration names and see in which ones we found code that we have seen cause errors on Home Assistant 2026.10. From our scan of 3,240 HACS integrations. Runs in your browser."><link rel="canonical" href="https://localhavenstore.github.io/ha-break-check/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Localhaven"><meta property="og:title" content="Will my Home Assistant custom integrations break on 2026.10? - free check">
+<meta property="og:description" content="Paste your custom integration names and see in which ones we found code that we have seen cause errors on Home Assistant 2026.10. From our scan of 3,240 HACS integrations. Runs in your browser."><meta property="og:url" content="https://localhavenstore.github.io/ha-break-check/"><meta property="og:image" content="https://localhavenstore.github.io/assets/og/tools.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0D1116">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/icon-180.png"><link rel="manifest" href="/manifest.json">
+<script>try{var t=localStorage.getItem('lh-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><link rel="stylesheet" href="/assets/site.css"><style>.hbc textarea{width:100%;min-height:150px;background:var(--surface);color:var(--ink);border:1px solid var(--line2);border-radius:var(--r2);padding:12px;font:14px/1.5 var(--mono)}.hbc button{font:650 15px var(--font);background:#D9A13E;color:var(--on-gold);border:0;border-radius:999px;padding:11px 20px;cursor:pointer}.hbc .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:12px 0}.hbc .card{padding:14px 18px;margin:10px 0;box-shadow:none}.hbc .card h3{margin:0 0 4px;font-size:17px;overflow-wrap:anywhere}.hbc .card p{margin:6px 0}.hbc .flag{border-left:4px solid #D9A13E}.hbc .mu{color:var(--muted);font-size:14px}.hbc #sum{font-weight:700;margin-top:18px}.hbc .names{font:13.5px/1.6 var(--mono);overflow-wrap:anywhere}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Home Assistant break check", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "url": "https://localhavenstore.github.io/ha-break-check/"}</script></head>
+<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap"><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="28" height="28">Localhaven</a><nav class="nav" aria-label="Main"><a href="/products/">Products</a><a href="/update-watch/">Update Watch</a><a href="/tools/" aria-current=page>Free tools</a><a href="/course/">Course</a><a href="/about.html">About</a></nav><button class="theme-btn" type="button" aria-label="Dark theme" aria-pressed="false" title="Light / dark">&#9680;</button></div></header><main id="main"><div class="wrap"><div class="hbc prose" style="max-width:900px;padding-top:40px">
+<p class="kicker">ha-break-check</p><h1>Will my Home Assistant custom integrations break on 2026.10?</h1>
+<p class="lede">Paste the names of your custom integrations. This page compares them with our own scan of 3,240 integrations from the
+HACS default list and tells you in which ones we found code or requirements that we have seen cause errors on Home Assistant 2026.10.
+It runs in your browser - nothing you paste is sent anywhere.</p>
+<p><strong>Where to get the names:</strong> they are the folder names in <code>/config/custom_components</code>. In the Terminal add-on:
+<code>ls /config/custom_components</code>. One name per line, or separated by spaces or commas. A GitHub name like <code>owner/repository</code> works too.</p>
+<textarea id="hbc-in" spellcheck="false" autocapitalize="off" placeholder="hacs&#10;miele&#10;dual_smart_thermostat" aria-label="Names of your custom integrations"></textarea>
+<div class="row"><button id="hbc-go" type="button">Check these names</button><span class="mu">Nothing is uploaded. No account.</span></div>
+<p id="hbc-sum" role="status" aria-live="polite"></p><div id="hbc-res" aria-live="polite"></div>
+<h2>What this page checks</h2>
+<p>For each of the 3,240 integrations we took the version HACS installs (a release; for 66 of them a branch such as <code>main</code>),
+read its code without running it, and ran an install check of its requirements. Our result files are from 10 and 11 October 2026. Five things are reported:</p>
+<ul>
+<li><strong>Old options dialog code</strong> - in our tests this makes the Configure button answer with a 500 error since Home Assistant 2025.12. Found in 185 integrations.</li>
+<li><strong>A helper called the old way</strong> - in our tests the action that reaches it fails on 2026.10. Found in 6.</li>
+<li><strong>Use of a helper that 2026.10 removed</strong> (<code>cv.vol</code>). Found in 1.</li>
+<li><strong>A pinned library that our install check could not combine with 2026.10.0</strong> but could with 2026.9.4. Found in 3.</li>
+<li><strong>Requirements our install check could not resolve on either version.</strong> Found in 15.</li>
+</ul>
+<p>For 31 integrations at least one of these checks could not read the code or the requirements. The page says so for each of them and
+never reports such an integration as "nothing found".</p>
+<h2>What it cannot tell you</h2>
+<ul>
+<li>It reads code; it did not run your integrations, and it cannot see whether your set-up ever reaches the code it found. The first four
+causes were each reproduced by us on a test machine with at least one real integration -
+the <a href="/guides/home-assistant-2026-10-config-flow-could-not-be-loaded-500.html">guide to the 500 error</a> shows those tests and the fixes.</li>
+<li>The list is a snapshot. A version released after our scan may already be fixed, and a later Home Assistant release can change the picture
+(the pinned-library check was made against 2026.10.0).</li>
+<li>"Nothing found" is not a promise. There are causes this page does not look for, and built-in integrations are not in it.</li>
+<li>It does not list what Home Assistant has <em>announced</em> it will remove in future releases. For that there is a free tool by
+another author: <a href="https://github.com/Booyaka101/hass-breakage-radar" rel="noopener">Breakage Radar</a> (we have not run it).
+This page shows what our own scan, install check and tests found for 2026.10.</li>
+<li>Take a backup before every update. That stays true whatever this page says.</li>
+</ul>
+<p class="mu">Free. What you paste is not sent and not stored; the page only counts that a check was run. <a href="/update-watch/">Update Watch</a> has our tested verdicts for new releases.</p>
+</div></div></main><footer class="site-footer"><div class="wrap"><div class="cols">
+<div><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="24" height="24">Localhaven</a>
+<p style="margin-top:12px;max-width:340px">Tested tools for your home server. Built with AI assistance, tested on real (throw-away) machines,
+and every public action is approved by a human.</p></div>
+<div><p class="fh">Explore</p><ul><li><a href="/products/">Products</a></li><li><a href="/update-watch/">Update Watch</a></li><li><a href="/tools/">Free tools</a></li><li><a href="/course/">Course</a></li></ul></div>
+<div><p class="fh">Follow</p><ul><li><a href="https://www.youtube.com/@localhaven-x5o" rel="me">YouTube</a></li><li><a href="https://www.tiktok.com/@localhaven0" rel="me">TikTok</a></li><li><a href="https://github.com/localhavenstore" rel="me">GitHub</a></li><li><a href="https://ko-fi.com/localhaven" rel="me">Ko-fi</a></li></ul></div>
+<div><p class="fh">Company</p><ul><li><a href="/about.html">About</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li>
+<li><a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></li></ul></div></div>
+<div class="fine"><span>&copy; 2026 Localhaven. Not affiliated with the projects and products named on this site.</span><span>No cookies. Page views are counted without cookies - <a href="/privacy.html">privacy</a>.</span></div></div></footer><script>(function(){var b=document.querySelector('.theme-btn'),r=document.documentElement;b.setAttribute('aria-pressed',(r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')})();document.querySelector('.theme-btn').addEventListener('click',function(){var r=document.documentElement,d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=d==='dark'?'light':'dark';r.setAttribute('data-theme',n);this.setAttribute('aria-pressed',n==='dark');try{localStorage.setItem('lh-theme',n)}catch(e){}});</script><script src="/ha-break-check/data.js"></script><script>
+(function(){
+var D=window.HBC,byDom={},byRepo={};
+D.rows.forEach(function(r){if(r[0]){(byDom[r[0]]=byDom[r[0]]||[]).push(r)}byRepo[r[1].toLowerCase()]=r;});
+function esc(t){return String(t).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function names(text){var out=[],seen={};
+ var words=[];text.split(/\r?\n/).forEach(function(line){line=line.trim();
+  if(/^-[rwxsStT\-]{9}/.test(line)){return}
+  if(/^[dl][rwxsStT\-]{9}/.test(line)){var t=line.split(/\s+/),k=t.indexOf("->");words.push(k>0?t[k-1]:t[t.length-1])}else if(!/^total \d+$/.test(line)){line.split(/[\s,;]+/).forEach(function(w){words.push(w)})}});
+ words.forEach(function(w){w=w.trim().replace(/^.*custom_components\//,"").replace(/\/+$/,"").toLowerCase();
+  if(!w||w==="__pycache__"||w==="."||w===".."||/^[\d:.\-]+$/.test(w)||w.length>80)return;
+  if(!/^[a-z0-9_.\-]+(\/[a-z0-9_.\-]+)?$/.test(w))return; if(!seen[w]){seen[w]=1;out.push(w)}});names.cut=out.length>400?out.length-400:0;return out.slice(0,400)}
+function look(n){if(n.indexOf("/")>0){return byRepo[n]?[byRepo[n]]:[]}return byDom[n]||[]}
+window.HBC_names=names;window.HBC_look=look;
+var T={O:["Old options dialog code found","In the integrations we tested, this code makes the Configure button answer “Config flow could not be loaded: 500” since Home Assistant 2025.12. We read this integration’s code; we did not run it."],
+A:["Old-style helper call found (actions)","Home Assistant 2026.10 no longer accepts this call. In the integrations we tested, the action (service) that reaches it ended with an error. Whether your set-up reaches this call, the code alone does not tell."],
+V:["Use of the removed helper cv.vol found","Home Assistant 2026.10 removed this helper. In the integration we tested, the set-up dialog then answered with a 500 error."],
+P:["A pinned library conflicts with Home Assistant 2026.10.0","Our install check (no Home Assistant was started) found no set of versions that satisfies both this integration’s exact pin and the packages of Home Assistant 2026.10.0. With 2026.9.4 it found one."],
+X:["Its requirements could not be resolved on 2026.9.4 or on 2026.10.0","Our install check failed for both versions, so this is not new with 2026.10. It is the result of an install check, not of running the integration."]};
+function run(){var ns=names(document.getElementById("hbc-in").value),res=document.getElementById("hbc-res"),h="",fl=0,cl=0,un=0,nr=0,uk=[];
+ ns.forEach(function(n){var rows=look(n);if(!rows.length){un++;uk.push(n);return}
+  var hit=rows.filter(function(r){return r[4]&&r[4]!=="U"}),unk=rows.filter(function(r){return r[4]==="U"});
+  if(!hit.length&&!unk.length){cl++;return}
+  if(hit.length){fl++}else{nr++}
+  var more=rows.length>1?'<p class="mu">'+rows.length+' projects in our list use the folder name “'+esc(n)+'” ('+rows.map(function(r){return esc(r[1])}).join(", ")+'). Check which one you have installed.</p>':"";
+  hit.concat(unk).forEach(function(r){var f=r[4];
+   if(f==="U"){h+='<div class="card"><h3>'+esc(r[2]||r[0]||r[1])+' <span class="mu">'+esc(r[1])+'</span></h3><p class="mu">At least one of our checks could not read this one (nothing to download, or an unusual layout). No statement about it.</p>'+more+'</div>';return}
+   h+='<div class="card flag"><h3>'+esc(r[2]||r[0]||r[1])+' <span class="mu">'+esc(r[1])+' · version checked: '+esc(r[3])+'</span></h3>';
+   f.split("").forEach(function(c){if(T[c])h+="<p><strong>"+T[c][0]+".</strong> "+T[c][1]+"</p>"});
+   if(f.indexOf("u")>=0)h+='<p class="mu">One of our checks could not read this version, so this card may be incomplete.</p>';
+   h+='<p class="mu">From our scan files of '+esc(D.scanned)+', for the version named above. A newer version may already be fixed - look at the project’s releases and open issues first.</p>'+more+'</div>'})});
+ var sum=ns.length?(fl+" flagged · "+cl+" checked, nothing found by these checks · "+nr+" could not be read · "+un+" not in our list"):"Paste at least one name.";
+ if(names.cut)h='<div class="card"><p><strong>Only the first 400 names were checked.</strong> '+names.cut+' more were left out - paste them in a second run.</p></div>'+h;
+ if(uk.length)h+='<div class="card"><h3>Not in our list ('+uk.length+')</h3><p class="names">'+uk.map(esc).join(" ")+'</p><p class="mu">We scanned the integrations of the HACS default list. Built-in integrations, private ones and ones installed by hand are not in it - no statement about them.</p></div>';
+ if(ns.length&&cl)h+='<p class="mu">“Nothing found” means: these checks found none of the '+Object.keys(T).length+' known causes in the version we read. It is not a promise that the integration works.</p>';
+ document.getElementById("hbc-sum").textContent=sum;res.innerHTML=h;
+ try{if(ns.length&&window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:"ha-break-check-run",title:"check run",event:true})}catch(e){}}
+document.getElementById("hbc-go").addEventListener("click",run);
+})();
+</script><script data-goatcounter="https://localhaven.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></body></html>

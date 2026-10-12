@@ -16,6 +16,7 @@ https://localhavenstore.github.io/guides/n8n-queue-mode-execution-crashed-worker
 https://localhavenstore.github.io/guides/n8n-railway-3-0-upgrade.html
 https://localhavenstore.github.io/guides/n8n-reddit-after-31-october.html
 https://localhavenstore.github.io/guides/watchtower-alternatives-2026.html
+https://localhavenstore.github.io/ha-break-check/
 https://localhavenstore.github.io/
 https://localhavenstore.github.io/keys.html
 https://localhavenstore.github.io/numbers/

@@ -23,6 +23,14 @@ Tested verdicts: is the new Nextcloud, Immich, Jellyfin, n8n, Vaultwarden or Hom
 
 Open →](https://localhavenstore.github.io/update-watch/)[
 
+FREE in your browser
+
+### Home Assistant break check
+
+Paste your custom integration names and see in which ones we found code that we have seen cause errors on 2026.10. From our scan of 3,240 HACS integrations.
+
+Open →](https://localhavenstore.github.io/ha-break-check/)[
+
 FREE read-only
 
 ### n8n 3.0 check
