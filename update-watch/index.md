@@ -11,6 +11,8 @@ Before you run `docker compose pull`: we already did - on a throw-away machine, 
 
 $ update-watch --latest
 
+n8n 2.42.6 -> 2.42.7 GREEN 12 Oct
+
 Home Assistant 2026.10.0 -> 2026.10.1 GREEN 11 Oct
 
 n8n 2.42.5 -> 2.42.6 GREEN 09 Oct
@@ -21,13 +23,11 @@ n8n 2.42.4 -> 2.42.5 GREEN 08 Oct
 
 Immich 3.2.4 -> 3.3.0 GREEN 07 Oct
 
-Home Assistant 2026.9.4 -> 2026.10.0 GREEN 07 Oct
-
 # real runs on throw-away test machines
 
 ## Apps we watch
 
-6 apps · 19 verdicts · last test 11 Oct 2026
+6 apps · 20 verdicts · last test 12 Oct 2026
 
 [
 
@@ -71,15 +71,24 @@ GREENtested 05 Oct 2026](https://localhavenstore.github.io/update-watch/nextclou
 
 GREENtested 06 Oct 2026](https://localhavenstore.github.io/update-watch/vaultwarden.html)[
 
-6 verdicts
+7 verdicts
 
 ### n8n
 
-2.42.5 → 2.42.6
+2.42.6 → 2.42.7
 
-GREENtested 09 Oct 2026](https://localhavenstore.github.io/update-watch/n8n.html)
+GREENtested 12 Oct 2026](https://localhavenstore.github.io/update-watch/n8n.html)
 
 ## All verdicts
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.42.6 → 2.42.7
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-12
 
 [Home Assistant](https://localhavenstore.github.io/update-watch/homeassistant.html)
 
