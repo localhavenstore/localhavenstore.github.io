@@ -39,6 +39,14 @@ Is your npm n8n ready for 3.0? A read-only report of blockers and what the move 
 
 Open →](https://localhavenstore.github.io/tools/n8n-3-check.html)[
 
+FREE free report
+
+### n8n 3.0 readiness report
+
+Send one workflow export, get a written report: which workflows fail or change on the n8n 3.0 release candidate. First 10 free.
+
+Open →](https://localhavenstore.github.io/n8n-3-readiness/)[
+
 FREE read-only
 
 ### Raspberry Pi update check
@@ -86,6 +94,14 @@ FREE guide
 Imports, saves and backup restores fail for Function / Function Item nodes since 2.42.6 - what still runs and a tested Function-to-Code cheat sheet.
 
 Open →](https://localhavenstore.github.io/guides/n8n-2-42-6-function-nodes-blocked.html)[
+
+FREE guide
+
+### n8n: published, but the webhook runs the old version
+
+In our test on 2.41.4 and 2.42.7, edits did not go live for a workflow whose Webhook node had a 40-character id (n8n issue 40606). A read-only check for your export, what did not help and what worked.
+
+Open →](https://localhavenstore.github.io/guides/n8n-published-webhook-still-old-version-node-id-36.html)[
 
 FREE guide
 

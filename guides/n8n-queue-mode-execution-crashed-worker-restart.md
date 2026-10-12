@@ -58,4 +58,6 @@ Then `docker compose up -d`. From now on a restart or update waits up to about 2
 
 Our [Hardened n8n Host Kit](https://localhavenstore.gumroad.com/l/n8n-host-kit?utm_source=site&utm_medium=guide) (since 1.1.1) ships with both settings, and its test on a fresh server includes exactly this case: a 40-second run that is in progress during a worker restart must finish with success. The [n8n Reliability Pack](https://localhavenstore.gumroad.com/l/n8n-reliability-pack?utm_source=site&utm_medium=guide) has the heartbeat that reports runs which never finished, and a retry-safe intake pattern.
 
+**Free until the first 10 are taken:** send us your workflow export and we run every workflow on your version and on the n8n 3.0 release candidate - a written report, no login, no call. [Free n8n 3.0 readiness report](https://localhavenstore.github.io/n8n-3-readiness/).
+
 Tested by us on 10 Oct 2026 on throw-away servers, one worker, fictional data: all cases on n8n 2.42.6 (waits of 90 s / 80 s), the fix with 2 min / 110 s also on 2.42.3. Other versions and setups can behave differently - test yours. Not an official n8n page; not affiliated with n8n. Made with AI assistance.

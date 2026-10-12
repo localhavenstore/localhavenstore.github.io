@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>n8n: published a change but the webhook still runs the old version - reproduced with a 40-character Webhook node id</title><meta name="description" content="On n8n 2.41.4 and 2.42.7 our test workflow with a 40-character Webhook node id kept answering with its first published version after an edit was published again (n8n issue 40606, limit 36 characters). The test, a read-only check for your export, what did not help and what worked."><link rel="canonical" href="https://localhavenstore.github.io/guides/n8n-published-webhook-still-old-version-node-id-36.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Localhaven"><meta property="og:title" content="n8n: published a change but the webhook still runs the old version - reproduced with a 40-character Webhook node id">
+<meta property="og:description" content="On n8n 2.41.4 and 2.42.7 our test workflow with a 40-character Webhook node id kept answering with its first published version after an edit was published again (n8n issue 40606, limit 36 characters). The test, a read-only check for your export, what did not help and what worked."><meta property="og:url" content="https://localhavenstore.github.io/guides/n8n-published-webhook-still-old-version-node-id-36.html"><meta property="og:image" content="https://localhavenstore.github.io/assets/og/tools.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0D1116">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/icon-180.png"><link rel="manifest" href="/manifest.json">
+<script>try{var t=localStorage.getItem('lh-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><link rel="stylesheet" href="/assets/site.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "n8n: you published a change, but the webhook still runs the old version", "about": "n8n workflow publishing with a Webhook node id of 40 characters (n8n issue 40606)", "datePublished": "2026-10-12"}</script></head>
+<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap"><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="28" height="28">Localhaven</a><nav class="nav" aria-label="Main"><a href="/products/">Products</a><a href="/update-watch/">Update Watch</a><a href="/tools/" aria-current=page>Free tools</a><a href="/course/">Course</a><a href="/about.html">About</a></nav><button class="theme-btn" type="button" aria-label="Dark theme" aria-pressed="false" title="Light / dark">&#9680;</button></div></header><main id="main"><div class="wrap"><div class="prose" style="padding-top:40px"><p class="kicker">guide n8n</p>
+<h1>n8n: you published a change, but the webhook still runs the old version</h1>
+<p class="lede">You edit a workflow and publish it again - and the webhook keeps answering with the old version. One cause we could
+reproduce: a <strong>Webhook node with a 40-character id</strong>. We tested it on n8n 2.41.4 and 2.42.7 (12 Oct 2026). It is an open
+n8n issue, <a href="https://github.com/n8n-io/n8n/issues/40606" rel="noopener">#40606</a>, which puts the limit at 36 characters.</p>
+<p>First rule out the everyday causes that n8n's documentation describes: the caller uses the test address of the webhook and not
+the production address, or the change was saved but not published. If neither is it, read on.</p>
+<h2>What we saw in the log</h2>
+<pre class="pw" style="white-space:pre-wrap;overflow-wrap:anywhere"><code>QueryFailedError: value too long for type character varying(36)</code></pre>
+<p>Two lines with this text appeared in the n8n log in our test (PostgreSQL), after the workflow with the 40-character id was
+published for the first time. The issue adds that nothing is shown in the editor; we drove n8n through its API and did not look at
+the editor.</p>
+<h2>Check your workflows (read-only)</h2>
+<p>According to the issue, node ids are not limited to 36 characters anywhere else, and workflows created through the public API or
+brought in by source control can carry longer ones. Export your workflows
+(<code>n8n export:workflow --all --output=workflows.json</code>) and list every node with an id longer than 36 characters - the
+command only reads the file and prints names, types and lengths, never the ids:</p>
+<pre class="pw" style="white-space:pre-wrap;overflow-wrap:anywhere"><code>python3 -c &quot;import json,sys; d=json.load(open(sys.argv[1])); [print(w.get(&#x27;name&#x27;), &#x27;|&#x27;, n.get(&#x27;name&#x27;), &#x27;|&#x27;, n.get(&#x27;type&#x27;), &#x27;| id length&#x27;, len(str(n.get(&#x27;id&#x27;,&#x27;&#x27;)))) for w in (d if isinstance(d, list) else [d]) for n in w.get(&#x27;nodes&#x27;, []) if len(str(n.get(&#x27;id&#x27;,&#x27;&#x27;))) &gt; 36]&quot; workflows.json</code></pre>
+<p>No output means no node id is longer than 36 characters. The issue names Webhook, Wait and "send and wait" nodes as affected;
+<strong>we tested a Webhook node only</strong>. Our free
+<a href="https://github.com/localhavenstore/n8n-upgrade-dry-run" rel="noopener">n8n Upgrade Dry-Run</a> lists the same finding next to
+its other checks.</p>
+<h2>What we measured</h2>
+<p>Setup: the official n8n images with PostgreSQL 16 on a throw-away server. Two workflows with the same structure - a Webhook node
+and a step that answers with a version text - each on its own webhook path: one with a 36-character Webhook node id (the control), one
+with a 40-character id. Edits and publishing went through n8n's own REST API. Same result on <strong>2.41.4</strong> and
+<strong>2.42.7</strong>:</p>
+<div style="overflow-x:auto"><table class="t"><tr><th>step</th><th>36-character id</th><th>40-character id</th></tr><tr><td>Import, first publish, restart</td><td>answers v1</td><td>answers v1; the n8n log has the error line above (two matching lines in our test)</td></tr><tr><td>Edit to v2, publish again (the API answers HTTP 200 for both)</td><td>answers <strong>v2</strong></td><td><strong>still answers v1</strong>, although n8n's API and database name the new version as the active one</td></tr><tr><td>One minute later, and after a restart of n8n</td><td>v2</td><td>v1</td></tr></table></div>
+<h2>What did not help (n8n 2.42.7)</h2>
+<p>On the workflow that was stuck on its first version, each step followed by a call to the webhook:</p>
+<div style="overflow-x:auto"><table class="t"><tr><th>we tried</th><th>result</th></tr><tr><td>A second edit and publish</td><td>still the first version</td></tr><tr><td>Deactivate, then edit and publish</td><td>still the first version</td></tr><tr><td>Deactivate only (n8n's API then reports the workflow as inactive)</td><td><strong>the webhook still answered</strong> with the first version, also after a restart</td></tr><tr><td>Change the node id to a 36-character one, publish</td><td>still the first version</td></tr><tr><td>A fresh copy with 36-character ids on the same webhook path</td><td>could not be published: HTTP 409, "There is a conflict with one of the webhooks"</td></tr><tr><td>Restart n8n</td><td>still the first version</td></tr></table></div>
+<p>So in our test the workflow that was <em>first published</em> with the 40-character id stayed on its first version, and none of the
+API steps we tried freed it. The issue describes a workaround that includes changing a record in n8n's database. We did
+<strong>not</strong> test that and give no steps for it here - if you are affected, follow the issue and n8n's own guidance.</p>
+<h2>What worked (n8n 2.42.7)</h2>
+<p><strong>Changing the id to a 36-character one before the workflow was published for the first time.</strong> Same workflow, imported
+but not yet published, the Webhook node id changed to 36 characters, then published: the first version answered, and after an edit
+and a second publish the new version answered, with zero matching error lines in the log. So it is worth running the check above on
+workflows that did not come from the editor <em>before</em> you publish them.</p>
+<p><strong>Free until the first 10 are taken:</strong> send us your workflow export and we run every workflow on your version and on the
+n8n 3.0 release candidate - the report also lists node ids like these. A written report, no login, no call.
+<a href="/n8n-3-readiness/">Free n8n 3.0 readiness report</a>.</p>
+<p class="note" style="margin-top:24px">Tested by us on 12 Oct 2026 on throw-away servers with fictional data: n8n 2.41.4 and 2.42.7,
+PostgreSQL 16, regular (not queue) mode, one Webhook node with a 40-character id; the "did not help" and "what worked" steps on 2.42.7
+only. Not tested: ids of 37 to 39 characters, long ids on nodes that are not triggers, Wait or "send and wait" nodes, SQLite, queue
+mode, a replacement copy on a new webhook path, the database step of the workaround. Other versions and setups can behave differently -
+test yours. Not an official n8n page; not affiliated with n8n. Made with AI assistance.</p>
+</div></div></main><footer class="site-footer"><div class="wrap"><div class="cols">
+<div><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="24" height="24">Localhaven</a>
+<p style="margin-top:12px;max-width:340px">Tested tools for your home server. Built with AI assistance, tested on real (throw-away) machines,
+and every public action is approved by a human.</p></div>
+<div><p class="fh">Explore</p><ul><li><a href="/products/">Products</a></li><li><a href="/update-watch/">Update Watch</a></li><li><a href="/tools/">Free tools</a></li><li><a href="/course/">Course</a></li></ul></div>
+<div><p class="fh">Follow</p><ul><li><a href="https://www.youtube.com/@localhaven-x5o" rel="me">YouTube</a></li><li><a href="https://www.tiktok.com/@localhaven0" rel="me">TikTok</a></li><li><a href="https://github.com/localhavenstore" rel="me">GitHub</a></li><li><a href="https://ko-fi.com/localhaven" rel="me">Ko-fi</a></li></ul></div>
+<div><p class="fh">Company</p><ul><li><a href="/about.html">About</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li>
+<li><a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></li></ul></div></div>
+<div class="fine"><span>&copy; 2026 Localhaven. Not affiliated with the projects and products named on this site.</span><span>No cookies. Page views are counted without cookies - <a href="/privacy.html">privacy</a>.</span></div></div></footer><script>(function(){var b=document.querySelector('.theme-btn'),r=document.documentElement;b.setAttribute('aria-pressed',(r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')})();document.querySelector('.theme-btn').addEventListener('click',function(){var r=document.documentElement,d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=d==='dark'?'light':'dark';r.setAttribute('data-theme',n);this.setAttribute('aria-pressed',n==='dark');try{localStorage.setItem('lh-theme',n)}catch(e){}});</script><script data-goatcounter="https://localhaven.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></body></html>

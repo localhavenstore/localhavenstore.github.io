@@ -12,6 +12,7 @@ https://localhavenstore.github.io/guides/n8n-2-42-6-function-nodes-blocked.html
 https://localhavenstore.github.io/guides/n8n-3-template-scan.html
 https://localhavenstore.github.io/guides/n8n-credentials-could-not-be-decrypted.html
 https://localhavenstore.github.io/guides/n8n-npm-to-docker.html
+https://localhavenstore.github.io/guides/n8n-published-webhook-still-old-version-node-id-36.html
 https://localhavenstore.github.io/guides/n8n-queue-mode-execution-crashed-worker-restart.html
 https://localhavenstore.github.io/guides/n8n-railway-3-0-upgrade.html
 https://localhavenstore.github.io/guides/n8n-reddit-after-31-october.html
@@ -19,6 +20,7 @@ https://localhavenstore.github.io/guides/watchtower-alternatives-2026.html
 https://localhavenstore.github.io/ha-break-check/
 https://localhavenstore.github.io/
 https://localhavenstore.github.io/keys.html
+https://localhavenstore.github.io/n8n-3-readiness/
 https://localhavenstore.github.io/numbers/
 https://localhavenstore.github.io/outline.html
 https://localhavenstore.github.io/privacy.html

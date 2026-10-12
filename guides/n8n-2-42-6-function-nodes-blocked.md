@@ -38,4 +38,6 @@ Function becomes a Code node in "Run Once for All Items" mode; Function Item bec
 
 [Download the free cheat sheet (Markdown)](https://localhavenstore.github.io/downloads/n8n-function-to-code-cheatsheet.md)
 
+**Free until the first 10 are taken:** send us your workflow export and we run every workflow on your version and on the n8n 3.0 release candidate - a written report, no login, no call. [Free n8n 3.0 readiness report](https://localhavenstore.github.io/n8n-3-readiness/).
+
 "tested": the old node and its Code replacement gave the same output on n8n 2.42.3, and on 2.42.6 the old workflow was refused while the replacement imported and gave the same output - throw-away test servers, fictional data, 9 Oct 2026. Source of the block: n8n pull request #40707. Not an official n8n page; not affiliated with n8n. Made with AI assistance.

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free n8n 3.0 readiness report - will your workflows still run?</title><meta name="description" content="Send one n8n workflow export and get a free written report: which workflows fail or change on the n8n 3.0 release candidate and what to do first. No login, no call. First 10 free."><link rel="canonical" href="https://localhavenstore.github.io/n8n-3-readiness/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Localhaven"><meta property="og:title" content="Free n8n 3.0 readiness report - will your workflows still run?">
+<meta property="og:description" content="Send one n8n workflow export and get a free written report: which workflows fail or change on the n8n 3.0 release candidate and what to do first. No login, no call. First 10 free."><meta property="og:url" content="https://localhavenstore.github.io/n8n-3-readiness/"><meta property="og:image" content="https://localhavenstore.github.io/assets/og/tools.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0D1116">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml"><link rel="icon" href="/assets/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/icon-180.png"><link rel="manifest" href="/manifest.json">
+<script>try{var t=localStorage.getItem('lh-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script><link rel="stylesheet" href="/assets/site.css"></head>
+<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap"><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="28" height="28">Localhaven</a><nav class="nav" aria-label="Main"><a href="/products/">Products</a><a href="/update-watch/">Update Watch</a><a href="/tools/" aria-current=page>Free tools</a><a href="/course/">Course</a><a href="/about.html">About</a></nav><button class="theme-btn" type="button" aria-label="Dark theme" aria-pressed="false" title="Light / dark">&#9680;</button></div></header><main id="main"><div class="wrap"><div class="prose" style="padding-top:40px;max-width:900px"><p class="kicker">free n8n 3.0 check</p>
+<h1>Will your n8n workflows still run on 3.0? A free written check</h1>
+<p class="lede">Send one export file. We run a copy of every workflow on your version and on the n8n 3.0 release candidate, in locked test
+containers without internet, and send you a short written report. The first 10 reports are free; after that there is a waiting list.</p>
+<h2>What you get</h2>
+<ul><li>One verdict: <strong>SAFE</strong>, <strong>PARTLY TESTED</strong>, <strong>DO THIS FIRST</strong> or <strong>WAIT</strong>.</li>
+<li>For every workflow that fails or behaves differently on 3.0: which step, and what to do first.</li>
+<li>Fix steps where we have tested them ourselves (for example: replacing the removed Function nodes).</li>
+<li>A plain list of what the check could not cover.</li></ul>
+<p>This is a part of a real report from our rehearsal with a made-up client ("Demo Bakery", three workflows):</p>
+<div style="overflow-x:auto"><pre style="white-space:pre-wrap;font-size:13.5px;line-height:1.5">## n8n (2.41.5 -&gt; 3.0 release candidate of 5 Oct 2026)
+
+**WAIT**
+
+What to do:
+1. Do not update yet: Old stock alert [wfBakeryLegacy02]: the run fails on 3.0 release candidate of 5 Oct 2026 but works on 2.41.5
+2. Do not update yet: Old stock alert [wfBakeryLegacy02]: Start, Fn fail on 3.0 release candidate of 5 Oct 2026 but work on 2.41.5
+3. Do not update yet: Old stock alert [wfBakeryLegacy02], Fn: node type function is on the removed list
+
+What we checked:
+- 3 workflow(s) from your export run on throw-away copies of n8n 2.41.5 and 3.0 release candidate of 5 Oct 2026, step by step (3 step(s) compared)
+
+How to fix what was found (only steps we tested ourselves):
+
+- Function and Function Item nodes are removed in n8n 3.0 (n8n 2.42.6 already refuses to import or save workflows that have them). Replace each with a Code node: Function becomes mode &quot;Run Once for All Items&quot;, Function Item becomes &quot;Run Once for Each Item&quot;.
+- In the Code node, write $input.all() where the old node used items, and $json.field where a Function Item used item.field. We ran these replacements on n8n 2.42.3 and 2.42.6 on a test server (9 Oct 2026): same output as the old node.
+- Work on a copy: duplicate the workflow, replace the node, run both with the same test data and compare the output. Only then delete the old node.
+- The full table of old and new lines (free): (link to our free guide)
+
+Not covered by this check:
+- Fetch web orders [wfBakeryOrders03]: 2 step(s) not tested - they failed on both versions (usually a step that calls an outside service: the test has no network)
+- One test run per workflow, without network; your live n8n was not touched.
+- The n8n image we tested is the 3.0 release candidate of 5 Oct 2026 (image tag v3-rc-20261005); it reports its own version as 2.42.0.
+- PostgreSQL: you did not tell us your version, so its end-of-life date was not checked.</pre></div>
+<h2>How to send your workflows</h2><ol class="steps">
+<li><strong>Make the file</strong> (read-only, it changes nothing): <code>n8n export:workflow --all --output=workflows.json</code>.
+With Docker: <code>docker exec -u node YOUR-N8N-CONTAINER n8n export:workflow --all --output=/tmp/workflows.json</code>, then
+<code>docker cp YOUR-N8N-CONTAINER:/tmp/workflows.json .</code></li>
+<li><strong>Look at the file before you send it. Do not send passwords, keys, tokens or any other secret, and no personal, customer
+or confidential data.</strong> The export holds the names of your saved credentials, not their passwords (we checked this on n8n
+2.42.6). But a key or password that somebody once typed directly into a step <em>is</em> in the file, and so is any test data that
+was pinned to a step. Replace secrets with <code>REMOVED</code> and remove pinned or sample data that is personal, confidential or
+otherwise sensitive. Searching for words like <code>Bearer</code>,
+<code>api_key</code>, <code>token</code>, <code>password</code> helps to find them, but it is not a guarantee - read the file.</li>
+<li><strong>E-mail it</strong> to <strong>localhavenstore@gmail.com</strong> with the subject <em>n8n 3.0 check</em> and three lines: which n8n version you run
+and how it is installed (Docker, npm, a hosting service); whether you use queue mode; your PostgreSQL version if you know it.</li></ol>
+<h2>What happens with your file</h2>
+<ul><li>We never log in to your n8n, your server or any account. We never ask for a password.</li>
+<li>A copy of your workflows runs on both versions in test containers without internet access, so the copies cannot reach the services
+your workflows normally talk to. Your real n8n is not touched.</li>
+<li>Triggers do not fire in the test: each workflow is started once, with the data pinned to its trigger or, if there is none, with one
+empty sample item.</li>
+<li>Your file is automatically deleted after 35 days. The report names your workflows; we keep a copy of it, and delete that copy when
+you ask (write to the same address).</li>
+<li>A person reads every report before it is sent. We answer in writing. No call.</li></ul>
+<h2>What this check cannot tell you</h2>
+<ul><li>Steps that call other services (HTTP requests, mail, databases) cannot run without internet. They are listed as "not tested" - never as safe.</li>
+<li>It is one test run per workflow, on the 3.0 <em>release candidate</em> (the image n8n published as v3-rc-20261005; it reports its own version as 2.42.0).
+The final 3.0 can differ.</li>
+<li>It is evidence for your workflows on the versions named in the report, not a guarantee.</li>
+<li>Take a backup before every update, whatever the report says.</li></ul>
+<h2>After the report</h2>
+<p>If the report finds removed nodes, you can fix them with our <a href="/guides/n8n-2-42-6-function-nodes-blocked.html">free guide</a>, or have it
+done: blocked Function nodes rewritten and tested, on Upwork from USD 49. If you want this check before every update: monthly n8n care on Upwork, USD 55 / 109 / 199 a month - in writing, no call.</p>
+<p>Would you rather not run n8n yourself at all? Then n8n Cloud does the updates for you. This check is for people who self-host:
+no limit on runs, and in normal operation your data stays on your own server.</p>
+<p class="note" style="margin-top:24px">Free for the first 10 reports. Not an official n8n page; not affiliated with n8n. The checks are run by our scripts
+with AI-assisted tools; every report is read by a person before it is sent. You can run the same comparison yourself with our free
+<a href="https://github.com/localhavenstore/n8n-upgrade-dry-run">n8n Upgrade Dry-Run</a>.</p></div></div></main><footer class="site-footer"><div class="wrap"><div class="cols">
+<div><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="24" height="24">Localhaven</a>
+<p style="margin-top:12px;max-width:340px">Tested tools for your home server. Built with AI assistance, tested on real (throw-away) machines,
+and every public action is approved by a human.</p></div>
+<div><p class="fh">Explore</p><ul><li><a href="/products/">Products</a></li><li><a href="/update-watch/">Update Watch</a></li><li><a href="/tools/">Free tools</a></li><li><a href="/course/">Course</a></li></ul></div>
+<div><p class="fh">Follow</p><ul><li><a href="https://www.youtube.com/@localhaven-x5o" rel="me">YouTube</a></li><li><a href="https://www.tiktok.com/@localhaven0" rel="me">TikTok</a></li><li><a href="https://github.com/localhavenstore" rel="me">GitHub</a></li><li><a href="https://ko-fi.com/localhaven" rel="me">Ko-fi</a></li></ul></div>
+<div><p class="fh">Company</p><ul><li><a href="/about.html">About</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li>
+<li><a href="mailto:localhavenstore@gmail.com">localhavenstore@gmail.com</a></li></ul></div></div>
+<div class="fine"><span>&copy; 2026 Localhaven. Not affiliated with the projects and products named on this site.</span><span>No cookies. Page views are counted without cookies - <a href="/privacy.html">privacy</a>.</span></div></div></footer><script>(function(){var b=document.querySelector('.theme-btn'),r=document.documentElement;b.setAttribute('aria-pressed',(r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark')})();document.querySelector('.theme-btn').addEventListener('click',function(){var r=document.documentElement,d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),n=d==='dark'?'light':'dark';r.setAttribute('data-theme',n);this.setAttribute('aria-pressed',n==='dark');try{localStorage.setItem('lh-theme',n)}catch(e){}});</script><script data-goatcounter="https://localhaven.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></body></html>
