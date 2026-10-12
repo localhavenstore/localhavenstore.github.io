@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-11T16:47:41Z",
+ "generated_utc": "2026-10-12T04:56:41Z",
  "source": "https://localhavenstore.github.io/update-watch/",
  "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups.",
  "apps": [
@@ -24,14 +24,14 @@
    "reported_problems": [
     "LIFX bulbs going unavailable: the fix is merged for 2026.10.2 and is not in 2026.10.1 (core #185640)",
     "MQTT select entities can stop Home Assistant from starting (core #185571, open)",
-    "Lutron Pico buttons fire a single press twice (core #185449, open)",
-    "Tasmota energy sensors lose their state class (core #185407, open)",
+    "Built-in TP-Link (Kasa / Tapo): older plugs and switches stop responding after 2026.10.1 and work again on 2026.10.0 - reported by 7 users (core #185859); a fix is proposed in the library, not released",
+    "Kiosk Mode (HACS): some options break on 2026.10.1 - its maintainer says to stay on 2026.10.0 until their next version (kiosk-mode #620)",
     "A hung DNS lookup can block one hostname until a restart (core #185645, open)",
-    "UniFi Protect: snapshots fail with HTTP 503 and cameras go unavailable - 1 report (core #185706)",
-    "Home dashboard: the welcome banner came back and dismissing it wiped favourites - 1 report (frontend #54822)",
-    "Custom (HACS) integrations: some stop loading or lose an action until their authors update them (exact library pins, cv.vol, hass as first argument, pkg_resources); the built-in Tank Utility is switched off in 2026.10"
+    "UniFi Protect: snapshots fail with HTTP 503 and cameras go unavailable - 2 users (core #185706)",
+    "Home dashboard: the welcome banner came back and dismissing it wiped favourites - 2 users (frontend #54822)",
+    "Custom (HACS) integrations: some stop loading or lose an action until updated (pins, cv.vol, hass argument, pkg_resources); built-in: Tank Utility off; EDL21 fails with bitstring 5.0.0 (core #185883, tested by us)"
    ],
-   "reported_problems_read": "2026-10-11",
+   "reported_problems_read": "2026-10-12",
    "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
   },
   {
