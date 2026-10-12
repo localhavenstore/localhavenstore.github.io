@@ -14,6 +14,8 @@ MIT | watches images; 30+ notification triggers; can update containers automatic
 MIT | notifications when an image is updated - it does not update anything | no |
 | [Tugtainer](https://github.com/Quenary/tugtainer)
 MIT | check + update with a web UI (auto-update off by default); waits on healthchecks and rolls an unhealthy container back to the previous IMAGE | image only |
+| [docker-updater](https://github.com/liquidguru/docker-updater)
+no licence file found | a web page that shows pending image updates and waits for your yes for each container (nothing is pulled by itself); shows release notes; waits on healthchecks, puts the previous CONTAINER back if the new one does not stay up, and can keep it for a set time | container only |
 | [Komodo](https://komo.do)
 GPL-3.0 | 'Poll for Updates' (indicator + alert) or 'Auto Update' (redeploy) - rolling tags like :latest only | no |
 | [Dockge](https://github.com/louislam/dockge)
@@ -21,11 +23,11 @@ MIT | compose stack manager with an 'Update Docker Images' action (pull + recrea
 | [Portainer](https://github.com/portainer/portainer)
 Zlib | container/stack management; re-pull an image and redeploy a stack from the UI | no |
 
-Sources: each project's README / docs, linked. Status from GitHub on 6 Oct 2026 (all pushed in the last months).
+Sources: each project's README / docs, linked. Status from GitHub on 6 Oct 2026 (all pushed in the last months). docker-updater was added on 12 Oct 2026 (README read that day; we did not run it).
 
 ## The gap: "an update exists" is not "the update is safe"
 
-All of these tell you a new image exists, and some install it. None of them tries the new version *with data like yours* before you do. That matters because some updates change your data on the first start: Jellyfin 12 rewrites its database, Nextcloud does not support a downgrade. After that, rolling back the image is not enough - in our test, Jellyfin 10.11 started and said "Healthy" on the migrated database, and nobody could log in ([the full story](https://localhavenstore.github.io/guides/jellyfin-downgrade-no-such-column.html)).
+All of these tell you a new image exists, and some install it - docker-updater asks you first, which is the safest way of the seven. None of them tries the new version *with data like yours* before you do. That matters because some updates change your data on the first start: Jellyfin 12 rewrites its database, Nextcloud does not support a downgrade. After that, rolling back the image is not enough - in our test, Jellyfin 10.11 started and said "Healthy" on the migrated database, and nobody could log in ([the full story](https://localhavenstore.github.io/guides/jellyfin-downgrade-no-such-column.html)).
 
 ## Close the gap
 
