@@ -99,15 +99,15 @@ updated, app check passed, and the snapshot restored in a drill
 Reported by users for this release (8) - not part of our test
 
 - LIFX bulbs going unavailable: the fix is merged for 2026.10.2 and is not in 2026.10.1 (core #185640)
-- MQTT select entities can stop Home Assistant from starting (core #185571, open)
-- Built-in TP-Link (Kasa / Tapo): older plugs and switches stop responding after 2026.10.1 and work again on 2026.10.0 - reported by 7 users (core #185859); a fix is proposed in the library, not released
+- A very large known_devices.yaml (one report: 142,000 lines, 2.1 MB) can make the start hang after the update and cause a roll-back - moving the file away helped 3 users (core #185571, #186069, both open)
+- Since 2026.10.0 mqtt.publish and mqtt.dump need an admin (release notes): another user's dashboard button - also one starting a script - publishes nothing. A helper button with an automation still does (tested by us)
+- Built-in TP-Link (Kasa): older plugs and switches (HS103, KP115, HS220) time out at set-up on 2026.10.1, fine on 2026.10.0 (core #185859). Cause found; fix (python-kasa #1792) in no release yet. Tapo Control: use 7.2.8
 - Kiosk Mode (HACS): some options break on 2026.10.1 - its maintainer says to stay on 2026.10.0 until their next version (kiosk-mode #620)
-- A hung DNS lookup can block one hostname until a restart (core #185645, open)
-- UniFi Protect: snapshots fail with HTTP 503 and cameras go unavailable - 2 users (core #185706)
-- Home dashboard: the welcome banner came back and dismissing it wiped favourites - 2 users (frontend #54822)
+- A hung DNS lookup can block one hostname until a restart - 2 users, no fix yet (core #185645, open)
+- Home dashboard: after a restart the welcome banner can come back, and dismissing it wiped one user's favourites and shortcuts - a fix is open (frontend #54822)
 - Custom (HACS) integrations: some stop loading or lose an action until updated (pins, cv.vol, hass argument, pkg_resources); built-in: Tank Utility off; EDL21 fails with bitstring 5.0.0 (core #185883, tested by us)
 
-Read by us on 2026-10-12 from the projects' issue trackers; not verified by us.
+Read by us on 2026-10-13 from the projects' issue trackers; not verified by us.
 
 GREEN
 2026-10-11
