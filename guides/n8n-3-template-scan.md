@@ -29,5 +29,3 @@ A template counts when it uses a node on the removed list of n8n's official [v3.
 3. Replace the nodes in a copy, test, then upgrade - [still on npm/npx? move to Docker first](https://localhavenstore.github.io/guides/n8n-npm-to-docker.html).
 
 Method: each template's workflow JSON from n8n's public template API, node types and versions compared with the official removed list. One snapshot (2026-10-07); templates change. Our own data and code; not affiliated with n8n GmbH. Made with AI assistance.
-
-LAUNCH40 40 % off at checkout until 13 Oct 23:59 (Athens)

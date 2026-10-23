@@ -31,7 +31,7 @@ runs copies of your workflows on your current version and on 3.0 side by side an
 <li>Pin your current version until they are fixed (a redeploy of <code>latest</code> may start 3.0).</li></ol>
 <h2>Method</h2>
 <p>On 2026-10-07 we downloaded the list of all 13,149 public templates from n8n's template API and each template's workflow JSON
-(13,092 usable; 57 were deleted or could not be fetched). Every workflow was checked with the static rules of the
+(13,092 usable - 57 were deleted or could not be fetched). Every workflow was checked with the static rules of the
 published n8n Upgrade Dry-Run 0.7 (git blob <code>8f077b4fb733</code>), which follow n8n's official
 <a href="https://docs.n8n.io/changelog/v30-breaking-changes/">v3.0 breaking-changes page</a> (checked 2026-10-07).
 "Views" are the all-time view counts n8n shows for each template.</p>
@@ -39,13 +39,13 @@ published n8n Upgrade Dry-Run 0.7 (git blob <code>8f077b4fb733</code>), which fo
 <h2>Honest limits</h2>
 <ul><li>Static rules: "breaks" means the template uses something 3.0 removes. Whether your copy fails depends on what you changed.</li>
 <li>Views are page views of the template, not installs or active workflows.</li>
-<li>One snapshot; templates are added and fixed every day. n8n 3.0 was not released yet when we ran this - we will refresh it on release day.</li>
+<li>One snapshot. Templates are added and fixed every day. n8n 3.0 was not released yet when we ran this - we will refresh it on release day.</li>
 <li>"Runs differently" and "Check your setup" are not failures - they need a look.</li></ul>
 <h2>Data</h2>
 <p><a href="/data/n8n-3-template-study.csv.txt" download="n8n-3-template-study.csv">Download the CSV</a> (13,092 rows: template id, name, link, views, created, level, reasons - no workflow contents).
 Free to use with a link back (CC BY 4.0). Cite as: Localhaven, "n8n 3.0 template study", 2026-10-07.</p>
-<p class="note" style="margin-top:24px">Our own data and code; not affiliated with n8n GmbH. Made with AI assistance.</p>
-<p style="margin:10px 0 0;font-size:14px"><span class="badge gold">LAUNCH40</span> 40 % off at checkout until 13 Oct 23:59 (Athens)</p></div></div></main><footer class="site-footer"><div class="wrap"><div class="cols">
+<p class="note" style="margin-top:24px">Our own data and code. Not affiliated with n8n GmbH. Made with AI assistance.</p>
+</div></div></main><footer class="site-footer"><div class="wrap"><div class="cols">
 <div><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="24" height="24">Localhaven</a>
 <p style="margin-top:12px;max-width:340px">Tested tools for your home server. Built with AI assistance, tested on real (throw-away) machines,
 and every public action is approved by a human.</p></div>

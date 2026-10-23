@@ -17,8 +17,6 @@ n8n
 
 Move an npm n8n to Docker on the same version - every workflow and credential checked, one-command rollback.
 
-LAUNCH40 40 % off at checkout until 13 Oct 23:59 (Athens)
-
 EUR 15Gumroad →](https://localhavenstore.gumroad.com/l/n8n-move-kit?utm_source=site&utm_medium=card)[
 
 n8n
@@ -69,7 +67,7 @@ Homelab
 
 ### Homelab Backup & Asset Log
 
-Excel / Google Sheets log for devices, backups and restore tests.
+Excel / Google Sheets log of your devices, with backup and restore-test dates.
 
 EUR 6Gumroad →](https://localhavenstore.gumroad.com/l/homelab-backup-asset-log?utm_source=site&utm_medium=card)
 
@@ -81,7 +79,7 @@ Home Assistant
 
 ### Aurum Home Assistant Starter Kit
 
-Gold HUD theme, dashboards and 5 automations, ready to paste.
+A gold HUD theme with dashboards and 5 automations, ready to paste.
 
 EUR 24Gumroad →](https://localhavenstore.gumroad.com/l/aurum-starter-kit?utm_source=site&utm_medium=card)[
 

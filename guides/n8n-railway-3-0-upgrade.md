@@ -51,6 +51,4 @@ n8n releases tested on a throw-away machine, including the 3.0 release candidate
 
 Still running n8n with npm or npx somewhere else? 3.0 drops that - the [n8n 3.0 Move Kit](https://localhavenstore.gumroad.com/l/n8n-move-kit) (EUR 15) moves it to Docker on the same version, checked. Not affiliated with n8n GmbH or Railway. Made with AI assistance.
 
-LAUNCH40 40 % off at checkout until 13 Oct 23:59 (Athens)
-
 Prefer a plan written for your setup? [n8n npm -> Docker migration plan](https://www.fiverr.com/localhaven/write-your-step-by-step-n8n-npm-to-docker-migration-plan-for-n8n-version-3) (our Fiverr service, from USD 35, files only - no access to your system).

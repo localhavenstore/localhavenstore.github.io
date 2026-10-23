@@ -20,7 +20,7 @@ machines, SQLite and Postgres). Not affiliated with n8n GmbH. If n8n's own migra
 It tells you how n8n runs (systemd, pm2, by hand, npx), where the encryption key is, your database, folders outside
 <code>~/.n8n</code>, workflows that need host programs or files, community nodes, and n8n 3.0 blockers by workflow name.</p>
 <pre><code>sudo node move-check.js</code></pre>
-<p>No script? At least note three things: <code>n8n --version</code>, how n8n is started, and where the key is (next step).</p>
+<p>No script? At least note three things: <code>n8n --version</code>, how n8n is started, and where the encryption key is kept (next step).</p>
 
 <h2>2. Find and save the encryption key</h2>
 <p>Every credential in n8n is encrypted with one key. It is either in the environment variable
@@ -50,7 +50,7 @@ your other settings too (time zone, <code>WEBHOOK_URL</code>, <code>NODES_EXCLUD
 
 <h2>5. Check before you trust it</h2>
 <ul>
-<li>Open a few credentials and use <strong>Test</strong> - "could not be decrypted" means the key is wrong (stop, fix, retry).</li>
+<li>Open a few credentials and use <strong>Test</strong> - "could not be decrypted" means the encryption key does not match (stop, fix, retry).</li>
 <li>The same workflows are <strong>active</strong>, and your webhooks answer again (production URLs).</li>
 <li>Workflows with <strong>Execute Command</strong>: the program must exist inside the container. Files read or written on
 the host: that folder must be mounted.</li>
@@ -79,7 +79,7 @@ calmly now is easier than in a hurry later.</p>
 (EUR 15) does these steps with automatic checks: same version in Docker, data copied and verified, every credential decrypted
 inside the container as a test, active workflows and webhooks compared, automatic rollback if a check fails, and one command
 to go back later. For n8n run by systemd or pm2 on Linux; tested with SQLite and Postgres on Ubuntu 24.04 (not tested:
-WSL2, other distributions, remote Postgres).</p><p class="note">Prefer a plan written for your setup? <a href="https://www.fiverr.com/localhaven/write-your-step-by-step-n8n-npm-to-docker-migration-plan-for-n8n-version-3">n8n npm -&gt; Docker migration plan</a> (our Fiverr service, from USD 35, files only - no access to your system).</p><p style="margin:10px 0 0;font-size:14px"><span class="badge gold">LAUNCH40</span> 40 % off at checkout until 13 Oct 23:59 (Athens)</p>
+WSL2, other distributions, remote Postgres).</p><p class="note">Prefer a plan written for your setup? <a href="https://www.fiverr.com/localhaven/write-your-step-by-step-n8n-npm-to-docker-migration-plan-for-n8n-version-3">n8n npm -&gt; Docker migration plan</a> (our Fiverr service, from USD 35, files only - no access to your system).</p>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"I already moved n8n to Docker and all credentials say could not be decrypted. Are they lost?","acceptedAnswer":{"@type":"Answer","text":"Not if you still have the old ~/.n8n/config or the old N8N_ENCRYPTION_KEY: stop the container, put that key in, start again. Without the old key they cannot be recovered."}},

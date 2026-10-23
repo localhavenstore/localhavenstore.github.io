@@ -53,8 +53,6 @@ n8n 3.0 Move Kit
 
 Moves an npm n8n to Docker on the same version and only says DONE when every credential decrypts in the container.
 
-LAUNCH40 40 % off at checkout until 13 Oct 23:59 (Athens)
-
 EUR 15Gumroad →](https://localhavenstore.gumroad.com/l/n8n-move-kit)
 
 Error texts quoted from n8n 2.41.5. Not an official n8n page; not affiliated with n8n GmbH. Made with AI assistance, checked against n8n's code.

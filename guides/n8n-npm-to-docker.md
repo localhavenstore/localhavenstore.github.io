@@ -13,7 +13,7 @@ Our free [n8n Move Check](https://github.com/localhavenstore/n8n-move-check) cha
 sudo node move-check.js
 ```
 
-No script? At least note three things: `n8n --version`, how n8n is started, and where the key is (next step).
+No script? At least note three things: `n8n --version`, how n8n is started, and where the encryption key is kept (next step).
 
 ## 2. Find and save the encryption key
 
@@ -46,7 +46,7 @@ If your key was in the environment (not in `~/.n8n/config`), add `-e N8N_ENCRYPT
 
 ## 5. Check before you trust it
 
-- Open a few credentials and use **Test** - "could not be decrypted" means the key is wrong (stop, fix, retry).
+- Open a few credentials and use **Test** - "could not be decrypted" means the encryption key does not match (stop, fix, retry).
 - The same workflows are **active**, and your webhooks answer again (production URLs).
 - Workflows with **Execute Command**: the program must exist inside the container. Files read or written on the host: that folder must be mounted.
 - Community nodes with native code are built for your old system - reinstall them in n8n.
@@ -76,5 +76,3 @@ Your npm install keeps working until you upgrade. But new versions and fixes com
 [n8n 3.0 Move Kit](https://localhavenstore.gumroad.com/l/n8n-move-kit?utm_source=site&utm_campaign=npm-to-docker-guide) (EUR 15) does these steps with automatic checks: same version in Docker, data copied and verified, every credential decrypted inside the container as a test, active workflows and webhooks compared, automatic rollback if a check fails, and one command to go back later. For n8n run by systemd or pm2 on Linux; tested with SQLite and Postgres on Ubuntu 24.04 (not tested: WSL2, other distributions, remote Postgres).
 
 Prefer a plan written for your setup? [n8n npm -> Docker migration plan](https://www.fiverr.com/localhaven/write-your-step-by-step-n8n-npm-to-docker-migration-plan-for-n8n-version-3) (our Fiverr service, from USD 35, files only - no access to your system).
-
-LAUNCH40 40 % off at checkout until 13 Oct 23:59 (Athens)
