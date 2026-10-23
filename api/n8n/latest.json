@@ -1,11 +1,16 @@
 {
  "app": "n8n",
- "from": "2.42.6",
- "to": "2.42.7",
+ "from": "2.43.7",
+ "to": "2.43.8",
  "verdict": "GREEN",
  "why": "updated, app check passed, and the snapshot restored in a drill",
  "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
- "tested_utc": "2026-10-12T08:39:03Z",
+ "tested_utc": "2026-10-21T03:10:52Z",
  "page": "https://localhavenstore.github.io/update-watch/n8n.html",
- "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+ "reported_problems": [
+  "AI Agent workflows with the Google Gemini Chat Model fail now and then with fetch failed after about 3 minutes. The reporter saw it on older versions too - not hit in our test (n8n #41591, open)"
+ ],
+ "reported_problems_read": "2026-10-21",
+ "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
 }

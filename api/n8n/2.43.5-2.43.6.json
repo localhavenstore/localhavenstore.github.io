@@ -1,0 +1,17 @@
+{
+ "app": "n8n",
+ "from": "2.43.5",
+ "to": "2.43.6",
+ "verdict": "GREEN",
+ "why": "updated, app check passed, and the snapshot restored in a drill",
+ "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
+ "tested_utc": "2026-10-15T15:19:30Z",
+ "page": "https://localhavenstore.github.io/update-watch/n8n.html",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+ "reported_problems": [
+  "Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, open)",
+  "With a proxy set, the built-in AI Assistant can ignore NO_PROXY, so its calls to a model server inside your network can fail. A contributor says proxy support is still pending - not hit in our test (n8n #41342, open)"
+ ],
+ "reported_problems_read": "2026-10-21",
+ "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
+}
