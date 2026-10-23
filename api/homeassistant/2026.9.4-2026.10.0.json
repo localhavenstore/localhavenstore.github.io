@@ -7,15 +7,15 @@
  "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
  "tested_utc": "2026-10-07T18:05:26Z",
  "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
- "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups.",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
  "reported_problems": [
   "2026.10 lists 22 backward-incompatible changes in its release notes (counted 7 Oct) - read them first",
   "UniFi Network did not load for several users (core #184838 and #184987, closed since)",
   "LIFX bulbs going unavailable: the fix is merged for 2026.10.2 (core #185640)",
   "A false shell template repair for command line sensors, a Hue light crash and the Bosch SHC child lock: fixed in 2026.10.1",
-  "MQTT select entities can stop Home Assistant from starting (core #185571, open)",
-  "Custom (HACS) integrations: some stop loading or lose an action until their authors update them (exact library pins, cv.vol, hass as first argument, pkg_resources); the built-in Tank Utility is switched off in 2026.10"
+  "The update can roll back when Core starts too slowly: a very large known_devices.yaml was the cause for several users, the first report named an MQTT select option (core #185571, #186069, open)",
+  "Custom (HACS) integrations: some stop loading or lose an action until their authors update them (exact library pins, cv.vol, hass as first argument, pkg_resources). The built-in Tank Utility is switched off in 2026.10"
  ],
- "reported_problems_read": "2026-10-11",
+ "reported_problems_read": "2026-10-22",
  "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
 }

@@ -1,11 +1,19 @@
 {
  "app": "immich",
- "from": "3.3.0",
- "to": "3.3.1",
+ "from": "3.3.1",
+ "to": "3.3.3",
  "verdict": "GREEN",
  "why": "updated, app check passed, and the snapshot restored in a drill",
  "scenario": "fresh compose stack (Immich, machine learning off, postgres/valkey as pinned), admin + 1 photo, snapshot -> update -> version/assets -> drill",
- "tested_utc": "2026-10-09T03:07:04Z",
+ "tested_utc": "2026-10-15T03:07:45Z",
  "page": "https://localhavenstore.github.io/update-watch/immich.html",
- "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+ "reported_problems": [
+  "The People page and name search can be very slow on 3.3.3 with big libraries (one user: 20 to 30 seconds with about 94,000 people) - not hit in our test (immich #32463, closed in 3.3.4)",
+  "Face detection on a photo that was cropped or rotated in Immich can put face boxes in the wrong place and remove existing faces and their people - not hit in our test (immich #32499, open)",
+  "After a photo is rotated in Immich, its text can no longer be found with OCR search - not hit in our test (immich #32484, open)",
+  "Some videos, for example MJPEG AVI from older cameras, do not play with real-time transcoding on, because a wrong frame rate is passed to ffmpeg - not hit in our test (immich #32471, open)"
+ ],
+ "reported_problems_read": "2026-10-21",
+ "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
 }

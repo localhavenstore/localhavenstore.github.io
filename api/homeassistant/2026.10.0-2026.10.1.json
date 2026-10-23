@@ -7,17 +7,17 @@
  "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
  "tested_utc": "2026-10-11T03:07:35Z",
  "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
- "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups.",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
  "reported_problems": [
   "LIFX bulbs going unavailable: the fix is merged for 2026.10.2 and is not in 2026.10.1 (core #185640)",
-  "A very large known_devices.yaml (one report: 142,000 lines, 2.1 MB) can make the start hang after the update and cause a roll-back - moving the file away helped 3 users (core #185571, #186069, both open)",
+  "A very large known_devices.yaml (one report: 142,000 lines, 2.1 MB) can make the start hang after the update and cause a roll-back - moving the file away helped 6 users (core #185571, #186069, both open)",
   "Since 2026.10.0 mqtt.publish and mqtt.dump need an admin (release notes): another user's dashboard button - also one starting a script - publishes nothing. A helper button with an automation still does (tested by us)",
-  "Built-in TP-Link (Kasa): older plugs and switches (HS103, KP115, HS220) time out at set-up on 2026.10.1, fine on 2026.10.0 (core #185859). Cause found; fix (python-kasa #1792) in no release yet. Tapo Control: use 7.2.8",
-  "Kiosk Mode (HACS): some options break on 2026.10.1 - its maintainer says to stay on 2026.10.0 until their next version (kiosk-mode #620)",
-  "A hung DNS lookup can block one hostname until a restart - 2 users, no fix yet (core #185645, open)",
-  "Home dashboard: after a restart the welcome banner can come back, and dismissing it wiped one user's favourites and shortcuts - a fix is open (frontend #54822)",
-  "Custom (HACS) integrations: some stop loading or lose an action until updated (pins, cv.vol, hass argument, pkg_resources); built-in: Tank Utility off; EDL21 fails with bitstring 5.0.0 (core #185883, tested by us)"
+  "Built-in TP-Link (Kasa): older plugs and switches (HS103, KP115, HS220) time out at set-up on 2026.10.1, fine on 2026.10.0 (core #185859). Cause found. Fix (python-kasa #1792) in no release yet. Tapo Control: use 7.2.8",
+  "Kiosk Mode (HACS): some options break on 2026.10.1 - fixed in Kiosk Mode v15.0.0, update it together with Home Assistant (kiosk-mode #620, closed)",
+  "A hung DNS lookup can block one hostname until a restart - fixed in 2026.10.2 (core #185645, closed)",
+  "Home dashboard: after a restart the welcome banner can come back, and dismissing it wiped one user's favourites and shortcuts - fix merged 19 Oct, after 2026.10.2 (frontend #54822, closed)",
+  "HACS integrations: some stop loading or lose an action until updated (pins, cv.vol, hass argument, pkg_resources). Built-in: Tank Utility off, EDL21 breaks with bitstring 5.0.0 - fix set for 2026.10.3 (core #185883)"
  ],
- "reported_problems_read": "2026-10-13",
+ "reported_problems_read": "2026-10-22",
  "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
 }

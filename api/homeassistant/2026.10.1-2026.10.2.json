@@ -1,0 +1,20 @@
+{
+ "app": "homeassistant",
+ "from": "2026.10.1",
+ "to": "2026.10.2",
+ "verdict": "GREEN",
+ "why": "updated, app check passed, and the snapshot restored in a drill",
+ "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
+ "tested_utc": "2026-10-17T03:08:04Z",
+ "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+ "reported_problems": [
+  "EDL21 smart meter readers stop delivering data after updating to 2026.10.2. Two users say going back to 2026.10.1 fixed it, one says it did not - not hit in our test (core #187079, open)",
+  "Backups with local add-ons: when a backup location gets its own encryption, that part can be left out or stay locked, so a restore may fail or skip local add-ons - not hit in our test (core #187111, open)",
+  "Z-Wave can reload and show all its devices as unavailable for about 20 to 30 seconds when a device is found without a device class, for example while adding devices - not hit in our test (core #187201, open)",
+  "The HomeKit Bridge options screen can show Exclude although Include was saved, so it does not show the real entity filter - not hit in our test (frontend #55030, open)",
+  "When adding a Matter device, changing both its name and Show as at once gives an Entity not found error and the Show as choice is lost - not hit in our test (frontend #55005, open)"
+ ],
+ "reported_problems_read": "2026-10-21",
+ "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
+}

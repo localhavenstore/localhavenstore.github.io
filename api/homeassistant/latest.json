@@ -1,23 +1,20 @@
 {
  "app": "homeassistant",
- "from": "2026.10.0",
- "to": "2026.10.1",
+ "from": "2026.10.1",
+ "to": "2026.10.2",
  "verdict": "GREEN",
  "why": "updated, app check passed, and the snapshot restored in a drill",
  "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
- "tested_utc": "2026-10-11T03:07:35Z",
+ "tested_utc": "2026-10-17T03:08:04Z",
  "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
- "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups.",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
  "reported_problems": [
-  "LIFX bulbs going unavailable: the fix is merged for 2026.10.2 and is not in 2026.10.1 (core #185640)",
-  "A very large known_devices.yaml (one report: 142,000 lines, 2.1 MB) can make the start hang after the update and cause a roll-back - moving the file away helped 3 users (core #185571, #186069, both open)",
-  "Since 2026.10.0 mqtt.publish and mqtt.dump need an admin (release notes): another user's dashboard button - also one starting a script - publishes nothing. A helper button with an automation still does (tested by us)",
-  "Built-in TP-Link (Kasa): older plugs and switches (HS103, KP115, HS220) time out at set-up on 2026.10.1, fine on 2026.10.0 (core #185859). Cause found; fix (python-kasa #1792) in no release yet. Tapo Control: use 7.2.8",
-  "Kiosk Mode (HACS): some options break on 2026.10.1 - its maintainer says to stay on 2026.10.0 until their next version (kiosk-mode #620)",
-  "A hung DNS lookup can block one hostname until a restart - 2 users, no fix yet (core #185645, open)",
-  "Home dashboard: after a restart the welcome banner can come back, and dismissing it wiped one user's favourites and shortcuts - a fix is open (frontend #54822)",
-  "Custom (HACS) integrations: some stop loading or lose an action until updated (pins, cv.vol, hass argument, pkg_resources); built-in: Tank Utility off; EDL21 fails with bitstring 5.0.0 (core #185883, tested by us)"
+  "EDL21 smart meter readers stop delivering data after updating to 2026.10.2. Two users say going back to 2026.10.1 fixed it, one says it did not - not hit in our test (core #187079, open)",
+  "Backups with local add-ons: when a backup location gets its own encryption, that part can be left out or stay locked, so a restore may fail or skip local add-ons - not hit in our test (core #187111, open)",
+  "Z-Wave can reload and show all its devices as unavailable for about 20 to 30 seconds when a device is found without a device class, for example while adding devices - not hit in our test (core #187201, open)",
+  "The HomeKit Bridge options screen can show Exclude although Include was saved, so it does not show the real entity filter - not hit in our test (frontend #55030, open)",
+  "When adding a Matter device, changing both its name and Show as at once gives an Entity not found error and the Show as choice is lost - not hit in our test (frontend #55005, open)"
  ],
- "reported_problems_read": "2026-10-13",
+ "reported_problems_read": "2026-10-21",
  "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
 }
