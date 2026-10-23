@@ -1,11 +1,17 @@
 {
  "app": "nextcloud",
- "from": "34.0.4",
- "to": "35.0.0",
+ "from": "35.0.1",
+ "to": "35.0.2",
  "verdict": "GREEN",
  "why": "updated, app check passed, and the snapshot restored in a drill",
  "scenario": "fresh compose stack (Nextcloud + PostgreSQL 17), 2 users + 1 file, snapshot -> update -> occ status/users/file -> drill",
- "tested_utc": "2026-10-05T23:00:44Z",
+ "tested_utc": "2026-10-19T06:53:27Z",
  "page": "https://localhavenstore.github.io/update-watch/nextcloud.html",
- "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+ "reported_problems": [
+  "Some users still get a missing database table oc_federated_invites after updating to 35.0.2 - not hit in our test (server #65549, open)",
+  "A warning is written to the log each time /index.php is opened since 35.0.2 - not hit in our test (server #65652, open)"
+ ],
+ "reported_problems_read": "2026-10-19",
+ "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
 }
