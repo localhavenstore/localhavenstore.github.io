@@ -3,7 +3,7 @@ self-host safety
 
 # Update your home server without losing a weekend
 
-Tested tools for one job: changing a self-hosted setup and being able to go back. Every verdict and tool here was run on throw-away test machines first - 20 update verdicts for 6 apps so far. Most of it is free.
+Tested tools for one job: changing a self-hosted setup and being able to go back. Every verdict and tool here was run on throw-away test machines first - 28 update verdicts for 6 apps so far. Most of it is free.
 
 1 · before you update
 
@@ -91,8 +91,6 @@ n8n
 
 Move an npm n8n to Docker on the same version - every workflow and credential checked, one-command rollback.
 
-LAUNCH40 40 % off at checkout until 13 Oct 23:59 (Athens)
-
 EUR 15Gumroad →](https://localhavenstore.gumroad.com/l/n8n-move-kit?utm_source=site&utm_medium=card)[
 
 FREE Railway template
@@ -135,4 +133,4 @@ Watchtower is archived: what WUD, Diun, Tugtainer, Komodo, Dockge and Portainer 
 
 Open →](https://localhavenstore.github.io/guides/watchtower-alternatives-2026.html)
 
-Made with AI assistance and tested by us on throw-away machines. A tested scenario is not a guarantee for your setup - read the release notes and keep backups. Paid items are sold on Gumroad; the Railway link carries our referral code. Not affiliated with the projects named here.
+Made with AI assistance and tested by us on throw-away machines. A tested scenario is one setup. Yours may differ - read the release notes and keep backups. Paid items are sold on Gumroad; the Railway link carries our referral code. Not affiliated with the projects named here.

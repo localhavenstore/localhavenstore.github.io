@@ -1,7 +1,7 @@
 {
- "generated_utc": "2026-10-13T05:31:57Z",
+ "generated_utc": "2026-10-23T03:12:03Z",
  "source": "https://localhavenstore.github.io/update-watch/",
- "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups.",
+ "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
  "apps": [
   "homeassistant",
   "immich",
@@ -13,6 +13,147 @@
  "verdicts": [
   {
    "app": "n8n",
+   "from": "2.43.7",
+   "to": "2.43.8",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
+   "tested_utc": "2026-10-21T03:10:52Z",
+   "page": "https://localhavenstore.github.io/update-watch/n8n.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+   "reported_problems": [
+    "AI Agent workflows with the Google Gemini Chat Model fail now and then with fetch failed after about 3 minutes. The reporter saw it on older versions too - not hit in our test (n8n #41591, open)"
+   ],
+   "reported_problems_read": "2026-10-21",
+   "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
+  },
+  {
+   "app": "n8n",
+   "from": "2.43.6",
+   "to": "2.43.7",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
+   "tested_utc": "2026-10-21T03:07:59Z",
+   "page": "https://localhavenstore.github.io/update-watch/n8n.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+   "reported_problems": [
+    "In the Agent Builder the Instructions field drops every typed letter on 2.43.7. Typing in the raw Markdown mode still works - not hit in our test (n8n #41287, closed in 2.44.0)",
+    "The Production Checklist pops up again on every reload of a published workflow, even after you close it - not hit in our test (n8n #41471, open)",
+    "A Wait node set to respond when a form is submitted only answers the form after the nodes after it have finished - not hit in our test (n8n #41332, open)"
+   ],
+   "reported_problems_read": "2026-10-21",
+   "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
+  },
+  {
+   "app": "nextcloud",
+   "from": "35.0.1",
+   "to": "35.0.2",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (Nextcloud + PostgreSQL 17), 2 users + 1 file, snapshot -> update -> occ status/users/file -> drill",
+   "tested_utc": "2026-10-19T06:53:27Z",
+   "page": "https://localhavenstore.github.io/update-watch/nextcloud.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+   "reported_problems": [
+    "Some users still get a missing database table oc_federated_invites after updating to 35.0.2 - not hit in our test (server #65549, open)",
+    "A warning is written to the log each time /index.php is opened since 35.0.2 - not hit in our test (server #65652, open)"
+   ],
+   "reported_problems_read": "2026-10-19",
+   "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
+  },
+  {
+   "app": "homeassistant",
+   "from": "2026.10.1",
+   "to": "2026.10.2",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
+   "tested_utc": "2026-10-17T03:08:04Z",
+   "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+   "reported_problems": [
+    "EDL21 smart meter readers stop delivering data after updating to 2026.10.2. Two users say going back to 2026.10.1 fixed it, one says it did not - not hit in our test (core #187079, open)",
+    "Backups with local add-ons: when a backup location gets its own encryption, that part can be left out or stay locked, so a restore may fail or skip local add-ons - not hit in our test (core #187111, open)",
+    "Z-Wave can reload and show all its devices as unavailable for about 20 to 30 seconds when a device is found without a device class, for example while adding devices - not hit in our test (core #187201, open)",
+    "The HomeKit Bridge options screen can show Exclude although Include was saved, so it does not show the real entity filter - not hit in our test (frontend #55030, open)",
+    "When adding a Matter device, changing both its name and Show as at once gives an Entity not found error and the Show as choice is lost - not hit in our test (frontend #55005, open)"
+   ],
+   "reported_problems_read": "2026-10-21",
+   "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
+  },
+  {
+   "app": "n8n",
+   "from": "2.43.5",
+   "to": "2.43.6",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
+   "tested_utc": "2026-10-15T15:19:30Z",
+   "page": "https://localhavenstore.github.io/update-watch/n8n.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+   "reported_problems": [
+    "Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, open)",
+    "With a proxy set, the built-in AI Assistant can ignore NO_PROXY, so its calls to a model server inside your network can fail. A contributor says proxy support is still pending - not hit in our test (n8n #41342, open)"
+   ],
+   "reported_problems_read": "2026-10-21",
+   "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
+  },
+  {
+   "app": "immich",
+   "from": "3.3.1",
+   "to": "3.3.3",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (Immich, machine learning off, postgres/valkey as pinned), admin + 1 photo, snapshot -> update -> version/assets -> drill",
+   "tested_utc": "2026-10-15T03:07:45Z",
+   "page": "https://localhavenstore.github.io/update-watch/immich.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+   "reported_problems": [
+    "The People page and name search can be very slow on 3.3.3 with big libraries (one user: 20 to 30 seconds with about 94,000 people) - not hit in our test (immich #32463, closed in 3.3.4)",
+    "Face detection on a photo that was cropped or rotated in Immich can put face boxes in the wrong place and remove existing faces and their people - not hit in our test (immich #32499, open)",
+    "After a photo is rotated in Immich, its text can no longer be found with OCR search - not hit in our test (immich #32484, open)",
+    "Some videos, for example MJPEG AVI from older cameras, do not play with real-time transcoding on, because a wrong frame rate is passed to ffmpeg - not hit in our test (immich #32471, open)"
+   ],
+   "reported_problems_read": "2026-10-21",
+   "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
+  },
+  {
+   "app": "n8n",
+   "from": "2.43.4",
+   "to": "2.43.5",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
+   "tested_utc": "2026-10-14T15:13:24Z",
+   "page": "https://localhavenstore.github.io/update-watch/n8n.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+   "reported_problems": [
+    "Simple production webhooks on 2.43.5 can switch between fast (about 50 to 70 ms) and slow (about 210 to 300 ms) answers. A contributor calls this a known problem - not hit in our test (n8n #41322, open)",
+    "Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, open)"
+   ],
+   "reported_problems_read": "2026-10-21",
+   "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
+  },
+  {
+   "app": "n8n",
+   "from": "2.42.7",
+   "to": "2.43.4",
+   "verdict": "GREEN",
+   "why": "updated, app check passed, and the snapshot restored in a drill",
+   "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
+   "tested_utc": "2026-10-14T15:07:18Z",
+   "page": "https://localhavenstore.github.io/update-watch/n8n.html",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
+   "reported_problems": [
+    "IMAP email triggers can stay switched off after a short network outage, even after a restart, until each workflow is unpublished and published again - not hit in our test (n8n #41541, open)",
+    "Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, open)"
+   ],
+   "reported_problems_read": "2026-10-21",
+   "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
+  },
+  {
+   "app": "n8n",
    "from": "2.42.6",
    "to": "2.42.7",
    "verdict": "GREEN",
@@ -20,7 +161,7 @@
    "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
    "tested_utc": "2026-10-12T08:39:03Z",
    "page": "https://localhavenstore.github.io/update-watch/n8n.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "homeassistant",
@@ -31,18 +172,18 @@
    "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
    "tested_utc": "2026-10-11T03:07:35Z",
    "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups.",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
    "reported_problems": [
     "LIFX bulbs going unavailable: the fix is merged for 2026.10.2 and is not in 2026.10.1 (core #185640)",
-    "A very large known_devices.yaml (one report: 142,000 lines, 2.1 MB) can make the start hang after the update and cause a roll-back - moving the file away helped 3 users (core #185571, #186069, both open)",
+    "A very large known_devices.yaml (one report: 142,000 lines, 2.1 MB) can make the start hang after the update and cause a roll-back - moving the file away helped 6 users (core #185571, #186069, both open)",
     "Since 2026.10.0 mqtt.publish and mqtt.dump need an admin (release notes): another user's dashboard button - also one starting a script - publishes nothing. A helper button with an automation still does (tested by us)",
-    "Built-in TP-Link (Kasa): older plugs and switches (HS103, KP115, HS220) time out at set-up on 2026.10.1, fine on 2026.10.0 (core #185859). Cause found; fix (python-kasa #1792) in no release yet. Tapo Control: use 7.2.8",
-    "Kiosk Mode (HACS): some options break on 2026.10.1 - its maintainer says to stay on 2026.10.0 until their next version (kiosk-mode #620)",
-    "A hung DNS lookup can block one hostname until a restart - 2 users, no fix yet (core #185645, open)",
-    "Home dashboard: after a restart the welcome banner can come back, and dismissing it wiped one user's favourites and shortcuts - a fix is open (frontend #54822)",
-    "Custom (HACS) integrations: some stop loading or lose an action until updated (pins, cv.vol, hass argument, pkg_resources); built-in: Tank Utility off; EDL21 fails with bitstring 5.0.0 (core #185883, tested by us)"
+    "Built-in TP-Link (Kasa): older plugs and switches (HS103, KP115, HS220) time out at set-up on 2026.10.1, fine on 2026.10.0 (core #185859). Cause found. Fix (python-kasa #1792) in no release yet. Tapo Control: use 7.2.8",
+    "Kiosk Mode (HACS): some options break on 2026.10.1 - fixed in Kiosk Mode v15.0.0, update it together with Home Assistant (kiosk-mode #620, closed)",
+    "A hung DNS lookup can block one hostname until a restart - fixed in 2026.10.2 (core #185645, closed)",
+    "Home dashboard: after a restart the welcome banner can come back, and dismissing it wiped one user's favourites and shortcuts - fix merged 19 Oct, after 2026.10.2 (frontend #54822, closed)",
+    "HACS integrations: some stop loading or lose an action until updated (pins, cv.vol, hass argument, pkg_resources). Built-in: Tank Utility off, EDL21 breaks with bitstring 5.0.0 - fix set for 2026.10.3 (core #185883)"
    ],
-   "reported_problems_read": "2026-10-13",
+   "reported_problems_read": "2026-10-22",
    "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
   },
   {
@@ -54,7 +195,7 @@
    "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
    "tested_utc": "2026-10-09T15:10:55Z",
    "page": "https://localhavenstore.github.io/update-watch/n8n.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "immich",
@@ -65,7 +206,7 @@
    "scenario": "fresh compose stack (Immich, machine learning off, postgres/valkey as pinned), admin + 1 photo, snapshot -> update -> version/assets -> drill",
    "tested_utc": "2026-10-09T03:07:04Z",
    "page": "https://localhavenstore.github.io/update-watch/immich.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "n8n",
@@ -76,7 +217,7 @@
    "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
    "tested_utc": "2026-10-08T15:07:16Z",
    "page": "https://localhavenstore.github.io/update-watch/n8n.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "immich",
@@ -87,7 +228,7 @@
    "scenario": "fresh compose stack (Immich, machine learning off, postgres/valkey as pinned), admin + 1 photo, snapshot -> update -> version/assets -> drill",
    "tested_utc": "2026-10-07T21:29:05Z",
    "page": "https://localhavenstore.github.io/update-watch/immich.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "homeassistant",
@@ -98,16 +239,16 @@
    "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
    "tested_utc": "2026-10-07T18:05:26Z",
    "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups.",
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
    "reported_problems": [
     "2026.10 lists 22 backward-incompatible changes in its release notes (counted 7 Oct) - read them first",
     "UniFi Network did not load for several users (core #184838 and #184987, closed since)",
     "LIFX bulbs going unavailable: the fix is merged for 2026.10.2 (core #185640)",
     "A false shell template repair for command line sensors, a Hue light crash and the Bosch SHC child lock: fixed in 2026.10.1",
-    "MQTT select entities can stop Home Assistant from starting (core #185571, open)",
-    "Custom (HACS) integrations: some stop loading or lose an action until their authors update them (exact library pins, cv.vol, hass as first argument, pkg_resources); the built-in Tank Utility is switched off in 2026.10"
+    "The update can roll back when Core starts too slowly: a very large known_devices.yaml was the cause for several users, the first report named an MQTT select option (core #185571, #186069, open)",
+    "Custom (HACS) integrations: some stop loading or lose an action until their authors update them (exact library pins, cv.vol, hass as first argument, pkg_resources). The built-in Tank Utility is switched off in 2026.10"
    ],
-   "reported_problems_read": "2026-10-11",
+   "reported_problems_read": "2026-10-22",
    "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
   },
   {
@@ -119,7 +260,7 @@
    "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
    "tested_utc": "2026-10-07T15:15:55Z",
    "page": "https://localhavenstore.github.io/update-watch/n8n.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "n8n",
@@ -130,7 +271,7 @@
    "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
    "tested_utc": "2026-10-06T16:39:14Z",
    "page": "https://localhavenstore.github.io/update-watch/n8n.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "homeassistant",
@@ -141,7 +282,7 @@
    "scenario": "fresh compose stack (Home Assistant Container, SQLite recorder), 1 user, snapshot -> update -> web/version/user -> drill",
    "tested_utc": "2026-10-06T07:47:40Z",
    "page": "https://localhavenstore.github.io/update-watch/homeassistant.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "vaultwarden",
@@ -152,7 +293,7 @@
    "scenario": "fresh compose stack (Vaultwarden, SQLite), 1 invited user, snapshot -> update -> /alive/version/user -> drill",
    "tested_utc": "2026-10-06T06:25:00Z",
    "page": "https://localhavenstore.github.io/update-watch/vaultwarden.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "jellyfin",
@@ -163,7 +304,7 @@
    "scenario": "fresh compose stack, 1 user, snapshot -> update -> health/version/user -> drill",
    "tested_utc": "2026-10-06T06:23:54Z",
    "page": "https://localhavenstore.github.io/update-watch/jellyfin.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "n8n",
@@ -174,7 +315,7 @@
    "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
    "tested_utc": "2026-10-06T05:31:04Z",
    "page": "https://localhavenstore.github.io/update-watch/n8n.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "vaultwarden",
@@ -185,7 +326,7 @@
    "scenario": "fresh compose stack (Vaultwarden, SQLite), 1 invited user, snapshot -> update -> /alive/version/user -> drill",
    "tested_utc": "2026-10-06T05:29:10Z",
    "page": "https://localhavenstore.github.io/update-watch/vaultwarden.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "n8n",
@@ -196,7 +337,7 @@
    "scenario": "fresh compose stack (n8n, SQLite), 1 imported workflow, snapshot -> update -> healthz/version/workflow -> drill",
    "tested_utc": "2026-10-06T04:51:48Z",
    "page": "https://localhavenstore.github.io/update-watch/n8n.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "jellyfin",
@@ -207,7 +348,7 @@
    "scenario": "fresh compose stack, 1 user, snapshot -> update -> health/version/user -> drill",
    "tested_utc": "2026-10-05T23:04:01Z",
    "page": "https://localhavenstore.github.io/update-watch/jellyfin.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "jellyfin",
@@ -218,7 +359,7 @@
    "scenario": "fresh compose stack, 1 user, snapshot -> update -> app check -> drill",
    "tested_utc": "2026-10-05T23:02:13Z",
    "page": "https://localhavenstore.github.io/update-watch/jellyfin.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "nextcloud",
@@ -229,7 +370,7 @@
    "scenario": "fresh compose stack (Nextcloud + PostgreSQL 17), 2 users + 1 file, snapshot -> update -> occ status/users/file -> drill",
    "tested_utc": "2026-10-05T23:00:44Z",
    "page": "https://localhavenstore.github.io/update-watch/nextcloud.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "immich",
@@ -240,7 +381,7 @@
    "scenario": "fresh compose stack (Immich, machine learning off, postgres/valkey as pinned), admin + 1 photo, snapshot -> update -> version/assets -> drill",
    "tested_utc": "2026-10-05T22:58:39Z",
    "page": "https://localhavenstore.github.io/update-watch/immich.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   },
   {
    "app": "nextcloud",
@@ -251,7 +392,7 @@
    "scenario": "fresh compose stack (Nextcloud + PostgreSQL 17), 2 users + 1 file, snapshot -> update -> occ status/users/file -> drill",
    "tested_utc": "2026-10-05T22:56:11Z",
    "page": "https://localhavenstore.github.io/update-watch/nextcloud.html",
-   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), not a guarantee for your setup - read the release notes and keep backups."
+   "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups."
   }
  ]
 }

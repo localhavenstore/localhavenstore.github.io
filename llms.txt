@@ -3,7 +3,7 @@
 > Tested tools and guides for home servers: Update Watch verdicts (self-hosted app updates tested on throw-away machines),
 > n8n 3.0 move tools, safe Docker Compose updates, Home Assistant energy-bill tools. Made with AI assistance, tested by us.
 
-Every page below also exists as Markdown (same path, .md). Update verdicts as JSON: https://localhavenstore.github.io/api/verdicts.json (one tested scenario per verdict, not a guarantee).
+Every page below also exists as Markdown (same path, .md). Update verdicts as JSON: https://localhavenstore.github.io/api/verdicts.json (one tested scenario per verdict - your setup may differ).
 
 ## Guides
 

@@ -10,7 +10,7 @@
 <body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap"><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="28" height="28">Localhaven</a><nav class="nav" aria-label="Main"><a href="/products/">Products</a><a href="/update-watch/">Update Watch</a><a href="/tools/" aria-current=page>Free tools</a><a href="/course/">Course</a><a href="/about.html">About</a></nav><button class="theme-btn" type="button" aria-label="Dark theme" aria-pressed="false" title="Light / dark">&#9680;</button></div></header><main id="main"><div class="wrap"><div class="prose" style="padding-top:40px;max-width:900px"><p class="kicker">free n8n 3.0 check</p>
 <h1>Will your n8n workflows still run on 3.0? A free written check</h1>
 <p class="lede">Send one export file. We run a copy of every workflow on your version and on the n8n 3.0 release candidate, in locked test
-containers without internet, and send you a short written report. The first 10 reports are free; after that there is a waiting list.</p>
+containers without internet, and send you a short written report. The first 10 reports are free. After that there is a waiting list.</p>
 <h2>What you get</h2>
 <ul><li>One verdict: <strong>SAFE</strong>, <strong>PARTLY TESTED</strong>, <strong>DO THIS FIRST</strong> or <strong>WAIT</strong>.</li>
 <li>For every workflow that fails or behaves differently on 3.0: which step, and what to do first.</li>
@@ -50,23 +50,23 @@ or confidential data.</strong> The export holds the names of your saved credenti
 2.42.6). But a key or password that somebody once typed directly into a step <em>is</em> in the file, and so is any test data that
 was pinned to a step. Replace secrets with <code>REMOVED</code> and remove pinned or sample data that is personal, confidential or
 otherwise sensitive. Searching for words like <code>Bearer</code>,
-<code>api_key</code>, <code>token</code>, <code>password</code> helps to find them, but it is not a guarantee - read the file.</li>
+<code>api_key</code>, <code>token</code>, <code>password</code> helps to find them, but it can miss some - read the file.</li>
 <li><strong>E-mail it</strong> to <strong>localhavenstore@gmail.com</strong> with the subject <em>n8n 3.0 check</em> and three lines: which n8n version you run
-and how it is installed (Docker, npm, a hosting service); whether you use queue mode; your PostgreSQL version if you know it.</li></ol>
+and how it is installed (Docker, npm, a hosting service), whether you use queue mode, and your PostgreSQL version if you know it.</li></ol>
 <h2>What happens with your file</h2>
 <ul><li>We never log in to your n8n, your server or any account. We never ask for a password.</li>
 <li>A copy of your workflows runs on both versions in test containers without internet access, so the copies cannot reach the services
 your workflows normally talk to. Your real n8n is not touched.</li>
 <li>Triggers do not fire in the test: each workflow is started once, with the data pinned to its trigger or, if there is none, with one
 empty sample item.</li>
-<li>Your file is automatically deleted after 35 days. The report names your workflows; we keep a copy of it, and delete that copy when
+<li>Your file is automatically deleted after 35 days. The report names your workflows. We keep a copy of it, and delete that copy when
 you ask (write to the same address).</li>
 <li>A person reads every report before it is sent. We answer in writing. No call.</li></ul>
 <h2>What this check cannot tell you</h2>
 <ul><li>Steps that call other services (HTTP requests, mail, databases) cannot run without internet. They are listed as "not tested" - never as safe.</li>
 <li>It is one test run per workflow, on a 3.0 <em>release candidate</em> image that n8n has published (your report names the exact image tag
 we used and the version that image reports for itself). The final 3.0 can differ.</li>
-<li>It is evidence for your workflows on the versions named in the report, not a guarantee.</li>
+<li>It is evidence, not a promise, for your workflows on the versions named in the report. Other versions can differ.</li>
 <li>Take a backup before every update, whatever the report says.</li></ul>
 <h2>After the report</h2>
 <p>If the report finds removed nodes, you can fix them with our <a href="/guides/n8n-2-42-6-function-nodes-blocked.html">free guide</a>, or have it
@@ -74,7 +74,7 @@ done: blocked Function nodes rewritten and tested, on Upwork from USD 49. If you
 <p>Would you rather not run n8n yourself at all? Then n8n Cloud does the updates for you. This check is for people who self-host:
 no limit on runs, and in normal operation your data stays on your own server.</p>
 <p class="note" style="margin-top:24px">Free for the first 10 reports. Not an official n8n page; not affiliated with n8n. The checks are run by our scripts
-with AI-assisted tools; every report is read by a person before it is sent. You can run the same comparison yourself with our free
+with AI-assisted tools. Every report is read by a person before it is sent. You can run the same comparison yourself with our free
 <a href="https://github.com/localhavenstore/n8n-upgrade-dry-run">n8n Upgrade Dry-Run</a>.</p></div></div></main><footer class="site-footer"><div class="wrap"><div class="cols">
 <div><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="24" height="24">Localhaven</a>
 <p style="margin-top:12px;max-width:340px">Tested tools for your home server. Built with AI assistance, tested on real (throw-away) machines,
