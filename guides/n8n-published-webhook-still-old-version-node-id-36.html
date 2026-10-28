@@ -10,8 +10,7 @@
 <body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap"><a class="brand" href="/"><img src="/assets/mark.svg" alt="" width="28" height="28">Localhaven</a><nav class="nav" aria-label="Main"><a href="/products/">Products</a><a href="/update-watch/">Update Watch</a><a href="/tools/" aria-current=page>Free tools</a><a href="/course/">Course</a><a href="/about.html">About</a></nav><button class="theme-btn" type="button" aria-label="Dark theme" aria-pressed="false" title="Light / dark">&#9680;</button></div></header><main id="main"><div class="wrap"><div class="prose" style="padding-top:40px"><p class="kicker">guide n8n</p>
 <h1>n8n: you published a change, but the webhook still runs the old version</h1>
 <p class="lede">You edit a workflow and publish it again - and the webhook keeps answering with the old version. One cause we could
-reproduce: a <strong>Webhook node with a 40-character id</strong>. We tested it on n8n 2.41.4 and 2.42.7 (12 Oct 2026). It is an open
-n8n issue, <a href="https://github.com/n8n-io/n8n/issues/40606" rel="noopener">#40606</a>, which puts the limit at 36 characters.</p>
+reproduce: a <strong>Webhook node with a 40-character id</strong>. We tested it on n8n 2.41.4 and 2.42.7 (12 Oct 2026). It is n8n issue <a href="https://github.com/n8n-io/n8n/issues/40606" rel="noopener">#40606</a>, which puts the limit at 36 characters. n8n closed it on 23 Oct 2026; the fix is in n8n 2.46.0, a beta, and not in a stable release yet (npm, 28 Oct) - we have not tested it.</p>
 <p>First rule out the everyday causes that n8n's documentation describes: the caller uses the test address of the webhook and not
 the production address, or the change was saved but not published. If neither is it, read on.</p>
 <h2>What we saw in the log</h2>

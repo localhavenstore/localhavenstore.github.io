@@ -10,8 +10,8 @@
  "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
  "reported_problems": [
   "IMAP email triggers can stay switched off after a short network outage, even after a restart, until each workflow is unpublished and published again - not hit in our test (n8n #41541, open)",
-  "Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, open)"
+  "Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct; the fix is in n8n 2.46.0, a beta - not in a stable release yet)"
  ],
- "reported_problems_read": "2026-10-21",
+ "reported_problems_read": "2026-10-28",
  "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
 }
