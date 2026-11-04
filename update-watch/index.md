@@ -156,7 +156,7 @@ updated, app check passed, and the snapshot restored in a drill
 
 Reported by users for this release (2) - not part of our test
 
-- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct; fixed in the stable releases n8n 2.46.4 and 2.46.5 - not tested by us. With npm, installing 2.46.0 to 2.46.5 fails (n8n #43006, open on 4 Nov); the Docker image 2.46.4 is out)
+- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct; fixed in the stable releases n8n 2.46.4 to 2.46.6 - the fix itself not tested by us. With npm, 2.46.0 to 2.46.5 fail to install (n8n #43006); 2.46.6 installed and started in our test on 4 Nov)
 - With a proxy set, the built-in AI Assistant can ignore NO_PROXY, so its calls to a model server inside your network can fail. A contributor says proxy support is still pending - not hit in our test (n8n #41342, open)
 
 Read by us on 2026-11-04 from the projects' issue trackers. Not verified by us.
@@ -191,7 +191,7 @@ updated, app check passed, and the snapshot restored in a drill
 Reported by users for this release (2) - not part of our test
 
 - Simple production webhooks on 2.43.5 can switch between fast (about 50 to 70 ms) and slow (about 210 to 300 ms) answers. A contributor calls this a known problem - not hit in our test (n8n #41322, open)
-- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct; fixed in the stable releases n8n 2.46.4 and 2.46.5 - not tested by us. With npm, installing 2.46.0 to 2.46.5 fails (n8n #43006, open on 4 Nov); the Docker image 2.46.4 is out)
+- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct; fixed in the stable releases n8n 2.46.4 to 2.46.6 - the fix itself not tested by us. With npm, 2.46.0 to 2.46.5 fail to install (n8n #43006); 2.46.6 installed and started in our test on 4 Nov)
 
 Read by us on 2026-11-04 from the projects' issue trackers. Not verified by us.
 
@@ -207,7 +207,7 @@ updated, app check passed, and the snapshot restored in a drill
 Reported by users for this release (2) - not part of our test
 
 - IMAP email triggers can stay switched off after a short network outage, even after a restart, until each workflow is unpublished and published again - not hit in our test (n8n #41541, open)
-- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct; fixed in the stable releases n8n 2.46.4 and 2.46.5 - not tested by us. With npm, installing 2.46.0 to 2.46.5 fails (n8n #43006, open on 4 Nov); the Docker image 2.46.4 is out)
+- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct; fixed in the stable releases n8n 2.46.4 to 2.46.6 - the fix itself not tested by us. With npm, 2.46.0 to 2.46.5 fail to install (n8n #43006); 2.46.6 installed and started in our test on 4 Nov)
 
 Read by us on 2026-11-04 from the projects' issue trackers. Not verified by us.
 
