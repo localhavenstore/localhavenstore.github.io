@@ -3,7 +3,7 @@ guide n8n
 
 # n8n: you published a change, but the webhook still runs the old version
 
-You edit a workflow and publish it again - and the webhook keeps answering with the old version. One cause we could reproduce: a **Webhook node with a 40-character id**. We tested it on n8n 2.41.4 and 2.42.7 (12 Oct 2026). It is n8n issue [#40606](https://github.com/n8n-io/n8n/issues/40606), which puts the limit at 36 characters. n8n closed it on 23 Oct 2026; the fix is in n8n 2.46.0, a beta, and not in a stable release yet (npm, 28 Oct) - we have not tested it.
+You edit a workflow and publish it again - and the webhook keeps answering with the old version. One cause we could reproduce: a **Webhook node with a 40-character id**. We tested it on n8n 2.41.4 and 2.42.7 (12 Oct 2026). It is n8n issue [#40606](https://github.com/n8n-io/n8n/issues/40606), which puts the limit at 36 characters. n8n closed it on 23 Oct 2026; the fix is in the stable releases n8n 2.46.4 and 2.46.5 - we have not tested it. Installing 2.46.0 to 2.46.5 with npm fails (n8n issue #43006, open on 4 Nov 2026; 2.46.4 failed in our npm test); the Docker image 2.46.4 is out.
 
 First rule out the everyday causes that n8n's documentation describes: the caller uses the test address of the webhook and not the production address, or the change was saved but not published. If neither is it, read on.
 
