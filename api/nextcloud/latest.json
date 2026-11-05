@@ -12,6 +12,6 @@
   "Some users still get a missing database table oc_federated_invites after updating to 35.0.2 - not hit in our test (server #65549, open)",
   "A warning is written to the log each time /index.php is opened since 35.0.2 - not hit in our test (server #65652, open)"
  ],
- "reported_problems_read": "2026-10-19",
+ "reported_problems_read": "2026-10-23",
  "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
 }
