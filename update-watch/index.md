@@ -11,33 +11,33 @@ Before you run `docker compose pull`: we already did - on a throw-away machine, 
 
 $ update-watch --latest
 
-n8n 2.43.7 -> 2.43.8 GREEN 21 Oct
+n8n 2.45.7 -> 2.46.4 GREEN 03 Nov
 
-n8n 2.43.6 -> 2.43.7 GREEN 21 Oct
+Vaultwarden 1.37.4 -> 1.37.5 GREEN 02 Nov
 
-Nextcloud 35.0.1 -> 35.0.2 GREEN 19 Oct
+n8n 2.45.6 -> 2.45.7 GREEN 31 Oct
 
-Home Assistant 2026.10.1 -> 2026.10.2 GREEN 17 Oct
+n8n 2.45.5 -> 2.45.6 GREEN 29 Oct
 
-n8n 2.43.5 -> 2.43.6 GREEN 15 Oct
+n8n 2.45.4 -> 2.45.5 GREEN 28 Oct
 
-Immich 3.3.1 -> 3.3.3 GREEN 15 Oct
+n8n 2.44.7 -> 2.45.4 GREEN 27 Oct
 
 # real runs on throw-away test machines
 
 ## Apps we watch
 
-6 apps · 28 verdicts · last test 21 Oct 2026
+6 apps · 42 verdicts · last test 03 Nov 2026
 
 [
 
-4 verdicts
+6 verdicts
 
 ### Home Assistant
 
-2026.10.1 → 2026.10.2
+2026.10.3 → 2026.10.4
 
-GREENtested 17 Oct 2026](https://localhavenstore.github.io/update-watch/homeassistant.html)[
+GREENtested 25 Oct 2026](https://localhavenstore.github.io/update-watch/homeassistant.html)[
 
 4 verdicts
 
@@ -47,13 +47,13 @@ GREENtested 17 Oct 2026](https://localhavenstore.github.io/update-watch/homeassi
 
 GREENtested 15 Oct 2026](https://localhavenstore.github.io/update-watch/immich.html)[
 
-3 verdicts
+5 verdicts
 
 ### Jellyfin
 
-12.1 → 12.2
+12.3 → 12.4
 
-GREENtested 06 Oct 2026](https://localhavenstore.github.io/update-watch/jellyfin.html)[
+GREENtested 27 Oct 2026](https://localhavenstore.github.io/update-watch/jellyfin.html)[
 
 3 verdicts
 
@@ -63,23 +63,149 @@ GREENtested 06 Oct 2026](https://localhavenstore.github.io/update-watch/jellyfin
 
 GREENtested 19 Oct 2026](https://localhavenstore.github.io/update-watch/nextcloud.html)[
 
-2 verdicts
+3 verdicts
 
 ### Vaultwarden
 
-1.37.3 → 1.37.4
+1.37.4 → 1.37.5
 
-GREENtested 06 Oct 2026](https://localhavenstore.github.io/update-watch/vaultwarden.html)[
+GREENtested 02 Nov 2026](https://localhavenstore.github.io/update-watch/vaultwarden.html)[
 
-12 verdicts
+21 verdicts
 
 ### n8n
 
-2.43.7 → 2.43.8
+2.45.7 → 2.46.4
 
-GREENtested 21 Oct 2026](https://localhavenstore.github.io/update-watch/n8n.html)
+GREENtested 03 Nov 2026](https://localhavenstore.github.io/update-watch/n8n.html)
 
-## All verdicts
+## Verdicts
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.45.7 → 2.46.4
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-11-03
+
+[Vaultwarden](https://localhavenstore.github.io/update-watch/vaultwarden.html)
+
+1.37.4 → 1.37.5
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-11-02
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.45.6 → 2.45.7
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-31
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.45.5 → 2.45.6
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-29
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.45.4 → 2.45.5
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-28
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.44.7 → 2.45.4
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-27
+
+[Jellyfin](https://localhavenstore.github.io/update-watch/jellyfin.html)
+
+12.3 → 12.4
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-27
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.44.6 → 2.44.7
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-26
+
+[Home Assistant](https://localhavenstore.github.io/update-watch/homeassistant.html)
+
+2026.10.3 → 2026.10.4
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-25
+
+[Home Assistant](https://localhavenstore.github.io/update-watch/homeassistant.html)
+
+2026.10.2 → 2026.10.3
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-24
+
+[Jellyfin](https://localhavenstore.github.io/update-watch/jellyfin.html)
+
+12.2 → 12.3
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-23
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.44.5 → 2.44.6
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-22
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.44.4 → 2.44.5
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-21
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.43.8 → 2.44.4
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-10-21
 
 [n8n](https://localhavenstore.github.io/update-watch/n8n.html)
 
@@ -91,7 +217,7 @@ Reported by users for this release (1) - not part of our test
 
 - AI Agent workflows with the Google Gemini Chat Model fail now and then with fetch failed after about 3 minutes. The reporter saw it on older versions too - not hit in our test (n8n #41591, open)
 
-Read by us on 2026-10-21 from the projects' issue trackers. Not verified by us.
+Read by us on 2026-11-05 from the projects' issue trackers. Not verified by us.
 
 GREEN
 2026-10-21
@@ -105,10 +231,10 @@ updated, app check passed, and the snapshot restored in a drill
 Reported by users for this release (3) - not part of our test
 
 - In the Agent Builder the Instructions field drops every typed letter on 2.43.7. Typing in the raw Markdown mode still works - not hit in our test (n8n #41287, closed in 2.44.0)
-- The Production Checklist pops up again on every reload of a published workflow, even after you close it - not hit in our test (n8n #41471, open)
+- The Production Checklist pops up again on every reload of a published workflow - not hit in our test (n8n #41471, closed as completed on 29 Oct; release with the fix not checked)
 - A Wait node set to respond when a form is submitted only answers the form after the nodes after it have finished - not hit in our test (n8n #41332, open)
 
-Read by us on 2026-10-21 from the projects' issue trackers. Not verified by us.
+Read by us on 2026-11-05 from the projects' issue trackers. Not verified by us.
 
 GREEN
 2026-10-21
@@ -124,7 +250,7 @@ Reported by users for this release (2) - not part of our test
 - Some users still get a missing database table oc_federated_invites after updating to 35.0.2 - not hit in our test (server #65549, open)
 - A warning is written to the log each time /index.php is opened since 35.0.2 - not hit in our test (server #65652, open)
 
-Read by us on 2026-10-19 from the projects' issue trackers. Not verified by us.
+Read by us on 2026-10-23 from the projects' issue trackers. Not verified by us.
 
 GREEN
 2026-10-19
@@ -137,13 +263,13 @@ updated, app check passed, and the snapshot restored in a drill
 
 Reported by users for this release (5) - not part of our test
 
-- EDL21 smart meter readers stop delivering data after updating to 2026.10.2. Two users say going back to 2026.10.1 fixed it, one says it did not - not hit in our test (core #187079, open)
+- EDL21 smart meter readers stop delivering data after updating to 2026.10.2 - not hit in our test. Three users say it works again on 2026.10.3 (core #187079, open)
 - Backups with local add-ons: when a backup location gets its own encryption, that part can be left out or stay locked, so a restore may fail or skip local add-ons - not hit in our test (core #187111, open)
 - Z-Wave can reload and show all its devices as unavailable for about 20 to 30 seconds when a device is found without a device class, for example while adding devices - not hit in our test (core #187201, open)
 - The HomeKit Bridge options screen can show Exclude although Include was saved, so it does not show the real entity filter - not hit in our test (frontend #55030, open)
 - When adding a Matter device, changing both its name and Show as at once gives an Entity not found error and the Show as choice is lost - not hit in our test (frontend #55005, open)
 
-Read by us on 2026-10-21 from the projects' issue trackers. Not verified by us.
+Read by us on 2026-11-05 from the projects' issue trackers. Not verified by us.
 
 GREEN
 2026-10-17
@@ -154,9 +280,10 @@ GREEN
 
 updated, app check passed, and the snapshot restored in a drill
 
-Reported by users for this release (2) - not part of our test
+Reported by users for this release (3) - not part of our test
 
-- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct; fixed in the stable releases n8n 2.46.4 to 2.46.6 - the fix itself not tested by us. With npm, 2.46.0 to 2.46.5 fail to install (n8n #43006); 2.46.6 installed and started in our test on 4 Nov)
+- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct)
+- The n8n #40606 fix is in the stable releases 2.46.4 to 2.46.6 (the fix itself not tested by us); with npm, 2.46.0 to 2.46.5 fail to install (n8n #43006), 2.46.6 installed and started in our test on 4 Nov
 - With a proxy set, the built-in AI Assistant can ignore NO_PROXY, so its calls to a model server inside your network can fail. A contributor says proxy support is still pending - not hit in our test (n8n #41342, open)
 
 Read by us on 2026-11-04 from the projects' issue trackers. Not verified by us.
@@ -174,10 +301,10 @@ Reported by users for this release (4) - not part of our test
 
 - The People page and name search can be very slow on 3.3.3 with big libraries (one user: 20 to 30 seconds with about 94,000 people) - not hit in our test (immich #32463, closed in 3.3.4)
 - Face detection on a photo that was cropped or rotated in Immich can put face boxes in the wrong place and remove existing faces and their people - not hit in our test (immich #32499, open)
-- After a photo is rotated in Immich, its text can no longer be found with OCR search - not hit in our test (immich #32484, open)
+- After a photo is rotated in Immich, its text can no longer be found with OCR search - not hit in our test (immich #32484, closed as completed on 30 Oct; release with the fix not checked)
 - Some videos, for example MJPEG AVI from older cameras, do not play with real-time transcoding on, because a wrong frame rate is passed to ffmpeg - not hit in our test (immich #32471, open)
 
-Read by us on 2026-10-21 from the projects' issue trackers. Not verified by us.
+Read by us on 2026-11-05 from the projects' issue trackers. Not verified by us.
 
 GREEN
 2026-10-15
@@ -188,10 +315,11 @@ GREEN
 
 updated, app check passed, and the snapshot restored in a drill
 
-Reported by users for this release (2) - not part of our test
+Reported by users for this release (3) - not part of our test
 
 - Simple production webhooks on 2.43.5 can switch between fast (about 50 to 70 ms) and slow (about 210 to 300 ms) answers. A contributor calls this a known problem - not hit in our test (n8n #41322, open)
-- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct; fixed in the stable releases n8n 2.46.4 to 2.46.6 - the fix itself not tested by us. With npm, 2.46.0 to 2.46.5 fail to install (n8n #43006); 2.46.6 installed and started in our test on 4 Nov)
+- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct)
+- The n8n #40606 fix is in the stable releases 2.46.4 to 2.46.6 (the fix itself not tested by us); with npm, 2.46.0 to 2.46.5 fail to install (n8n #43006), 2.46.6 installed and started in our test on 4 Nov
 
 Read by us on 2026-11-04 from the projects' issue trackers. Not verified by us.
 
@@ -204,10 +332,11 @@ GREEN
 
 updated, app check passed, and the snapshot restored in a drill
 
-Reported by users for this release (2) - not part of our test
+Reported by users for this release (3) - not part of our test
 
 - IMAP email triggers can stay switched off after a short network outage, even after a restart, until each workflow is unpublished and published again - not hit in our test (n8n #41541, open)
-- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct; fixed in the stable releases n8n 2.46.4 to 2.46.6 - the fix itself not tested by us. With npm, 2.46.0 to 2.46.5 fail to install (n8n #43006); 2.46.6 installed and started in our test on 4 Nov)
+- Workflows whose trigger or Wait node has an ID longer than 36 characters (for example made through the API) may not publish and keep running the old version - not hit in our test (n8n #40606, closed 23 Oct)
+- The n8n #40606 fix is in the stable releases 2.46.4 to 2.46.6 (the fix itself not tested by us); with npm, 2.46.0 to 2.46.5 fail to install (n8n #43006), 2.46.6 installed and started in our test on 4 Nov
 
 Read by us on 2026-11-04 from the projects' issue trackers. Not verified by us.
 
@@ -234,13 +363,13 @@ Reported by users for this release (8) - not part of our test
 - LIFX bulbs going unavailable: the fix is merged for 2026.10.2 and is not in 2026.10.1 (core #185640)
 - A very large known_devices.yaml (one report: 142,000 lines, 2.1 MB) can make the start hang after the update and cause a roll-back - moving the file away helped 6 users (core #185571, #186069, both open)
 - Since 2026.10.0 mqtt.publish and mqtt.dump need an admin (release notes): another user's dashboard button - also one starting a script - publishes nothing. A helper button with an automation still does (tested by us)
-- Built-in TP-Link (Kasa): older plugs and switches (HS103, KP115, HS220) time out at set-up on 2026.10.1, fine on 2026.10.0 (core #185859). Cause found. Fix (python-kasa #1792) in no release yet. Tapo Control: use 7.2.8
+- Built-in TP-Link (Kasa): older plugs and switches (HS103, KP115, HS220) time out at set-up on 2026.10.1 (core #185859, closed). Users report it fixed in 2026.11.0 (python-kasa 0.12.0). Tapo Control: use 7.2.8
 - Kiosk Mode (HACS): some options break on 2026.10.1 - fixed in Kiosk Mode v15.0.0, update it together with Home Assistant (kiosk-mode #620, closed)
 - A hung DNS lookup can block one hostname until a restart - fixed in 2026.10.2 (core #185645, closed)
 - Home dashboard: after a restart the welcome banner can come back, and dismissing it wiped one user's favourites and shortcuts - fix merged 19 Oct, after 2026.10.2 (frontend #54822, closed)
 - HACS integrations: some stop loading or lose an action until updated (pins, cv.vol, hass argument, pkg_resources). Built-in: Tank Utility off, EDL21 breaks with bitstring 5.0.0 - fix set for 2026.10.3 (core #185883)
 
-Read by us on 2026-10-22 from the projects' issue trackers. Not verified by us.
+Read by us on 2026-11-05 from the projects' issue trackers. Not verified by us.
 
 GREEN
 2026-10-11
