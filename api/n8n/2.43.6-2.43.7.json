@@ -10,9 +10,9 @@
  "note": "One tested scenario per verdict (fresh throw-away test machine, the scenario field says what was tested), your setup may differ - read the release notes and keep backups.",
  "reported_problems": [
   "In the Agent Builder the Instructions field drops every typed letter on 2.43.7. Typing in the raw Markdown mode still works - not hit in our test (n8n #41287, closed in 2.44.0)",
-  "The Production Checklist pops up again on every reload of a published workflow, even after you close it - not hit in our test (n8n #41471, open)",
+  "The Production Checklist pops up again on every reload of a published workflow - not hit in our test (n8n #41471, closed as completed on 29 Oct; release with the fix not checked)",
   "A Wait node set to respond when a form is submitted only answers the form after the nodes after it have finished - not hit in our test (n8n #41332, open)"
  ],
- "reported_problems_read": "2026-10-21",
+ "reported_problems_read": "2026-11-05",
  "reported_problems_note": "Problems other people reported for this release, read by us on the date given. They are NOT part of our test and not verified by us."
 }
