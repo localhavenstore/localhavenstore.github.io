@@ -11,6 +11,10 @@ Before you run `docker compose pull`: we already did - on a throw-away machine, 
 
 $ update-watch --latest
 
+Home Assistant 2026.10.4 -> 2026.11.0 GREEN 05 Nov
+
+n8n 2.46.5 -> 2.46.6 GREEN 04 Nov
+
 n8n 2.45.7 -> 2.46.4 GREEN 03 Nov
 
 Vaultwarden 1.37.4 -> 1.37.5 GREEN 02 Nov
@@ -19,25 +23,21 @@ n8n 2.45.6 -> 2.45.7 GREEN 31 Oct
 
 n8n 2.45.5 -> 2.45.6 GREEN 29 Oct
 
-n8n 2.45.4 -> 2.45.5 GREEN 28 Oct
-
-n8n 2.44.7 -> 2.45.4 GREEN 27 Oct
-
 # real runs on throw-away test machines
 
 ## Apps we watch
 
-6 apps · 42 verdicts · last test 03 Nov 2026
+6 apps · 44 verdicts · last test 05 Nov 2026
 
 [
 
-6 verdicts
+7 verdicts
 
 ### Home Assistant
 
-2026.10.3 → 2026.10.4
+2026.10.4 → 2026.11.0
 
-GREENtested 25 Oct 2026](https://localhavenstore.github.io/update-watch/homeassistant.html)[
+GREENtested 05 Nov 2026](https://localhavenstore.github.io/update-watch/homeassistant.html)[
 
 4 verdicts
 
@@ -71,15 +71,33 @@ GREENtested 19 Oct 2026](https://localhavenstore.github.io/update-watch/nextclou
 
 GREENtested 02 Nov 2026](https://localhavenstore.github.io/update-watch/vaultwarden.html)[
 
-21 verdicts
+22 verdicts
 
 ### n8n
 
-2.45.7 → 2.46.4
+2.46.5 → 2.46.6
 
-GREENtested 03 Nov 2026](https://localhavenstore.github.io/update-watch/n8n.html)
+GREENtested 04 Nov 2026](https://localhavenstore.github.io/update-watch/n8n.html)
 
 ## Verdicts
+
+[Home Assistant](https://localhavenstore.github.io/update-watch/homeassistant.html)
+
+2026.10.4 → 2026.11.0
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-11-05
+
+[n8n](https://localhavenstore.github.io/update-watch/n8n.html)
+
+2.46.5 → 2.46.6
+
+updated, app check passed, and the snapshot restored in a drill
+
+GREEN
+2026-11-04
 
 [n8n](https://localhavenstore.github.io/update-watch/n8n.html)
 
@@ -358,18 +376,17 @@ GREEN
 
 updated, app check passed, and the snapshot restored in a drill
 
-Reported by users for this release (8) - not part of our test
+Reported by users for this release (7) - not part of our test
 
-- LIFX bulbs going unavailable: the fix is merged for 2026.10.2 and is not in 2026.10.1 (core #185640)
+- LIFX bulbs going unavailable: the fix (core #185640) did not make 2026.10.2 to 2026.10.4; it is in 2026.11.0
 - A very large known_devices.yaml (one report: 142,000 lines, 2.1 MB) can make the start hang after the update and cause a roll-back - moving the file away helped 6 users (core #185571, #186069, both open)
-- Since 2026.10.0 mqtt.publish and mqtt.dump need an admin (release notes): another user's dashboard button - also one starting a script - publishes nothing. A helper button with an automation still does (tested by us)
-- Built-in TP-Link (Kasa): older plugs and switches (HS103, KP115, HS220) time out at set-up on 2026.10.1 (core #185859, closed). Users report it fixed in 2026.11.0 (python-kasa 0.12.0). Tapo Control: use 7.2.8
+- Built-in TP-Link (Kasa): older devices (HS103, KP115, HS220) time out at set-up on 2026.10.1 (core #185859, closed). Users report it fixed in 2026.11.0; one Docker user's HS103/HS105 still fail.
 - Kiosk Mode (HACS): some options break on 2026.10.1 - fixed in Kiosk Mode v15.0.0, update it together with Home Assistant (kiosk-mode #620, closed)
 - A hung DNS lookup can block one hostname until a restart - fixed in 2026.10.2 (core #185645, closed)
 - Home dashboard: after a restart the welcome banner can come back, and dismissing it wiped one user's favourites and shortcuts - fix merged 19 Oct, after 2026.10.2 (frontend #54822, closed)
-- HACS integrations: some stop loading or lose an action until updated (pins, cv.vol, hass argument, pkg_resources). Built-in: Tank Utility off, EDL21 breaks with bitstring 5.0.0 - fix set for 2026.10.3 (core #185883)
+- EDL21 breaks with bitstring 5.0.0 - fixed in 2026.10.3 (bitstring pinned below 5) (core #185883)
 
-Read by us on 2026-11-05 from the projects' issue trackers. Not verified by us.
+Read by us on 2026-11-07 from the projects' issue trackers. Not verified by us.
 
 GREEN
 2026-10-11
@@ -416,14 +433,10 @@ GREEN
 
 updated, app check passed, and the snapshot restored in a drill
 
-Reported by users for this release (6) - not part of our test
+Reported by users for this release (2) - not part of our test
 
-- 2026.10 lists 22 backward-incompatible changes in its release notes (counted 7 Oct) - read them first
 - UniFi Network did not load for several users (core #184838 and #184987, closed since)
-- LIFX bulbs going unavailable: the fix is merged for 2026.10.2 (core #185640)
-- A false shell template repair for command line sensors, a Hue light crash and the Bosch SHC child lock: fixed in 2026.10.1
 - The update can roll back when Core starts too slowly: a very large known_devices.yaml was the cause for several users, the first report named an MQTT select option (core #185571, #186069, open)
-- Custom (HACS) integrations: some stop loading or lose an action until their authors update them (exact library pins, cv.vol, hass as first argument, pkg_resources). The built-in Tank Utility is switched off in 2026.10
 
 Read by us on 2026-10-22 from the projects' issue trackers. Not verified by us.
 
